@@ -27,7 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="added global variable to store ngrok link">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/test/widget_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_drivers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/merchant_drivers.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
