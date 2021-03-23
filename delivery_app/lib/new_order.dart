@@ -52,7 +52,6 @@ class S extends State<new_order>{
     };
     final response = await http.post(uri, body: json.encode(info), headers: {"content-type": "application/json"});
     if (response.statusCode >= 200) {
-      print("Successfulllllllllllllllllllll");
       // to do: receive order id
     } else {
       throw Exception('Failed to create order');

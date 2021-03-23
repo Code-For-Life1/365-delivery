@@ -32,10 +32,10 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
     };
     var b = json.encode(a);
     print(b);
-    http.Response response = await http
-        .post(uri, body: b, headers: {"content-type": "application/json"});
-    final String responseString = response.body;
-    return merchantModelFromJson(responseString);
+    // http.Response response = await http
+    //     .post(uri, body: b, headers: {"content-type": "application/json"});
+    // final String responseString = response.body;
+    // return merchantModelFromJson(responseString);
   }
 
   MerchantModel _merchant;
