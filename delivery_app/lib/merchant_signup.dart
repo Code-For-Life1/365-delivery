@@ -18,10 +18,9 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
     var uri = Uri(
       scheme: 'https',
       host: theLink,
-      path: '/register/driver/39',
+      path: '/register/merchant',
     );
-    assert(
-        uri.toString() == 'https://a84a794b3db6.ngrok.io/register/driver/39');
+    assert(uri.toString() == 'https://' + theLink + '/register/merchant');
 
     Map<String, String> a = {
       "first_name": firstName,
@@ -32,10 +31,10 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
     };
     var b = json.encode(a);
     print(b);
-    // http.Response response = await http
-    //     .post(uri, body: b, headers: {"content-type": "application/json"});
-    // final String responseString = response.body;
-    // return merchantModelFromJson(responseString);
+    http.Response response = await http
+        .post(uri, body: b, headers: {"content-type": "application/json"});
+    final String responseString = response.body;
+    return merchantModelFromJson(responseString);
   }
 
   MerchantModel _merchant;

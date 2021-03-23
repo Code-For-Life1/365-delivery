@@ -37,7 +37,7 @@ class S extends State<new_order>{
   Future<Order> createOrder(String r_name, String r_phone, String st, String bldg, String city, int flr, int driver_id, int merchant_id) async {
     var uri = Uri(
       scheme: 'https',
-      host: '341ef0d16512.ngrok.io',
+      host: 'b5a8706515bb.ngrok.io',
       path: '/orders/merchant/set_order',
     );
     Map<String, dynamic> info = {
