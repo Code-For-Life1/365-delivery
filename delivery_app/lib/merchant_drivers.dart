@@ -1,5 +1,4 @@
 import 'package:delivery_app/driver_add.dart';
-import 'package:delivery_app/driver_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -7,6 +6,8 @@ import 'package:delivery_app/url_link.dart';
 
 
 class MerchantDriversPage extends StatefulWidget {
+  final String merchantID;
+  MerchantDriversPage({Key key, @required this.merchantID}) : super(key: key);
   @override
   _MerchantDriversPageState createState() => _MerchantDriversPageState();
 }
@@ -18,8 +19,10 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
     var uri = Uri(
       scheme: 'https',
       host: theLink,
-      path: '/mydrivers/39',
+      path: '/mydrivers/${widget.merchantID}',
     );
+    assert(//http://f60fc987a44e.ngrok.io/
+    uri.toString() == 'https://$theLink/mydrivers/${widget.merchantID}');
     var data = await http.get(uri);
     var jsonData = json.decode(data.body);
     List<MerchantDrivers> drivers = [];
@@ -33,6 +36,9 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
 
       appBar: AppBar(
