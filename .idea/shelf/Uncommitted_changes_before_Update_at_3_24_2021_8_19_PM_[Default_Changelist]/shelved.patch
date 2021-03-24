@@ -1,0 +1,1145 @@
+Index: delivery_app/pubspec.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>name: delivery_app\r\ndescription: Delivery app where merchants can dispatch drivers\r\n\r\n# The following line prevents the package from being accidentally published to\r\n# pub.dev using `pub publish`. This is preferred for private packages.\r\npublish_to: 'none' # Remove this line if you wish to publish to pub.dev\r\n\r\n# The following defines the version and build number for your application.\r\n# A version number is three numbers separated by dots, like 1.2.43\r\n# followed by an optional build number separated by a +.\r\n# Both the version and the builder number may be overridden in flutter\r\n# build by specifying --build-name and --build-number, respectively.\r\n# In Android, build-name is used as versionName while build-number used as versionCode.\r\n# Read more about Android versioning at https://developer.android.com/studio/publish/versioning\r\n# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.\r\n# Read more about iOS versioning at\r\n# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html\r\nversion: 1.0.0+1\r\n\r\nenvironment:\r\n  sdk: \">=2.7.0 <3.0.0\"\r\n\r\ndependencies:\r\n  flutter:\r\n    sdk: flutter\r\n  http: ^0.13.0\r\n  #0.12.0+2\r\n\r\n\r\n  # The following adds the Cupertino Icons font to your application.\r\n  # Use with the CupertinoIcons class for iOS style icons.\r\n  cupertino_icons: ^1.0.0\r\n\r\ndev_dependencies:\r\n  flutter_test:\r\n    sdk: flutter\r\n\r\n# For information on the generic Dart part of this file, see the\r\n# following page: https://dart.dev/tools/pub/pubspec\r\n\r\n# The following section is specific to Flutter.\r\nflutter:\r\n\r\n  # The following line ensures that the Material Icons font is\r\n  # included with your application, so that you can use the icons in\r\n  # the material Icons class.\r\n  uses-material-design: true\r\n\r\n  # To add assets to your application, add an assets section, like this:\r\n  assets:\r\n    - assets/portrait.png\r\n\r\n  # An image asset can refer to one or more resolution-specific \"variants\", see\r\n  # https://flutter.dev/assets-and-images/#resolution-aware.\r\n\r\n  # For details regarding adding assets from package dependencies, see\r\n  # https://flutter.dev/assets-and-images/#from-packages\r\n\r\n  # To add custom fonts to your application, add a fonts section here,\r\n  # in this \"flutter\" section. Each entry in this list should have a\r\n  # \"family\" key with the font family name, and a \"fonts\" key with a\r\n  # list giving the asset and other descriptors for the font. For\r\n  # example:\r\n  # fonts:\r\n  #   - family: Schyler\r\n  #     fonts:\r\n  #       - asset: fonts/Schyler-Regular.ttf\r\n  #       - asset: fonts/Schyler-Italic.ttf\r\n  #         style: italic\r\n  #   - family: Trajan Pro\r\n  #     fonts:\r\n  #       - asset: fonts/TrajanPro.ttf\r\n  #       - asset: fonts/TrajanPro_Bold.ttf\r\n  #         weight: 700\r\n  #\r\n  # For details regarding fonts from package dependencies,\r\n  # see https://flutter.dev/custom-fonts/#from-packages\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/pubspec.yaml	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/pubspec.yaml	(date 1616541761037)
+@@ -24,7 +24,7 @@
+   flutter:
+     sdk: flutter
+   http: ^0.13.0
+-  #0.12.0+2
++  web_socket_channel: ^2.0.0
+ 
+ 
+   # The following adds the Cupertino Icons font to your application.
+Index: delivery_app/lib/test.dart
+===================================================================
+--- delivery_app/lib/test.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/lib/test.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
+@@ -1,46 +0,0 @@
+-import 'package:delivery_app/driver_signup.dart';
+-import 'package:delivery_app/merchant_signup.dart';
+-import 'package:delivery_app/welcome.dart';
+-import 'package:flutter/material.dart';
+-import 'package:delivery_app/merchant_page.dart';
+-
+-class Test extends StatefulWidget {
+-  @override
+-  _TestState createState() => _TestState();
+-}
+-
+-class _TestState extends State<Test> {
+-  PageController _pageController = PageController();
+-  List<Widget> _screens = [MyApp(), MerchantPage(), MerchantSignUp()];
+-
+-  int _selectedIndex = 0;
+-  void _onPageChanged(int index) {
+-    setState(() {
+-      _selectedIndex = index;
+-    });
+-  }
+-
+-  void _onItemTapped(int selectedIndex) {
+-    _pageController.jumpToPage(selectedIndex);
+-  }
+-
+-  @override
+-  Widget build(BuildContext context) {
+-    return Scaffold(
+-      body: PageView(
+-        controller: _pageController,
+-        children: _screens,
+-        onPageChanged: _onPageChanged,
+-        physics: NeverScrollableScrollPhysics(),
+-      ),
+-      bottomNavigationBar: BottomNavigationBar(
+-        onTap: _onItemTapped,
+-        items: [
+-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home')
+-        ],
+-      ),
+-    );
+-  }
+-}
+Index: .idea/libraries/Dart_Packages.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\r\n  <library name=\"Dart Packages\" type=\"DartPackagesLibraryType\">\r\n    <properties>\r\n      <option name=\"packageNameToDirsMap\">\r\n        <entry key=\"async\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.5.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"boolean_selector\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"characters\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"charcode\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.2.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"clock\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"collection\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"cupertino_icons\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"fake_async\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"flutter\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/packages/flutter/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"flutter_test\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/packages/flutter_test/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"http\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"http_parser\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"matcher\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"meta\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.3.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"path\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"pedantic\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.11.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"sky_engine\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/bin/cache/pkg/sky_engine/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"source_span\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"stack_trace\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"stream_channel\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"string_scanner\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"term_glyph\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"test_api\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"typed_data\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"vector_math\">\r\n          <value>\r\n            <list>\r\n              <option value=\"$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n      </option>\r\n    </properties>\r\n    <CLASSES>\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.5.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.2.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.3.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.11.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/bin/cache/pkg/sky_engine/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/packages/flutter/lib\" />\r\n      <root url=\"file://$PROJECT_DIR$/../../../../src/flutter/packages/flutter_test/lib\" />\r\n    </CLASSES>\r\n    <JAVADOC />\r\n    <SOURCES />\r\n  </library>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/libraries/Dart_Packages.xml	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ .idea/libraries/Dart_Packages.xml	(date 1616541820539)
+@@ -44,6 +44,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="crypto">
++          <value>
++            <list>
++              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="cupertino_icons">
+           <value>
+             <list>
+@@ -177,6 +184,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="web_socket_channel">
++          <value>
++            <list>
++              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/web_socket_channel-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
+       </option>
+     </properties>
+     <CLASSES>
+@@ -186,6 +200,7 @@
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.2.0/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib" />
++      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.0/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.0/lib" />
+@@ -202,6 +217,7 @@
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0/lib" />
++      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/web_socket_channel-2.0.0/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/bin/cache/pkg/sky_engine/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/packages/flutter/lib" />
+       <root url="file://$PROJECT_DIR$/../../../../src/flutter/packages/flutter_test/lib" />
+Index: delivery_app/lib/screens/driver_sign_in.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/screens/driver_sign_in.dart	(date 1616449538607)
++++ delivery_app/lib/screens/driver_sign_in.dart	(date 1616449538607)
+@@ -0,0 +1,61 @@
++import 'package:flutter/material.dart';
++
++class DriverSignIn extends StatefulWidget {
++  @override
++  _DriverSignInState createState() => _DriverSignInState();
++}
++
++class _DriverSignInState extends State<DriverSignIn> {
++
++  final TextEditingController driverIdController = TextEditingController();
++
++
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++        appBar: AppBar(
++          backgroundColor: Colors.orange[800],
++          title: Text('Driver Sign in'),
++          centerTitle: true,
++        ),
++        body: Column(
++            mainAxisAlignment: MainAxisAlignment.center,
++            children: [
++              Text(
++                'Enter your ID',
++                style: TextStyle(
++                    fontSize: 25
++                ),
++              ),
++              SizedBox(height: 10),
++              Container(
++                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
++                child: TextField(
++                  controller: driverIdController,
++                  style: TextStyle(fontSize: 16),
++                  decoration: new InputDecoration(
++                    fillColor: Color(0xFFF8F8F8),
++                    filled: true,
++                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
++                    hintText: 'e.g: 28',
++                    border: new OutlineInputBorder(
++                      borderRadius: const BorderRadius.all(
++                        const Radius.circular(10.0),
++                      ),
++                    ),
++                  ),
++                ),
++              ),
++              SizedBox(height: 15),
++              TextButton(onPressed: ()  {
++                final String driverID = driverIdController.text;
++                Navigator.of(context).pushReplacementNamed('/driverHomePage',arguments: driverID);
++              }, child: Text('Sign in'),
++              ),
++              SizedBox(height: 20),
++            ]
++        )
++
++    );
++  }
++}
+Index: delivery_app/lib/screens/merchant_sign_in.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/screens/merchant_sign_in.dart	(date 1616443236620)
++++ delivery_app/lib/screens/merchant_sign_in.dart	(date 1616443236620)
+@@ -0,0 +1,62 @@
++import 'package:flutter/material.dart';
++
++class MerchantSignIn extends StatefulWidget {
++  @override
++  _MerchantSignInState createState() => _MerchantSignInState();
++}
++
++class _MerchantSignInState extends State<MerchantSignIn> {
++
++  final TextEditingController merchantIdController = TextEditingController();
++
++
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++        appBar: AppBar(
++          backgroundColor: Colors.orange[800],
++          title: Text('Merchant Sign in'),
++          centerTitle: true,
++        ),
++        body: Column(
++            mainAxisAlignment: MainAxisAlignment.center,
++            children: [
++              Text(
++                'Enter your ID',
++                style: TextStyle(
++                    fontSize: 25
++                ),
++              ),
++              SizedBox(height: 10),
++              Container(
++                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
++                child: TextField(
++                  controller: merchantIdController,
++                  style: TextStyle(fontSize: 16),
++                  decoration: new InputDecoration(
++                    fillColor: Color(0xFFF8F8F8),
++                    filled: true,
++                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
++                    hintText: 'e.g: 28',
++                    border: new OutlineInputBorder(
++                      borderRadius: const BorderRadius.all(
++                        const Radius.circular(10.0),
++                      ),
++                    ),
++                  ),
++                ),
++              ),
++              SizedBox(height: 15),
++              TextButton(onPressed: ()  {
++                final String merchantID = merchantIdController.text;
++                print('Entered text is $merchantID');
++                Navigator.pushNamed(context,'/merchantHomePage',arguments: merchantID);
++              }, child: Text('Sign in'),
++              ),
++              SizedBox(height: 20),
++            ]
++        )
++
++    );
++  }
++}
+Index: delivery_app/lib/screens/driver_home_page.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/screens/driver_home_page.dart	(date 1616446702941)
++++ delivery_app/lib/screens/driver_home_page.dart	(date 1616446702941)
+@@ -0,0 +1,79 @@
++import 'package:delivery_app/driver_receiving_order.dart';
++import 'package:delivery_app/merchant_drivers.dart';
++import 'package:delivery_app/merchant_order.dart';
++import 'package:flutter/cupertino.dart';
++import 'package:flutter/material.dart';
++
++class DriverHomePage extends StatefulWidget {
++  final String driverID;
++  DriverHomePage({Key key, @required this.driverID}) : super(key: key);
++
++
++  @override
++  _DriverHomePageState createState() => _DriverHomePageState();
++}
++
++
++
++class _DriverHomePageState extends State<DriverHomePage> {
++
++
++  int _currentIndex = 0;
++  PageController _pageController = PageController();
++  List<Widget> _screens = [DriverReceivingOrder(), MerchantDriversPage()];
++  int _selectedIndex = 0;
++  void _onPageChanged(int index) {
++    setState(() {
++      _selectedIndex = index;
++    });
++  }
++  void _onItemTapped(int selectedIndex) {
++    _pageController.jumpToPage(selectedIndex);
++    _currentIndex = selectedIndex;
++  }
++
++
++
++  @override
++  Widget build(BuildContext context) {
++    print(widget.driverID);
++    // final String data = ModalRoute.of(context).settings.arguments;
++    return Scaffold(
++      drawer: Drawer(
++        child: ListView(
++          children: [
++            DrawerHeader(child: Text('Hello')),
++            ListTile(title: Text('A')),
++            ListTile(title: Text('B')),
++          ],
++        ),
++      ),
++      backgroundColor: Colors.white,
++
++      body: PageView(
++        controller: _pageController,
++        children: _screens,
++        onPageChanged: _onPageChanged,
++        physics: NeverScrollableScrollPhysics(),
++      ),
++      bottomNavigationBar: BottomNavigationBar(
++        currentIndex: _currentIndex,
++        backgroundColor: Colors.deepOrange,
++        items: [
++          BottomNavigationBarItem(
++            icon: Icon(Icons.drive_eta),
++            label: 'Home',
++          ),
++          BottomNavigationBarItem(
++            icon: Icon(
++              Icons.delivery_dining,
++            ),
++            label: 'Example',
++          )
++        ],
++        onTap: _onItemTapped,
++        selectedItemColor: Colors.amber,
++      ),
++    );
++  }
++}
+Index: delivery_app/test/widget_test.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// This is a basic Flutter widget test.\r\n//\r\n// To perform an interaction with a widget in your test, use the WidgetTester\r\n// utility that Flutter provides. For example, you can send tap and scroll\r\n// gestures. You can also use WidgetTester to find child widgets in the widget\r\n// tree, read text, and verify that the values of widget properties are correct.\r\n\r\nimport 'package:flutter/material.dart';\r\nimport 'package:flutter_test/flutter_test.dart';\r\n\r\nimport 'package:delivery_app/main.dart';\r\n\r\nvoid main() {\r\n  testWidgets('Counter increments smoke test', (WidgetTester tester) async {\r\n    // Build our app and trigger a frame.\r\n    await tester.pumpWidget(MyApp());\r\n\r\n    // Verify that our counter starts at 0.\r\n    expect(find.text('0'), findsOneWidget);\r\n    expect(find.text('1'), findsNothing);\r\n\r\n    // Tap the '+' icon and trigger a frame.\r\n    await tester.tap(find.byIcon(Icons.add));\r\n    await tester.pump();\r\n\r\n    // Verify that our counter has incremented.\r\n    expect(find.text('0'), findsNothing);\r\n    expect(find.text('1'), findsOneWidget);\r\n  });\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/test/widget_test.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/test/widget_test.dart	(date 1616286489840)
+@@ -8,7 +8,6 @@
+ import 'package:flutter/material.dart';
+ import 'package:flutter_test/flutter_test.dart';
+ 
+-import 'package:delivery_app/main.dart';
+ 
+ void main() {
+   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"792af8c6-7ea3-4f1a-852a-8fb644cf2f05\" name=\"Default Changelist\" comment=\"added global variable to store ngrok link\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/delivery_app/lib/merchant_signup.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/delivery_app/lib/merchant_signup.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/delivery_app/lib/models/merchant_model.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/delivery_app/lib/models/merchant_model.dart\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[Pixel_3a_API_30_x86]\" />\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Dart File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PUSH_UPDATE_ALL_ROOTS\" value=\"false\" />\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"ROOT_SYNC\" value=\"DONT_SYNC\" />\r\n  </component>\r\n  <component name=\"KotlinCodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1pIuz152qSDMXyWIcVXFw580tZY\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"dart.analysis.tool.window.visible\" value=\"false\" />\r\n    <property name=\"io.flutter.reload.alreadyRun\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../world_time\" />\r\n    <property name=\"project.structure.last.edited\" value=\"SDKs\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"editor.preferences.fonts.default\" />\r\n    <property name=\"show.migrate.to.gradle.popup\" value=\"false\" />\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main.dart\" type=\"FlutterRunConfigurationType\" factoryName=\"Flutter\">\r\n      <option name=\"filePath\" value=\"$PROJECT_DIR$/delivery_app/lib/main.dart\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"792af8c6-7ea3-4f1a-852a-8fb644cf2f05\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1614883183530</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1614883183530</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"added whole flutter project\">\r\n      <created>1614883400127</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1614883400127</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"added some project configuration files\">\r\n      <created>1614883605474</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1614883605474</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"removed Ghalayini's main.dart (it was already added in the initial project)\">\r\n      <created>1614883711525</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1614883711525</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Created a custom Widget (Button)\">\r\n      <created>1615335976632</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615335976632</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Finished UI for Merchant order page\">\r\n      <created>1615336182059</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615336182059</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"removed the code in main.dart, created a .dart file for every screen\">\r\n      <created>1615389016782</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615389016782</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"added drivers list (without json)\">\r\n      <created>1615424331587</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615424331587</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"connected driver_signup.dart with backend for authentication&#10;created class driver_authentication.dart to use in token authentication\">\r\n      <created>1615640636262</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615640636262</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"added drivers list (with json)&#10;ability to add driver then authenticate\">\r\n      <created>1615646963828</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615646963828</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"added global variable to store ngrok link\">\r\n      <created>1616009350109</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616009350109</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"added whole flutter project\" />\r\n    <MESSAGE value=\"added some project configuration files\" />\r\n    <MESSAGE value=\"removed Ghalayini's main.dart (it was already added in the initial project)\" />\r\n    <MESSAGE value=\"Created a custom Widget (Button)\" />\r\n    <MESSAGE value=\"Finished UI for Merchant order page\" />\r\n    <MESSAGE value=\"removed the code in main.dart, created a .dart file for every screen\" />\r\n    <MESSAGE value=\"added drivers list (without json)\" />\r\n    <MESSAGE value=\"connected driver_signup.dart with backend for authentication&#10;created class driver_authentication.dart to use in token authentication\" />\r\n    <MESSAGE value=\"added drivers list (with json)&#10;ability to add driver then authenticate\" />\r\n    <MESSAGE value=\"added global variable to store ngrok link\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"added global variable to store ngrok link\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"196\" y=\"106\" key=\"#Unnamed\" timestamp=\"1614902077076\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"196\" y=\"106\" key=\"#Unnamed/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1614902077076\" />\r\n    <state x=\"0\" y=\"178\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog\" timestamp=\"1614902216299\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"0\" y=\"178\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1614902216299\" />\r\n    <state x=\"1215\" y=\"333\" key=\"#com.intellij.fileTypes.FileTypeChooser\" timestamp=\"1615410928185\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"1215\" y=\"333\" key=\"#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615410928185\" />\r\n    <state x=\"275\" y=\"313\" key=\"#com.intellij.ide.util.TreeFileChooserDialog\" timestamp=\"1614902213254\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"275\" y=\"313\" key=\"#com.intellij.ide.util.TreeFileChooserDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1614902213254\" />\r\n    <state x=\"92\" y=\"92\" width=\"1736\" height=\"856\" key=\"AVDManager\" timestamp=\"1615037068063\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"92\" y=\"92\" width=\"1736\" height=\"856\" key=\"AVDManager/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615037068063\" />\r\n    <state x=\"740\" y=\"275\" key=\"FileChooserDialogImpl\" timestamp=\"1615731425337\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"740\" y=\"275\" key=\"FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615731425337\" />\r\n    <state width=\"1877\" height=\"277\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1616009326390\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"277\" key=\"GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616009326390\" />\r\n    <state width=\"1877\" height=\"277\" key=\"GridCell.Tab.0.center\" timestamp=\"1616009326390\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"277\" key=\"GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616009326390\" />\r\n    <state width=\"1877\" height=\"277\" key=\"GridCell.Tab.0.left\" timestamp=\"1616009326390\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"277\" key=\"GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616009326390\" />\r\n    <state width=\"1877\" height=\"277\" key=\"GridCell.Tab.0.right\" timestamp=\"1616009326390\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"277\" key=\"GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616009326390\" />\r\n    <state x=\"1020\" y=\"263\" key=\"IDE.errors.dialog\" timestamp=\"1615636357890\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"1020\" y=\"263\" key=\"IDE.errors.dialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615636357890\" />\r\n    <state x=\"184\" y=\"86\" key=\"MergeDialog\" timestamp=\"1615488905085\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"184\" y=\"86\" key=\"MergeDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615488905085\" />\r\n    <state x=\"349\" y=\"178\" key=\"SettingsEditor\" timestamp=\"1615584956348\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"349\" y=\"178\" key=\"SettingsEditor/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615584956348\" />\r\n    <state x=\"552\" y=\"253\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1616009420104\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"552\" y=\"253\" key=\"Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616009420104\" />\r\n    <state x=\"769\" y=\"434\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1616009400253\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"769\" y=\"434\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616009400253\" />\r\n    <state x=\"730\" y=\"233\" key=\"git4idea.branch.GitSmartOperationDialog\" timestamp=\"1615488820237\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"730\" y=\"233\" key=\"git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615488820237\" />\r\n    <state x=\"228\" y=\"232\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1616020733456\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"228\" y=\"232\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616020733456\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ .idea/workspace.xml	(date 1616609904109)
+@@ -19,10 +19,49 @@
+     <select />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="added global variable to store ngrok link">
++    <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="added route generator">
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/driver_order_history.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/driver_receiving_order.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/models/order_details.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver_home_page.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver_sign_in.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant_sign_in.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_signup.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/merchant_signup.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/merchant_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/merchant_model.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/android/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/driver_add.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/driver_add.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/driver_signup.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver_sign_up.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_drivers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/merchant_drivers.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/merchant_home_page.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_signup.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant_sign_up.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/test.dart" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/welcome.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/welcome.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/pubspec.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/pubspec.yaml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/test/widget_test.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/delivery_dj_proj/__init__.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/delivery_dj_proj/asgi.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/delivery_dj_proj/settings.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/delivery_dj_proj/urls.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/delivery_dj_proj/wsgi.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/manage.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/__init__.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/admin.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/apps.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/migrations/0001_initial.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/migrations/0002_auto_20210312_0516.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/migrations/0003_driver.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/migrations/0004_token.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/migrations/0005_auto_20210312_0713.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/migrations/0006_auto_20210312_2009.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/migrations/0007_auto_20210312_2011.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/migrations/__init__.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/models.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/serializers.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/tests.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/urls.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_dj_proj/users/views.py" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -44,7 +83,7 @@
+     <option name="PUSH_UPDATE_ALL_ROOTS" value="false" />
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
++        <entry key="$PROJECT_DIR$" value="feature-registerNewMerchant" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -64,12 +103,18 @@
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="dart.analysis.tool.window.visible" value="false" />
+     <property name="io.flutter.reload.alreadyRun" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../world_time" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flictionary_app" />
+     <property name="project.structure.last.edited" value="SDKs" />
+     <property name="project.structure.proportion" value="0.0" />
+     <property name="project.structure.side.proportion" value="0.0" />
+-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
++    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+     <property name="show.migrate.to.gradle.popup" value="false" />
++  </component>
++  <component name="RecentsManager">
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\user\AndroidStudioProjects\365-delivery\delivery_app\lib\test_screens" />
++      <recent name="C:\Users\user\AndroidStudioProjects\365-delivery\delivery_app\lib\screens" />
++    </key>
+   </component>
+   <component name="RunManager">
+     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+@@ -151,12 +196,12 @@
+       <option name="project" value="LOCAL" />
+       <updated>1615646963828</updated>
+     </task>
+-    <task id="LOCAL-00010" summary="added global variable to store ngrok link">
+-      <created>1616009350109</created>
++    <task id="LOCAL-00010" summary="added route generator">
++      <created>1616609692943</created>
+       <option name="number" value="00010" />
+       <option name="presentableId" value="LOCAL-00010" />
+       <option name="project" value="LOCAL" />
+-      <updated>1616009350109</updated>
++      <updated>1616609692943</updated>
+     </task>
+     <option name="localTasksCounter" value="11" />
+     <servers />
+@@ -174,6 +219,9 @@
+     <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
++    <ignored-roots>
++      <path value="$PROJECT_DIR$/delivery_app/DeliveryTest" />
++    </ignored-roots>
+     <MESSAGE value="added whole flutter project" />
+     <MESSAGE value="added some project configuration files" />
+     <MESSAGE value="removed Ghalayini's main.dart (it was already added in the initial project)" />
+@@ -183,8 +231,8 @@
+     <MESSAGE value="added drivers list (without json)" />
+     <MESSAGE value="connected driver_signup.dart with backend for authentication&#10;created class driver_authentication.dart to use in token authentication" />
+     <MESSAGE value="added drivers list (with json)&#10;ability to add driver then authenticate" />
+-    <MESSAGE value="added global variable to store ngrok link" />
+-    <option name="LAST_COMMIT_MESSAGE" value="added global variable to store ngrok link" />
++    <MESSAGE value="added route generator" />
++    <option name="LAST_COMMIT_MESSAGE" value="added route generator" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="196" y="106" key="#Unnamed" timestamp="1614902077076">
+@@ -199,34 +247,42 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="1215" y="333" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1615410928185" />
++    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1616290080098">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1616290080098" />
+     <state x="275" y="313" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1614902213254">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="275" y="313" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1614902213254" />
++    <state x="792" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1616095931339">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state x="792" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616095931339" />
+     <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1615037068063">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1615037068063" />
+-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1615731425337">
++    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1616542735344">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1615731425337" />
+-    <state width="1877" height="277" key="GridCell.Tab.0.bottom" timestamp="1616009326390">
++    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1616542735344" />
++    <state width="1877" height="276" key="GridCell.Tab.0.bottom" timestamp="1616547609833">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616009326390" />
+-    <state width="1877" height="277" key="GridCell.Tab.0.center" timestamp="1616009326390">
++    <state width="1877" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616547609833" />
++    <state width="1877" height="276" key="GridCell.Tab.0.center" timestamp="1616547609833">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616009326390" />
+-    <state width="1877" height="277" key="GridCell.Tab.0.left" timestamp="1616009326390">
++    <state width="1877" height="276" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616547609833" />
++    <state width="1877" height="276" key="GridCell.Tab.0.left" timestamp="1616547609833">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616009326390" />
+-    <state width="1877" height="277" key="GridCell.Tab.0.right" timestamp="1616009326390">
++    <state width="1877" height="276" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616547609833" />
++    <state width="1877" height="276" key="GridCell.Tab.0.right" timestamp="1616547609833">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616009326390" />
++    <state width="1877" height="276" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616547609833" />
+     <state x="1020" y="263" key="IDE.errors.dialog" timestamp="1615636357890">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+@@ -235,25 +291,25 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615488905085" />
+-    <state x="349" y="178" key="SettingsEditor" timestamp="1615584956348">
++    <state x="349" y="178" key="SettingsEditor" timestamp="1616094977315">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="349" y="178" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1615584956348" />
+-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616009420104">
++    <state x="349" y="178" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1616094977315" />
++    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1616609900379">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616009420104" />
+-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616009400253">
++    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616609900379" />
++    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616198546915">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616009400253" />
++    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616198546915" />
+     <state x="730" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1615488820237">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="730" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1615488820237" />
+-    <state x="228" y="232" width="672" height="678" key="search.everywhere.popup" timestamp="1616020733456">
++    <state x="228" y="232" width="672" height="678" key="search.everywhere.popup" timestamp="1615420322138">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="228" y="232" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1616020733456" />
++    <state x="228" y="232" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615420322138" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: delivery_app/lib/models/order_details.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/models/order_details.dart	(date 1616448219622)
++++ delivery_app/lib/models/order_details.dart	(date 1616448219622)
+@@ -0,0 +1,12 @@
++class OrderDetails {
++  int id;
++  final String city;
++  final String street;
++  final String building;
++  final String floor;
++  final String receiverFullName;
++  final String receiverPhoneNumber;
++
++  OrderDetails(this.id, this.city, this.street, this.building, this.floor,
++      this.receiverFullName, this.receiverPhoneNumber);
++}
+\ No newline at end of file
+Index: delivery_app/lib/driver_receiving_order.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/driver_receiving_order.dart	(date 1616547337434)
++++ delivery_app/lib/driver_receiving_order.dart	(date 1616547337434)
+@@ -0,0 +1,108 @@
++import 'package:flutter/material.dart';
++import 'package:delivery_app/url_link.dart';
++import 'package:http/http.dart' as http;
++import 'dart:convert';
++import 'models/order_details.dart';
++import 'package:web_socket_channel/io.dart';
++
++class DriverReceivingOrder extends StatefulWidget {
++  final String driverID;
++  DriverReceivingOrder({Key key, @required this.driverID}) : super(key: key);
++  @override
++  _DriverReceivingOrderState createState() => _DriverReceivingOrderState();
++}
++
++class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
++  final channel = IOWebSocketChannel.connect('ws://echo.websocket.org');
++  Future<List<OrderDetails>> _getNewOrders() async {
++    //http://a84a794b3db6.ngrok.io/
++    //{{ngrok}}/orders/merchant/get/42
++    var client = http.Client();
++    try {
++      var data =
++          await client.get(Uri.parse('https://1dd6f3ebf015.ngrok.io/orders/driver/get/${widget.driverID}'));
++      var jsonData = json.decode(data.body);
++      List<OrderDetails> orders = [];
++      for (var u in jsonData) {
++        OrderDetails driver = OrderDetails(
++            u["id"],
++            u["city"],
++            u["street"],
++            u["building"],
++            u["floor"],
++            u["receiver_full_name"],
++            u["receiver_phone_number"]);
++        orders.add(driver);
++      }
++      print(orders.length);
++      return orders;
++    } finally {
++      //client.close();
++    }
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++
++      drawer: Drawer(
++        child: ListView(
++          children: [
++            DrawerHeader(child: Text('Hello')),
++            ListTile(title: Text('A')),
++            ListTile(title: Text('B')),
++          ],
++        ),
++      ),
++      appBar: AppBar(
++        title: Text('Driver Home Page'),
++        centerTitle: true,
++
++      ),
++      body: Container(
++        margin: EdgeInsets.all(5),
++        child: StreamBuilder(
++          stream: channel.stream,
++          builder: (BuildContext context, AsyncSnapshot snapshot) {
++            if (snapshot.data == null) {
++              return Container(
++                child: Center(child: Text("Loading...")),
++              );
++            } else {
++              return ListView.builder(
++                itemCount: snapshot.data.length,
++                itemBuilder: (BuildContext context, int index) {
++                  return Card(
++                    color: Colors.orange,
++                    shadowColor: Colors.blue,
++                    child: Container(
++                      child: Column(
++                        children: [
++                          Text(snapshot.data[index].receiverFullName,style:TextStyle(color: Colors.red)),
++                          Text(
++                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '
++                          ),
++                          Row(
++                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
++                            crossAxisAlignment: CrossAxisAlignment.end,
++                            children: [
++                              TextButton(
++                                  onPressed: (){
++                                  }, child: Text("Mark as Completed")
++                              ),
++                            ],
++                          )
++                        ],
++                      ),
++                    ),
++                  );
++                },
++              );
++            }
++          },
++        ),
++      ),
++    );
++  }
++}
++
+Index: delivery_app/lib/merchant_signup.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/merchant_page.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:delivery_app/models/merchant_model.dart';\r\nimport 'url_link.dart';\r\nimport 'dart:convert';\r\nimport 'package:http/http.dart' as http;\r\n\r\n// Merchant: full name, phone number, company name, company address.\r\nclass MerchantSignUp extends StatefulWidget {\r\n  @override\r\n  _MerchantSignUpState createState() => _MerchantSignUpState();\r\n}\r\n\r\nclass _MerchantSignUpState extends State<MerchantSignUp> {\r\n  Future<MerchantModel> addMerchant(String firstName, String lastName,\r\n      String companyName, String companyAddress, String phoneNumber) async {\r\n    //http://a84a794b3db6.ngrok.io/\r\n    var uri = Uri(\r\n      scheme: 'https',\r\n      host: theLink,\r\n      path: '/register/driver/39',\r\n    );\r\n    assert(\r\n        uri.toString() == 'https://a84a794b3db6.ngrok.io/register/driver/39');\r\n\r\n    Map<String, String> a = {\r\n      \"first_name\": firstName,\r\n      \"last_name\": lastName,\r\n      \"company_name\": companyName,\r\n      \"company_address\": companyAddress,\r\n      \"phone_number\": phoneNumber\r\n    };\r\n    var b = json.encode(a);\r\n    print(b);\r\n    http.Response response = await http\r\n        .post(uri, body: b, headers: {\"content-type\": \"application/json\"});\r\n    final String responseString = response.body;\r\n    return merchantModelFromJson(responseString);\r\n  }\r\n\r\n  MerchantModel _merchant;\r\n\r\n  final TextEditingController firstNameController = TextEditingController();\r\n  final TextEditingController lastNameController = TextEditingController();\r\n  final TextEditingController companyNameController = TextEditingController();\r\n  final TextEditingController companyAddressController = TextEditingController();\r\n  final TextEditingController phoneNumberController = TextEditingController();\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    double screenSize = MediaQuery.of(context).size.width;\r\n    return Scaffold(\r\n      appBar: AppBar(\r\n        leadingWidth: 56 * 2.0,\r\n        leading: Center(\r\n          child: FlatButton(\r\n            onPressed: () => Navigator.pop(context),\r\n            child: Text(\r\n              \"Cancel\",\r\n              style: TextStyle(\r\n                fontSize: 20,\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n          ),\r\n        ),\r\n        actions: [\r\n          Center(\r\n            child: FlatButton(\r\n              onPressed: () async {\r\n                final String firstName = firstNameController.text;\r\n                final String lastName = lastNameController.text;\r\n                final String companyName = companyNameController.text;\r\n                final String companyAddress = companyAddressController.text;\r\n                final String phoneNumber = phoneNumberController.text;\r\n                final MerchantModel newMerchant = await addMerchant(firstName,\r\n                    lastName, companyName, companyAddress, phoneNumber);\r\n                setState(() {\r\n                  _merchant = newMerchant;\r\n                });\r\n\r\n                Navigator.push(context,\r\n                    MaterialPageRoute(builder: (context) => MerchantPage()));\r\n              },\r\n              child: Text(\r\n                \"Done\",\r\n                style: TextStyle(\r\n                  fontSize: 20,\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n            ),\r\n          ),\r\n        ],\r\n        automaticallyImplyLeading: false,\r\n        title: Text(\r\n          \"Sign up\",\r\n          style: TextStyle(color: Colors.white, fontSize: 23),\r\n        ),\r\n        centerTitle: true,\r\n        backgroundColor: Color(0xFFFF6200),\r\n        toolbarHeight: 53,\r\n      ),\r\n      body: Container(\r\n          transform: Matrix4.translationValues(0.0, (screenSize * 0.15), 0.0),\r\n          child: Center(\r\n              child: Column(children: [\r\n            Image(\r\n              height: screenSize * 0.2,\r\n              image: AssetImage(\"assets/portrait.png\"),\r\n            ),\r\n            Container(\r\n                margin: EdgeInsets.only(top: screenSize * 0.06),\r\n                child: new Wrap(\r\n                  direction: Axis.horizontal,\r\n                  crossAxisAlignment: WrapCrossAlignment.start,\r\n                  spacing: screenSize * 0.05,\r\n                  runSpacing: 15,\r\n                  children: [\r\n                    Container(\r\n                      width: screenSize * 0.4,\r\n                      child: TextField(\r\n                        controller: firstNameController,\r\n                        style: TextStyle(fontSize: 22),\r\n                        decoration: new InputDecoration(\r\n                          fillColor: Color(0xFFF8F8F8),\r\n                          filled: true,\r\n                          contentPadding: EdgeInsets.only(left: 7.0),\r\n                          hintText: 'First name',\r\n                          border: new OutlineInputBorder(\r\n                            borderRadius: const BorderRadius.all(\r\n                              const Radius.circular(10.0),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                      ),\r\n                    ),\r\n                    Container(\r\n                      width: screenSize * 0.4,\r\n                      child: TextField(\r\n                        controller: lastNameController,\r\n                        style: TextStyle(fontSize: 22),\r\n                        decoration: new InputDecoration(\r\n                          fillColor: Color(0xFFF8F8F8),\r\n                          filled: true,\r\n                          contentPadding: EdgeInsets.only(left: 7.0),\r\n                          hintText: 'Last name',\r\n                          border: new OutlineInputBorder(\r\n                            borderRadius: const BorderRadius.all(\r\n                              const Radius.circular(10.0),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                      ),\r\n                    ),\r\n                    Container(\r\n                      width: screenSize * 0.85,\r\n                      child: TextField(\r\n                        controller: companyNameController,\r\n                        style: TextStyle(fontSize: 22),\r\n                        decoration: new InputDecoration(\r\n                          fillColor: Color(0xFFF8F8F8),\r\n                          filled: true,\r\n                          contentPadding: EdgeInsets.only(left: 15.0),\r\n                          hintText: 'Company name',\r\n                          border: new OutlineInputBorder(\r\n                            borderRadius: const BorderRadius.all(\r\n                              const Radius.circular(10.0),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                      ),\r\n                    ),\r\n                    Container(\r\n                        width: screenSize * 0.85,\r\n                        child: TextField(\r\n                          controller: companyAddressController,\r\n                          style: TextStyle(fontSize: 22),\r\n                          decoration: new InputDecoration(\r\n                            fillColor: Color(0xFFF8F8F8),\r\n                            filled: true,\r\n                            contentPadding: EdgeInsets.only(left: 15.0),\r\n                            hintText: 'Company address',\r\n                            border: new OutlineInputBorder(\r\n                              borderRadius: const BorderRadius.all(\r\n                                const Radius.circular(10.0),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                        )),\r\n                    Container(\r\n                        width: screenSize * 0.85,\r\n                        child: TextField(\r\n                          controller: phoneNumberController,\r\n                          style: TextStyle(fontSize: 22),\r\n                          decoration: new InputDecoration(\r\n                            fillColor: Color(0xFFF8F8F8),\r\n                            filled: true,\r\n                            contentPadding: EdgeInsets.only(left: 15.0),\r\n                            hintText: 'Phone number',\r\n                            border: new OutlineInputBorder(\r\n                              borderRadius: const BorderRadius.all(\r\n                                const Radius.circular(10.0),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                        ))\r\n                  ],\r\n                )),\r\n            Container(\r\n              margin: EdgeInsets.only(\r\n                top: screenSize * 0.35,\r\n              ),\r\n              child: FlatButton(\r\n                  onPressed: () => {},\r\n                  child: Text(\r\n                    \"Already have an account? Sign in\",\r\n                    style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),\r\n                  )),\r\n            )\r\n          ]))),\r\n      backgroundColor: Color(0xFFF6F8F5),\r\n    );\r\n  }\r\n}\r\n
+===================================================================
+--- delivery_app/lib/merchant_signup.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/lib/screens/merchant_sign_up.dart	(date 1616287578996)
+@@ -1,7 +1,7 @@
+-import 'package:delivery_app/merchant_page.dart';
++import 'package:delivery_app/merchant_home_page.dart';
+ import 'package:flutter/material.dart';
+ import 'package:delivery_app/models/merchant_model.dart';
+-import 'url_link.dart';
++import 'package:delivery_app/url_link.dart';
+ import 'dart:convert';
+ import 'package:http/http.dart' as http;
+ 
+@@ -21,7 +21,7 @@
+       path: '/register/driver/39',
+     );
+     assert(
+-        uri.toString() == 'https://a84a794b3db6.ngrok.io/register/driver/39');
++        uri.toString() == 'https://$theLink/register/merchant');
+ 
+     Map<String, String> a = {
+       "first_name": firstName,
+@@ -79,8 +79,7 @@
+                   _merchant = newMerchant;
+                 });
+ 
+-                Navigator.push(context,
+-                    MaterialPageRoute(builder: (context) => MerchantPage()));
++                Navigator.of(context).pushNamed('/merchantPage');
+               },
+               child: Text(
+                 "Done",
+@@ -212,7 +211,7 @@
+                 top: screenSize * 0.35,
+               ),
+               child: FlatButton(
+-                  onPressed: () => {},
++                  onPressed: () => {Navigator.of(context).pushNamed('/merchantSignInScreen')},
+                   child: Text(
+                     "Already have an account? Sign in",
+                     style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),
+Index: delivery_app/pubspec.lock
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Generated by pub\r\n# See https://dart.dev/tools/pub/glossary#lockfile\r\npackages:\r\n  async:\r\n    dependency: transitive\r\n    description:\r\n      name: async\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.5.0\"\r\n  boolean_selector:\r\n    dependency: transitive\r\n    description:\r\n      name: boolean_selector\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.1.0\"\r\n  characters:\r\n    dependency: transitive\r\n    description:\r\n      name: characters\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.1.0\"\r\n  charcode:\r\n    dependency: transitive\r\n    description:\r\n      name: charcode\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.2.0\"\r\n  clock:\r\n    dependency: transitive\r\n    description:\r\n      name: clock\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.1.0\"\r\n  collection:\r\n    dependency: transitive\r\n    description:\r\n      name: collection\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.15.0\"\r\n  cupertino_icons:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: cupertino_icons\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.0.2\"\r\n  fake_async:\r\n    dependency: transitive\r\n    description:\r\n      name: fake_async\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.2.0\"\r\n  flutter:\r\n    dependency: \"direct main\"\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  flutter_test:\r\n    dependency: \"direct dev\"\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  http:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: http\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.13.0\"\r\n  http_parser:\r\n    dependency: transitive\r\n    description:\r\n      name: http_parser\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"4.0.0\"\r\n  matcher:\r\n    dependency: transitive\r\n    description:\r\n      name: matcher\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.12.10\"\r\n  meta:\r\n    dependency: transitive\r\n    description:\r\n      name: meta\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.3.0\"\r\n  path:\r\n    dependency: transitive\r\n    description:\r\n      name: path\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.8.0\"\r\n  pedantic:\r\n    dependency: transitive\r\n    description:\r\n      name: pedantic\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.11.0\"\r\n  sky_engine:\r\n    dependency: transitive\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.99\"\r\n  source_span:\r\n    dependency: transitive\r\n    description:\r\n      name: source_span\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.8.0\"\r\n  stack_trace:\r\n    dependency: transitive\r\n    description:\r\n      name: stack_trace\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.10.0\"\r\n  stream_channel:\r\n    dependency: transitive\r\n    description:\r\n      name: stream_channel\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.1.0\"\r\n  string_scanner:\r\n    dependency: transitive\r\n    description:\r\n      name: string_scanner\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.1.0\"\r\n  term_glyph:\r\n    dependency: transitive\r\n    description:\r\n      name: term_glyph\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.2.0\"\r\n  test_api:\r\n    dependency: transitive\r\n    description:\r\n      name: test_api\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.2.19\"\r\n  typed_data:\r\n    dependency: transitive\r\n    description:\r\n      name: typed_data\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.3.0\"\r\n  vector_math:\r\n    dependency: transitive\r\n    description:\r\n      name: vector_math\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.1.0\"\r\nsdks:\r\n  dart: \">=2.12.0-0.0 <3.0.0\"\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/pubspec.lock	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/pubspec.lock	(date 1616541764501)
+@@ -43,6 +43,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "1.15.0"
++  crypto:
++    dependency: transitive
++    description:
++      name: crypto
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "3.0.0"
+   cupertino_icons:
+     dependency: "direct main"
+     description:
+@@ -170,5 +177,12 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "2.1.0"
++  web_socket_channel:
++    dependency: "direct main"
++    description:
++      name: web_socket_channel
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "2.0.0"
+ sdks:
+   dart: ">=2.12.0-0.0 <3.0.0"
+Index: delivery_app/android/app/src/debug/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.example.delivery_app\">\r\n    <!-- Flutter needs it to communicate with the running application\r\n         to allow setting breakpoints, to provide hot reload, etc.\r\n    -->\r\n    <uses-permission android:name=\"android.permission.INTERNET\"/>\r\n</manifest>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/android/app/src/debug/AndroidManifest.xml	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/android/app/src/debug/AndroidManifest.xml	(date 1616543743294)
+@@ -4,4 +4,5 @@
+          to allow setting breakpoints, to provide hot reload, etc.
+     -->
+     <uses-permission android:name="android.permission.INTERNET"/>
++    <application android:usesCleartextTraffic="true"/>
+ </manifest>
+Index: delivery_app/lib/driver_signup.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\nimport 'models/driver_authentication.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'dart:convert';\r\nimport 'package:delivery_app/url_link.dart';\r\n\r\nclass DriverSignUp extends StatefulWidget {\r\n  @override\r\n  _DriverSignUpState createState() => _DriverSignUpState();\r\n}\r\n\r\nclass _DriverSignUpState extends State<DriverSignUp> {\r\n\r\n\r\n  Future<DriverAuthentication> createToken(String token) async{\r\n\r\n    //http://7bc54ac38e57.ngrok.io/register/auth_driver\r\n    var uri = Uri(\r\n        scheme: 'https',\r\n        host: theLink,\r\n        path: '/register/auth_driver',\r\n    );\r\n    assert(//http://f60fc987a44e.ngrok.io/\r\n    uri.toString() == 'https://a84a794b3db6.ngrok.io/register/auth_driver');\r\n    Map<String,String> a = {\"token\":token};\r\n    var b = json.encode(a);\r\n    print(b);\r\n    http.Response response = await http.post(uri,body: b,headers: {\"content-type\" :\"application/json\"});\r\n    final String responseString = response.body;\r\n    return driverAuthenticationFromJson(responseString);\r\n  }\r\n\r\n\r\n  DriverAuthentication _token;\r\n  final TextEditingController tokenController = TextEditingController();\r\n\r\n  \r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n        appBar: AppBar(\r\n          backgroundColor: Colors.orange[800],\r\n          title: Text('Driver Sign up'),\r\n          centerTitle: true,\r\n        ),\r\n        body: Column(\r\n            mainAxisAlignment: MainAxisAlignment.center,\r\n            children: [\r\n              Text(\r\n                'Enter your token',\r\n                style: TextStyle(\r\n                    fontSize: 25\r\n                ),\r\n              ),\r\n              SizedBox(height: 10),\r\n              Container(\r\n                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n                child: TextField(\r\n                  controller: tokenController,\r\n                  style: TextStyle(fontSize: 16),\r\n                  decoration: new InputDecoration(\r\n                    fillColor: Color(0xFFF8F8F8),\r\n                    filled: true,\r\n                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n                    hintText: 'e.g: yj18N3JiVJtu0lPob7BFs4MlHXBGREhh',\r\n                    border: new OutlineInputBorder(\r\n                      borderRadius: const BorderRadius.all(\r\n                        const Radius.circular(10.0),\r\n                      ),\r\n                    ),\r\n                  ),\r\n                ),\r\n              ),\r\n              SizedBox(height: 15),\r\n              TextButton(onPressed: () async {\r\n                final String uniqueToken = tokenController.text;\r\n                final DriverAuthentication driverToken = await createToken(uniqueToken);\r\n                setState(() {\r\n                  _token = driverToken;\r\n                });\r\n              }, child: Text('Validate'),\r\n              ),\r\n              SizedBox(height: 20),\r\n              _token == null ? Text(\"You haven't entered a valid token yet\") : Text(\"Token was successfully accepted\")\r\n            ]\r\n        )\r\n    );\r\n  }\r\n}
+===================================================================
+--- delivery_app/lib/driver_signup.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/lib/screens/driver_sign_up.dart	(date 1616447870618)
+@@ -1,5 +1,5 @@
+ import 'package:flutter/material.dart';
+-import 'models/driver_authentication.dart';
++import 'package:delivery_app/models/driver_authentication.dart';
+ import 'package:http/http.dart' as http;
+ import 'dart:convert';
+ import 'package:delivery_app/url_link.dart';
+@@ -21,7 +21,7 @@
+         path: '/register/auth_driver',
+     );
+     assert(//http://f60fc987a44e.ngrok.io/
+-    uri.toString() == 'https://a84a794b3db6.ngrok.io/register/auth_driver');
++    uri.toString() == 'https://$theLink/register/auth_driver');
+     Map<String,String> a = {"token":token};
+     var b = json.encode(a);
+     print(b);
+@@ -80,8 +80,15 @@
+                 });
+               }, child: Text('Validate'),
+               ),
+-              SizedBox(height: 20),
+-              _token == null ? Text("You haven't entered a valid token yet") : Text("Token was successfully accepted")
++              SizedBox(height: 5),
++              _token == null ? Text("You haven't entered a valid token yet") : Text("Token was successfully accepted"),
++              SizedBox(height: 200),
++              FlatButton(
++                  onPressed: () => {Navigator.of(context).pushNamed('/driverSignInScreen')},
++                  child: Text(
++                    "Already have an account? Sign in",
++                    style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),
++                  )),
+             ]
+         )
+     );
+Index: delivery_app/lib/merchant_drivers.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/driver_add.dart';\r\nimport 'package:delivery_app/driver_signup.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'dart:convert';\r\nimport 'package:delivery_app/url_link.dart';\r\n\r\n\r\nclass MerchantDriversPage extends StatefulWidget {\r\n  @override\r\n  _MerchantDriversPageState createState() => _MerchantDriversPageState();\r\n}\r\n\r\nclass _MerchantDriversPageState extends State<MerchantDriversPage> {\r\n\r\n  Future<List<MerchantDrivers>> _getDrivers() async {\r\n    //http://a84a794b3db6.ngrok.io/\r\n    var uri = Uri(\r\n      scheme: 'https',\r\n      host: theLink,\r\n      path: '/mydrivers/39',\r\n    );\r\n    var data = await http.get(uri);\r\n    var jsonData = json.decode(data.body);\r\n    List<MerchantDrivers> drivers = [];\r\n    for(var u in jsonData){\r\n      MerchantDrivers driver = MerchantDrivers(u[\"first_name\"],u[\"last_name\"],u[\"phone_number\"]);\r\n      drivers.add(driver);\r\n    }\r\n    print(drivers.length);\r\n    return drivers;\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n\r\n      appBar: AppBar(\r\n        title: Text('Drivers'),\r\n        centerTitle: true,\r\n        backgroundColor: Colors.orange[800],\r\n        actions: [\r\n         IconButton(icon: Icon(Icons.add), onPressed: (){\r\n           Navigator.push(context, MaterialPageRoute(\r\n               builder: (context) => DriverAdd()\r\n           ));\r\n         })\r\n        ],\r\n      ),\r\n      body: Container(\r\n        child: FutureBuilder(\r\n          future: _getDrivers(),\r\n          builder: (BuildContext context, AsyncSnapshot snapshot){\r\n            if(snapshot.data == null){\r\n              return Container(\r\n                child: Center(child: Text(\"Loading...\")),\r\n              );\r\n            }\r\n            else {\r\n              return ListView.builder(\r\n                itemCount: snapshot.data.length,\r\n                itemBuilder: (BuildContext context, int index) {\r\n                  return Card(\r\n                    color: Colors.orange,\r\n                    shadowColor: Colors.blue,\r\n                    child: ListTile(\r\n                      leading: Text(snapshot.data[index].lastName),\r\n                      title: Text(snapshot.data[index].firstName),\r\n                      subtitle: Text(snapshot.data[index].phoneNumber),\r\n                    ),\r\n                  );\r\n                },\r\n              );\r\n            }\r\n          },\r\n        ),\r\n      )\r\n    );\r\n  }\r\n}\r\n\r\n\r\nclass MerchantDrivers{\r\n  final String firstName;\r\n  final String lastName;\r\n  final String phoneNumber;\r\n\r\n  MerchantDrivers(this.firstName,this.lastName,this.phoneNumber);\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/merchant_drivers.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/lib/merchant_drivers.dart	(date 1616445175192)
+@@ -1,5 +1,4 @@
+ import 'package:delivery_app/driver_add.dart';
+-import 'package:delivery_app/driver_signup.dart';
+ import 'package:flutter/material.dart';
+ import 'package:http/http.dart' as http;
+ import 'dart:convert';
+@@ -7,6 +6,8 @@
+ 
+ 
+ class MerchantDriversPage extends StatefulWidget {
++  final String merchantID;
++  MerchantDriversPage({Key key, @required this.merchantID}) : super(key: key);
+   @override
+   _MerchantDriversPageState createState() => _MerchantDriversPageState();
+ }
+@@ -18,8 +19,10 @@
+     var uri = Uri(
+       scheme: 'https',
+       host: theLink,
+-      path: '/mydrivers/39',
++      path: '/mydrivers/${widget.merchantID}',
+     );
++    assert(//http://f60fc987a44e.ngrok.io/
++    uri.toString() == 'https://$theLink/mydrivers/${widget.merchantID}');
+     var data = await http.get(uri);
+     var jsonData = json.decode(data.body);
+     List<MerchantDrivers> drivers = [];
+@@ -33,6 +36,9 @@
+ 
+   @override
+   Widget build(BuildContext context) {
++
++
++
+     return Scaffold(
+ 
+       appBar: AppBar(
+Index: delivery_app/lib/welcome.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\nimport 'merchant_signup.dart';\r\nimport 'package:delivery_app/driver_signup.dart';\r\n\r\nclass MyApp extends StatelessWidget {\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n      body: Column(\r\n        children: [\r\n          Center(\r\n            child: Text(\"Welcome!\",\r\n                style: TextStyle(color: Color(0xFFF6F8F5), fontSize: 33)),\r\n            heightFactor: 9,\r\n          ),\r\n          Center(\r\n              child: Text(\"Please select a role\",\r\n                  style: TextStyle(color: Color(0xFFF6F8F5), fontSize: 22))),\r\n          Center(\r\n            child: Container(\r\n                width: 300,\r\n                height: 50,\r\n                child: RaisedButton(\r\n                    onPressed: () => {\r\n                      Navigator.push(\r\n                          context,\r\n                          MaterialPageRoute(\r\n                              builder: (context) => DriverSignUp()))\r\n                    },\r\n                    child:\r\n                    Text(\"I'm a Driver!\", style: TextStyle(fontSize: 20)),\r\n                    shape: RoundedRectangleBorder(\r\n                        borderRadius: BorderRadius.circular(1000),\r\n                        side: BorderSide(color: Colors.orange[500])))),\r\n            heightFactor: 1.93,\r\n          ),\r\n          Center(\r\n              child: Container(\r\n                  width: 300,\r\n                  height: 50,\r\n                  child: RaisedButton(\r\n                      onPressed: () => {\r\n                        Navigator.push(\r\n                            context,\r\n                            MaterialPageRoute(\r\n                                builder: (context) => MerchantSignUp()))\r\n                      },\r\n                      child: Text(\"I'm the Merchant.\",\r\n                          style: TextStyle(fontSize: 20)),\r\n                      shape: RoundedRectangleBorder(\r\n                          borderRadius: BorderRadius.circular(1000),\r\n                          side: BorderSide(color: Color(0xFFFF6200))))))\r\n        ],\r\n      ),\r\n      backgroundColor: Color(0xFFFF6F1A),\r\n    );\r\n  }\r\n}\r\n\r\n\r\n
+===================================================================
+--- delivery_app/lib/welcome.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/lib/screens/welcome.dart	(date 1616286489829)
+@@ -1,6 +1,5 @@
+ import 'package:flutter/material.dart';
+-import 'merchant_signup.dart';
+-import 'package:delivery_app/driver_signup.dart';
++
+ 
+ class MyApp extends StatelessWidget {
+   @override
+@@ -22,10 +21,7 @@
+                 height: 50,
+                 child: RaisedButton(
+                     onPressed: () => {
+-                      Navigator.push(
+-                          context,
+-                          MaterialPageRoute(
+-                              builder: (context) => DriverSignUp()))
++                      Navigator.of(context).pushNamed('/driverSignUpScreen')
+                     },
+                     child:
+                     Text("I'm a Driver!", style: TextStyle(fontSize: 20)),
+@@ -40,11 +36,7 @@
+                   height: 50,
+                   child: RaisedButton(
+                       onPressed: () => {
+-                        Navigator.push(
+-                            context,
+-                            MaterialPageRoute(
+-                                builder: (context) => MerchantSignUp()))
+-                      },
++                        Navigator.of(context).pushNamed('/merchantSignUpScreen')},
+                       child: Text("I'm the Merchant.",
+                           style: TextStyle(fontSize: 20)),
+                       shape: RoundedRectangleBorder(
+Index: delivery_app/lib/merchant_page.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/merchant_drivers.dart';\r\nimport 'package:delivery_app/merchant_order.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\n\r\nclass MerchantPage extends StatefulWidget {\r\n  @override\r\n  _MerchantPageState createState() => _MerchantPageState();\r\n}\r\n\r\nclass _MerchantPageState extends State<MerchantPage> {\r\n  int _currentIndex = 0;\r\n  PageController _pageController = PageController();\r\n  List<Widget> _screens = [MerchantOrder(), MerchantDriversPage()];\r\n  int _selectedIndex = 0;\r\n  void _onPageChanged(int index) {\r\n    setState(() {\r\n      _selectedIndex = index;\r\n    });\r\n  }\r\n  void _onItemTapped(int selectedIndex) {\r\n    _pageController.jumpToPage(selectedIndex);\r\n    _currentIndex = selectedIndex;\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n      drawer: Drawer(\r\n        child: ListView(\r\n          children: [\r\n            DrawerHeader(child: Text('Hello')),\r\n            ListTile(title: Text('A')),\r\n            ListTile(title: Text('B')),\r\n          ],\r\n        ),\r\n      ),\r\n      backgroundColor: Colors.white,\r\n\r\n      body: PageView(\r\n        controller: _pageController,\r\n        children: _screens,\r\n        onPageChanged: _onPageChanged,\r\n        physics: NeverScrollableScrollPhysics(),\r\n      ),\r\n      bottomNavigationBar: BottomNavigationBar(\r\n        currentIndex: _currentIndex,\r\n        backgroundColor: Colors.deepOrange,\r\n        items: [\r\n          BottomNavigationBarItem(\r\n            icon: Icon(Icons.drive_eta),\r\n            label: 'Home',\r\n          ),\r\n          BottomNavigationBarItem(\r\n            icon: Icon(\r\n              Icons.delivery_dining,\r\n            ),\r\n            label: 'Drivers',\r\n          )\r\n        ],\r\n      onTap: _onItemTapped,\r\n        selectedItemColor: Colors.amber,\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+===================================================================
+--- delivery_app/lib/merchant_page.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/lib/merchant_home_page.dart	(date 1616445175167)
+@@ -3,12 +3,23 @@
+ import 'package:flutter/cupertino.dart';
+ import 'package:flutter/material.dart';
+ 
+-class MerchantPage extends StatefulWidget {
++class MerchantHomePage extends StatefulWidget {
++  final String merchantID;
++  MerchantHomePage({Key key, @required this.merchantID}) : super(key: key);
++
++
+   @override
+-  _MerchantPageState createState() => _MerchantPageState();
++  _MerchantHomePageState createState() => _MerchantHomePageState();
+ }
+ 
+-class _MerchantPageState extends State<MerchantPage> {
++
++
++
++
++
++class _MerchantHomePageState extends State<MerchantHomePage> {
++
++
+   int _currentIndex = 0;
+   PageController _pageController = PageController();
+   List<Widget> _screens = [MerchantOrder(), MerchantDriversPage()];
+@@ -23,8 +34,12 @@
+     _currentIndex = selectedIndex;
+   }
+ 
++
++
+   @override
+   Widget build(BuildContext context) {
++    print(widget.merchantID);
++    // final String data = ModalRoute.of(context).settings.arguments;
+     return Scaffold(
+       drawer: Drawer(
+         child: ListView(
+Index: delivery_app/lib/driver_add.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\nimport 'models/driver_model.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'dart:convert';\r\nimport 'package:delivery_app/url_link.dart';\r\n\r\n// Driver: full name, phone number, address.\r\nclass DriverAdd extends StatefulWidget {\r\n  @override\r\n  _DriverAddState createState() => _DriverAddState();\r\n}\r\n\r\nclass _DriverAddState extends State<DriverAdd> {\r\n\r\n  Future<DriverModel> addDriver(String firstName,String lastName, String phoneNumber) async{\r\n    //http://a84a794b3db6.ngrok.io/\r\n    var uri = Uri(\r\n      scheme: 'https',\r\n      host: theLink,\r\n      path: '/register/driver/39',\r\n    );\r\n    assert(\r\n    uri.toString() == 'https://a84a794b3db6.ngrok.io/register/driver/39');\r\n\r\n    Map<String,String> a = {\"first_name\":firstName,\"last_name\":lastName,\"phone_number\":phoneNumber};\r\n    var b = json.encode(a);\r\n    print(b);\r\n    http.Response response = await http.post(uri,body: b,headers: {\"content-type\" :\"application/json\"});\r\n    final String responseString = response.body;\r\n    return driverModelFromJson(responseString);\r\n\r\n  }\r\n\r\n  DriverModel _driver;\r\n\r\n\r\n  final TextEditingController firstNameController = TextEditingController();\r\n  final TextEditingController lastNameController = TextEditingController();\r\n  final TextEditingController phoneNumberController = TextEditingController();\r\n\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    double screenSize = MediaQuery.of(context).size.width;\r\n    return Scaffold(\r\n      appBar: AppBar(\r\n        leadingWidth: 56 * 2.0,\r\n        leading: Center(\r\n          child: FlatButton(\r\n            onPressed: () => Navigator.pop(context),\r\n            child: Text(\r\n              \"Cancel\",\r\n              style: TextStyle(\r\n                fontSize: 20,\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n          ),\r\n        ),\r\n        actions: [\r\n          Center(\r\n            child: FlatButton(\r\n              onPressed: () async {\r\n                final String firstName = firstNameController.text;\r\n                final String lastName = lastNameController.text;\r\n                final String phoneNumber = phoneNumberController.text;\r\n                final DriverModel newDriver = await addDriver(firstName, lastName, phoneNumber);\r\n                setState(() {\r\n                  _driver = newDriver;\r\n                });\r\n              },\r\n              child: Text(\r\n                \"Done\",\r\n                style: TextStyle(\r\n                  fontSize: 20,\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n            ),\r\n          ),\r\n        ],\r\n        automaticallyImplyLeading: false,\r\n        title: Text(\r\n          \"Add Driver\",\r\n          style: TextStyle(color: Colors.white, fontSize: 23),\r\n        ),\r\n        centerTitle: true,\r\n        backgroundColor: Color(0xFFFF6200),\r\n        toolbarHeight: 53,\r\n      ),\r\n      body: Container(\r\n          transform: Matrix4.translationValues(0.0, (screenSize * 0.15), 0.0),\r\n          child: Center(\r\n              child: Column(children: [\r\n                Image(\r\n                  height: screenSize * 0.2,\r\n                  image: AssetImage(\"assets/portrait.png\"),\r\n                ),\r\n                Container(\r\n                    margin: EdgeInsets.only(top: screenSize * 0.06),\r\n                    child: new Wrap(\r\n                      direction: Axis.horizontal,\r\n                      crossAxisAlignment: WrapCrossAlignment.start,\r\n                      spacing: screenSize * 0.05,\r\n                      runSpacing: 15,\r\n                      children: [\r\n                        Container(\r\n                          width: screenSize * 0.4,\r\n                          child: TextField(\r\n                            controller: firstNameController,\r\n                            style: TextStyle(fontSize: 22),\r\n                            decoration: new InputDecoration(\r\n                              fillColor: Color(0xFFF8F8F8),\r\n                              filled: true,\r\n                              contentPadding: EdgeInsets.only(left: 7.0),\r\n                              hintText: 'First name',\r\n                              border: new OutlineInputBorder(\r\n                                borderRadius: const BorderRadius.all(\r\n                                  const Radius.circular(10.0),\r\n                                ),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                        Container(\r\n                          width: screenSize * 0.4,\r\n                          child: TextField(\r\n                            controller: lastNameController,\r\n                            style: TextStyle(fontSize: 22),\r\n                            decoration: new InputDecoration(\r\n                              fillColor: Color(0xFFF8F8F8),\r\n                              filled: true,\r\n                              contentPadding: EdgeInsets.only(left: 7.0),\r\n                              hintText: 'Last name',\r\n                              border: new OutlineInputBorder(\r\n                                borderRadius: const BorderRadius.all(\r\n                                  const Radius.circular(10.0),\r\n                                ),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                        // Container(\r\n                        //   width: screenSize * 0.85,\r\n                        //   child: TextField(\r\n                        //     style: TextStyle(fontSize: 22),\r\n                        //     decoration: new InputDecoration(\r\n                        //       fillColor: Color(0xFFF8F8F8),\r\n                        //       filled: true,\r\n                        //       contentPadding: EdgeInsets.only(left: 15.0),\r\n                        //       hintText: 'Home address',\r\n                        //       border: new OutlineInputBorder(\r\n                        //         borderRadius: const BorderRadius.all(\r\n                        //           const Radius.circular(10.0),\r\n                        //         ),\r\n                        //       ),\r\n                        //     ),\r\n                        //   ),\r\n                        // ),\r\n                        Container(\r\n                            width: screenSize * 0.85,\r\n                            child: TextField(\r\n                              controller: phoneNumberController,\r\n                              style: TextStyle(fontSize: 22),\r\n                              decoration: new InputDecoration(\r\n                                fillColor: Color(0xFFF8F8F8),\r\n                                filled: true,\r\n                                contentPadding: EdgeInsets.only(left: 15.0),\r\n                                hintText: 'Phone number',\r\n                                border: new OutlineInputBorder(\r\n                                  borderRadius: const BorderRadius.all(\r\n                                    const Radius.circular(10.0),\r\n                                  ),\r\n                                ),\r\n                              ),\r\n                            ))\r\n                      ],\r\n                    )),\r\n                Container(\r\n                  margin: EdgeInsets.only(\r\n                    top: screenSize * 0.5,\r\n                  ),\r\n                )\r\n              ]))),\r\n      backgroundColor: Color(0xFFF6F8F5),\r\n    );\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/driver_add.dart	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ delivery_app/lib/driver_add.dart	(date 1616170649906)
+@@ -20,7 +20,7 @@
+       path: '/register/driver/39',
+     );
+     assert(
+-    uri.toString() == 'https://a84a794b3db6.ngrok.io/register/driver/39');
++    uri.toString() == 'https://$theLink/register/driver/39');
+ 
+     Map<String,String> a = {"first_name":firstName,"last_name":lastName,"phone_number":phoneNumber};
+     var b = json.encode(a);
+Index: delivery_app/lib/driver_order_history.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/driver_order_history.dart	(date 1616452286175)
++++ delivery_app/lib/driver_order_history.dart	(date 1616452286175)
+@@ -0,0 +1,113 @@
++import 'package:flutter/material.dart';
++import 'package:delivery_app/url_link.dart';
++import 'package:http/http.dart' as http;
++import 'dart:convert';
++import 'models/order_details.dart';
++
++class DriverOrderHistory extends StatefulWidget {
++  final String driverID;
++  DriverOrderHistory({Key key, @required this.driverID}) : super(key: key);
++  @override
++  _DriverOrderHistoryState createState() => _DriverOrderHistoryState();
++}
++
++class _DriverOrderHistoryState extends State<DriverOrderHistory> {
++  Future<List<OrderDetails>> _getOrders() async {
++    //http://a84a794b3db6.ngrok.io/
++    //{{ngrok}}/orders/merchant/get/42
++    var client = http.Client();
++    try {
++      var data =
++      await client.get(Uri.parse('https://1dd6f3ebf015.ngrok.io/orders/driver/get/${widget.driverID}'));
++      var jsonData = json.decode(data.body);
++      List<OrderDetails> orders = [];
++      for (var u in jsonData) {
++        OrderDetails driver = OrderDetails(
++            u["id"],
++            u["city"],
++            u["street"],
++            u["building"],
++            u["floor"],
++            u["receiver_full_name"],
++            u["receiver_phone_number"]);
++        orders.add(driver);
++      }
++      print(orders.length);
++      return orders;
++    } finally {
++      //client.close();
++    }
++    // var uri = Uri(
++    //   scheme: 'https',
++    //   host: theLink,
++    //   path: '/mydrivers/39',
++    // );
++    // assert(//http://f60fc987a44e.ngrok.io/
++    // uri.toString() == 'https://$theLink/mydrivers/39');
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++
++      drawer: Drawer(
++        child: ListView(
++          children: [
++            DrawerHeader(child: Text('Hello')),
++            ListTile(title: Text('A')),
++            ListTile(title: Text('B')),
++          ],
++        ),
++      ),
++      appBar: AppBar(
++        title: Text('Driver Home Page'),
++        centerTitle: true,
++
++      ),
++      body: Container(
++        margin: EdgeInsets.all(5),
++        child: FutureBuilder(
++          future: _getOrders(),
++          builder: (BuildContext context, AsyncSnapshot snapshot) {
++            if (snapshot.data == null) {
++              return Container(
++                child: Center(child: Text("Loading...")),
++              );
++            } else {
++              return ListView.builder(
++                itemCount: snapshot.data.length,
++                itemBuilder: (BuildContext context, int index) {
++                  return Card(
++                    color: Colors.orange,
++                    shadowColor: Colors.blue,
++                    child: Container(
++                      child: Column(
++                        children: [
++                          Text(snapshot.data[index].receiverFullName,style:TextStyle(color: Colors.red)),
++                          Text(
++                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '
++                          ),
++                          Row(
++                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
++                            crossAxisAlignment: CrossAxisAlignment.end,
++                            children: [
++                              TextButton(
++                                  onPressed: (){
++                                  }, child: Text("Mark as Completed")
++                              ),
++                            ],
++                          )
++                        ],
++                      ),
++                    ),
++                  );
++                },
++              );
++            }
++          },
++        ),
++      ),
++    );
++  }
++}
++
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n    <mapping directory=\"$PROJECT_DIR$/delivery_app/DeliveryTest\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision 3f6de3772bc3e05edb4d8b28a7aff61609f5b5a1)
++++ .idea/vcs.xml	(date 1616094979668)
+@@ -2,6 +2,5 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="" vcs="Git" />
+-    <mapping directory="$PROJECT_DIR$/delivery_app/DeliveryTest" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
