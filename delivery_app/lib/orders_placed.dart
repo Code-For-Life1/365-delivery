@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'models/order.dart';
+import 'package:delivery_app/url_link.dart';
 
 class Orders_Placed extends StatefulWidget {
   @override
@@ -13,19 +13,30 @@ class _Orders_Placed extends State<Orders_Placed> {
     List<List<String>> orders = [];
     var uri = Uri(
       scheme: 'https',
-      host: 'b5a8706515bb.ngrok.io',
-      path: '/orders/merchant/get/41/'
+      host: theLink,
+      path: '/orders/merchant/get/3'
     );
     var data = await http.get(uri);
     var jsonData = json.decode(data.body);
+    print(jsonData.toString() + "\n");
     for (var order in jsonData){
-      orders.add([order["receiver_full_name"], order["street"], order["driver"]]);
+      orders.add([order["id"].toString(), order["receiver_full_name"], order["street"], order["driver"].toString(), order["city"]]);
     };
-    return orders;
+
+    return orders.reversed.toList();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Most Recent Orders",
+          style: TextStyle(color: Colors.white, fontSize: 23),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.orange[800],
+        toolbarHeight: 53,
+      ),
       body: FutureBuilder(
         future: get_order_history(),
         builder: (BuildContext context, AsyncSnapshot snapshot){
@@ -35,20 +46,29 @@ class _Orders_Placed extends State<Orders_Placed> {
             );
           }
           else {
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  color: Colors.orange,
-                  shadowColor: Colors.blue,
-                  child: ListTile(
-                    leading: Text(snapshot.data[index][0]),
-                    title: Text(snapshot.data[index][1]),
-                    subtitle: Text(snapshot.data[index][2]),
+            return SingleChildScrollView(physics: ScrollPhysics(), padding: EdgeInsets.only(top: 50, left: 5, right: 5),child:Column(
+              children: [
+                  ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        color: Colors.orange,
+                        shadowColor: Colors.blue,
+                        child: ListTile(
+                          leading: Container(child:Text(snapshot.data[index][1] + "\n\nID: " + snapshot.data[index][0].toString()), width: 55,),
+                          title: Text(snapshot.data[index][2], style: TextStyle(color: Colors.white, fontSize: 20)),
+                          subtitle: Text(snapshot.data[index][4]),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            );
+
+
+
+              ],
+            ));
           }
         },
       ),

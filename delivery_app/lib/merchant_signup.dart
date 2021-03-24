@@ -21,7 +21,6 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
       path: '/register/merchant',
     );
     assert(uri.toString() == 'https://' + theLink + '/register/merchant');
-
     Map<String, String> a = {
       "first_name": firstName,
       "last_name": lastName,
