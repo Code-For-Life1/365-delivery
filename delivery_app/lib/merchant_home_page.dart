@@ -3,12 +3,23 @@ import 'package:delivery_app/merchant_order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MerchantPage extends StatefulWidget {
+class MerchantHomePage extends StatefulWidget {
+  final String merchantID;
+  MerchantHomePage({Key key, @required this.merchantID}) : super(key: key);
+
+
   @override
-  _MerchantPageState createState() => _MerchantPageState();
+  _MerchantHomePageState createState() => _MerchantHomePageState();
 }
 
-class _MerchantPageState extends State<MerchantPage> {
+
+
+
+
+
+class _MerchantHomePageState extends State<MerchantHomePage> {
+
+
   int _currentIndex = 0;
   PageController _pageController = PageController();
   List<Widget> _screens = [MerchantOrder(), MerchantDriversPage()];
@@ -23,8 +34,12 @@ class _MerchantPageState extends State<MerchantPage> {
     _currentIndex = selectedIndex;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+    print(widget.merchantID);
+    // final String data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       drawer: Drawer(
         child: ListView(
