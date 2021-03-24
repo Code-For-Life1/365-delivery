@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'merchant_signup.dart';
-import 'package:delivery_app/driver_signup.dart';
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,10 +21,7 @@ class MyApp extends StatelessWidget {
                 height: 50,
                 child: RaisedButton(
                     onPressed: () => {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DriverSignUp()))
+                      Navigator.of(context).pushNamed('/driverSignUpScreen')
                     },
                     child:
                     Text("I'm a Driver!", style: TextStyle(fontSize: 20)),
@@ -40,11 +36,7 @@ class MyApp extends StatelessWidget {
                   height: 50,
                   child: RaisedButton(
                       onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MerchantSignUp()))
-                      },
+                        Navigator.of(context).pushNamed('/merchantSignUpScreen')},
                       child: Text("I'm the Merchant.",
                           style: TextStyle(fontSize: 20)),
                       shape: RoundedRectangleBorder(

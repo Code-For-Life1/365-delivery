@@ -1,7 +1,7 @@
-import 'package:delivery_app/merchant_page.dart';
+import 'package:delivery_app/merchant_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:delivery_app/models/merchant_model.dart';
-import 'url_link.dart';
+import 'package:delivery_app/url_link.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -21,7 +21,7 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
       path: '/register/driver/39',
     );
     assert(
-        uri.toString() == 'https://a84a794b3db6.ngrok.io/register/driver/39');
+        uri.toString() == 'https://$theLink/register/merchant');
 
     Map<String, String> a = {
       "first_name": firstName,
@@ -79,8 +79,7 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
                   _merchant = newMerchant;
                 });
 
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MerchantPage()));
+                Navigator.of(context).pushNamed('/merchantPage');
               },
               child: Text(
                 "Done",
@@ -212,7 +211,7 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
                 top: screenSize * 0.35,
               ),
               child: FlatButton(
-                  onPressed: () => {},
+                  onPressed: () => {Navigator.of(context).pushNamed('/merchantSignInScreen')},
                   child: Text(
                     "Already have an account? Sign in",
                     style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),

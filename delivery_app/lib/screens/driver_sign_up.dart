@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/driver_authentication.dart';
+import 'package:delivery_app/models/driver_authentication_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:delivery_app/url_link.dart';
@@ -21,7 +21,7 @@ class _DriverSignUpState extends State<DriverSignUp> {
         path: '/register/auth_driver',
     );
     assert(//http://f60fc987a44e.ngrok.io/
-    uri.toString() == 'https://a84a794b3db6.ngrok.io/register/auth_driver');
+    uri.toString() == 'https://$theLink/register/auth_driver');
     Map<String,String> a = {"token":token};
     var b = json.encode(a);
     print(b);
@@ -80,8 +80,15 @@ class _DriverSignUpState extends State<DriverSignUp> {
                 });
               }, child: Text('Validate'),
               ),
-              SizedBox(height: 20),
-              _token == null ? Text("You haven't entered a valid token yet") : Text("Token was successfully accepted")
+              SizedBox(height: 5),
+              _token == null ? Text("You haven't entered a valid token yet") : Text("Token was successfully accepted"),
+              SizedBox(height: 200),
+              FlatButton(
+                  onPressed: () => {Navigator.of(context).pushNamed('/driverSignInScreen')},
+                  child: Text(
+                    "Already have an account? Sign in",
+                    style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),
+                  )),
             ]
         )
     );
