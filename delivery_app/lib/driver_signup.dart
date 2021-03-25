@@ -21,7 +21,7 @@ class _DriverSignUpState extends State<DriverSignUp> {
         path: '/register/auth_driver',
     );
     assert(//http://f60fc987a44e.ngrok.io/
-    uri.toString() == 'https://a84a794b3db6.ngrok.io/register/auth_driver');
+    uri.toString() == 'https://b5a8706515bb.ngrok.io/register/auth_driver');
     Map<String,String> a = {"token":token};
     var b = json.encode(a);
     print(b);
