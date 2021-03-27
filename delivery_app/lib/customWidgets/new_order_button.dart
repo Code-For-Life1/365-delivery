@@ -26,7 +26,6 @@ class FancyButton extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
-
               ),
             ),
           ],
@@ -38,18 +37,18 @@ class FancyButton extends StatelessWidget {
   }
 }
 
-
-
 class PulsingWidget extends StatefulWidget {
   final Tween<double> tween;
   final Widget child;
   final Duration duration;
 
-  const PulsingWidget({@required this.child, this.duration, this.tween}) : assert(child != null);
+  const PulsingWidget({@required this.child, this.duration, this.tween})
+      : assert(child != null);
   _PulsingWidget createState() => _PulsingWidget();
 }
 
-class _PulsingWidget extends State<PulsingWidget> with SingleTickerProviderStateMixin {
+class _PulsingWidget extends State<PulsingWidget>
+    with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Duration _duration;
   Tween<double> _tween;
