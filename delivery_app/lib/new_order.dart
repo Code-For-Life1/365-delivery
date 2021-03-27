@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'models/order.dart';
+import 'models/order_details_model.dart';
 import 'package:delivery_app/url_link.dart';
 
 class new_order extends StatefulWidget {
@@ -24,7 +24,7 @@ class S extends State<new_order>{
     drivers.clear();
     var uri = Uri(
       scheme: 'https',
-      host: theLink,
+      host: ngrokLink,
       path: '/mydrivers/39',
     );
     var data = await http.get(uri);
@@ -35,7 +35,7 @@ class S extends State<new_order>{
     };
     return drivers;
   }
-  Future<Order> createOrder(String r_name, String r_phone, String st, String bldg, String city, int flr, int driver_id, int merchant_id) async {
+  Future<OrderDetailsModel> createOrder(String r_name, String r_phone, String st, String bldg, String city, int flr, int driver_id, int merchant_id) async {
     var uri = Uri(
       scheme: 'https',
       host: 'b5a8706515bb.ngrok.io',

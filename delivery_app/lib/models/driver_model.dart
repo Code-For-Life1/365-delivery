@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-DriverModel driverModelFromJson(String str) => DriverModel.fromJson(json.decode(str));
+DriverModel driverModelFromJson(String str) =>
+    DriverModel.fromJson(json.decode(str));
 
 String driverModelToJson(DriverModel data) => json.encode(data.toJson());
 
@@ -20,14 +21,14 @@ class DriverModel {
   String phoneNumber;
 
   factory DriverModel.fromJson(Map<String, dynamic> json) => DriverModel(
-    firstName: json["first_name"],
-    lastName: json["last_name"],
-    phoneNumber: json["phone_number"],
-  );
+        firstName: json["first_name"],
+        lastName: json["last_name"],
+        phoneNumber: json["phone_number"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "first_name": firstName,
-    "last_name": lastName,
-    "phone_number": phoneNumber,
-  };
+        "first_name": firstName,
+        "last_name": lastName,
+        "phone_number": phoneNumber,
+      };
 }

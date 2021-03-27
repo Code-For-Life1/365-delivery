@@ -13,7 +13,7 @@ class _Orders_Placed extends State<Orders_Placed> {
     List<List<String>> orders = [];
     var uri = Uri(
       scheme: 'https',
-      host: theLink,
+      host: ngrokLink,
       path: '/orders/merchant/get/3'
     );
     var data = await http.get(uri);
@@ -64,9 +64,6 @@ class _Orders_Placed extends State<Orders_Placed> {
                       );
                     },
                   ),
-
-
-
               ],
             ));
           }

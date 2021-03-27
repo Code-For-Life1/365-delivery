@@ -1,10 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
 import 'dart:math';
-
 
 class Test extends StatefulWidget {
   @override
@@ -12,7 +9,6 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-
   StreamController<double> controller = StreamController<double>.broadcast();
   StreamSubscription<double> streamSubscription;
 
@@ -24,25 +20,25 @@ class _TestState extends State<Test> {
         body: Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            children:<Widget> [
+            children: <Widget>[
               MaterialButton(
                   child: Text("Subscribe"),
                   color: Colors.yellow,
                   onPressed: () async {
                     getDelayedRandomValue().listen((value) {
-                      print('Value from manualStream: ${value}');
+                      print('Value from manualStream: $value');
                     });
                   }),
               MaterialButton(
                   child: Text("Emit Value"),
                   color: Colors.blue[200],
-                  onPressed: (){
+                  onPressed: () {
                     controller.add(12);
                   }),
               MaterialButton(
                   color: Colors.red[200],
                   child: Text("Unsubscribe"),
-                  onPressed: (){
+                  onPressed: () {
                     streamSubscription.cancel();
                   })
             ],
@@ -51,9 +47,10 @@ class _TestState extends State<Test> {
       ),
     );
   }
-  Stream<double> getDelayedRandomValue() async*{
+
+  Stream<double> getDelayedRandomValue() async* {
     var random = Random();
-    while(true){
+    while (true) {
       await Future.delayed(Duration(seconds: 1));
       yield random.nextDouble();
     }

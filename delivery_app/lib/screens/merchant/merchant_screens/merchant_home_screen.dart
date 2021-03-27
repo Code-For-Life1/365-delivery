@@ -1,24 +1,27 @@
-import 'package:delivery_app/merchant_drivers.dart';
-import 'package:delivery_app/merchant_order.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';
+import 'package:delivery_app/screens/merchant/merchant_pages/merchant_order_page.dart';
 import 'package:flutter/material.dart';
-import 'orders_placed.dart';
+import 'package:delivery_app/models/order_details_model.dart';
 
-class MerchantPage extends StatefulWidget {
+class MerchantHomeScreen extends StatefulWidget {
+  final String merchantID;
+  MerchantHomeScreen({Key key, @required this.merchantID}) : super(key: key);
+
   @override
-  _MerchantPageState createState() => _MerchantPageState();
+  _MerchantHomeScreenState createState() => _MerchantHomeScreenState();
 }
 
-class _MerchantPageState extends State<MerchantPage> {
+class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
   int _currentIndex = 0;
-  PageController _pageController = PageController();
-  List<Widget> _screens = [MerchantOrder(), MerchantDriversPage(), Orders_Placed()];
   int _selectedIndex = 0;
+  PageController _pageController = PageController();
+
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   void _onItemTapped(int selectedIndex) {
     _pageController.jumpToPage(selectedIndex);
     _currentIndex = selectedIndex;
@@ -26,6 +29,8 @@ class _MerchantPageState extends State<MerchantPage> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.merchantID);
+    // final String data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -37,10 +42,12 @@ class _MerchantPageState extends State<MerchantPage> {
         ),
       ),
       backgroundColor: Colors.white,
-
       body: PageView(
         controller: _pageController,
-        children: _screens,
+        children: <Widget>[
+          MerchantOrder(),
+          MerchantDriversPage(merchantID: widget.merchantID)
+        ],
         onPageChanged: _onPageChanged,
         physics: NeverScrollableScrollPhysics(),
       ),
@@ -63,7 +70,7 @@ class _MerchantPageState extends State<MerchantPage> {
             label: 'Orders'
           )
         ],
-      onTap: _onItemTapped,
+        onTap: _onItemTapped,
         selectedItemColor: Colors.amber,
       ),
     );

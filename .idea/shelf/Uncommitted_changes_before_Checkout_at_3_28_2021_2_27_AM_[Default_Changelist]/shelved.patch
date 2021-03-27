@@ -1,0 +1,1954 @@
+Index: delivery_app/lib/url_link.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>final String theLink = \"a84a794b3db6.ngrok.io\";\r\n//http://a84a794b3db6.ngrok.io/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/url_link.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/url_link.dart	(date 1616880172674)
+@@ -1,2 +1,1 @@
+-final String theLink = "a84a794b3db6.ngrok.io";
+-//http://a84a794b3db6.ngrok.io/
+\ No newline at end of file
++final String ngrokLink = "ea543371aca1.ngrok.io";
+Index: delivery_app/lib/route_generator.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/driver_receiving_order.dart';\r\nimport 'package:delivery_app/merchant_home_page.dart';\r\nimport 'package:delivery_app/screens/driver_home_page.dart';\r\nimport 'package:delivery_app/test_screens/test3.dart';\r\nimport 'test_screens/test1.dart';\r\nimport 'test_screens/test2.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:delivery_app/screens/welcome.dart';\r\nimport 'screens/driver_sign_up.dart';\r\nimport 'screens/merchant_sign_up.dart';\r\nimport 'screens/driver_sign_in.dart';\r\nimport 'screens/merchant_sign_in.dart';\r\n\r\n\r\n\r\nclass RouteGenerator {\r\n  static Route<dynamic> generateRoute(RouteSettings settings) {\r\n    //Getting arguments passed in while calling Navigator.pushNamed\r\n    final args = settings.arguments;\r\n\r\n    switch (settings.name) {\r\n      case '/':\r\n        return MaterialPageRoute(builder: (_) => MyApp());\r\n      case '/driverSignUpScreen':\r\n        return MaterialPageRoute(builder: (_) => DriverSignUp());\r\n      case '/merchantSignUpScreen':\r\n        return MaterialPageRoute(builder: (_)=>MerchantSignUp());\r\n      case '/driverSignInScreen':\r\n        return MaterialPageRoute(builder: (_)=>DriverSignIn());\r\n      case '/merchantSignInScreen':\r\n        return MaterialPageRoute(builder: (_)=>MerchantSignIn());\r\n      case '/driverHomePage':\r\n        return MaterialPageRoute(builder: (_)=>DriverHomePage());\r\n      case '/merchantHomePage':\r\n        return MaterialPageRoute(builder: (_)=>MerchantHomePage(merchantID :args));\r\n      case '/driverReceivingOrder':\r\n        return MaterialPageRoute(builder: (_)=>DriverReceivingOrder());\r\n      case '/test1':\r\n        return MaterialPageRoute(builder: (_)=>Test());\r\n      case '/test2':\r\n        return MaterialPageRoute(builder: (_)=>Test2());\r\n      case '/test3':\r\n        return MaterialPageRoute(builder: (_)=>Test3());\r\n      default:\r\n        //if there is no such named route in the switch statement, e.g /third\r\n        return _errorRoute();\r\n    }\r\n  }\r\n  static Route<dynamic> _errorRoute(){\r\n    return MaterialPageRoute(\r\n        builder: (_){\r\n          return Scaffold(\r\n            appBar: AppBar(\r\n              title: Text(\"Error\"),\r\n            ),\r\n            body: Center(\r\n              child: Text(\"Error\"),\r\n            ),\r\n          );\r\n        }\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/route_generator.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/route_generator.dart	(date 1616880173024)
+@@ -1,17 +1,17 @@
+-import 'package:delivery_app/driver_receiving_order.dart';
+-import 'package:delivery_app/merchant_home_page.dart';
+-import 'package:delivery_app/screens/driver_home_page.dart';
++import 'package:delivery_app/screens/driver/driver_pages/driver_receiving_order_page.dart';
++import 'package:delivery_app/screens/driver/driver_screens/driver_sign_in_screen.dart';
++import 'package:delivery_app/screens/driver/driver_screens/driver_sign_up_screen.dart';
++import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';
++import 'package:delivery_app/screens/merchant/merchant_screens/merchant_home_screen.dart';
++import 'package:delivery_app/screens/merchant/merchant_screens/merchant_registers_driver_screen.dart';
++import 'package:delivery_app/screens/merchant/merchant_screens/merchant_sign_in_screen.dart';
++import 'package:delivery_app/screens/merchant/merchant_screens/merchant_sign_up_screen.dart';
++import 'screens/driver/driver_screens/driver_home_screen.dart';
+ import 'package:delivery_app/test_screens/test3.dart';
+ import 'test_screens/test1.dart';
+ import 'test_screens/test2.dart';
+ import 'package:flutter/material.dart';
+ import 'package:delivery_app/screens/welcome.dart';
+-import 'screens/driver_sign_up.dart';
+-import 'screens/merchant_sign_up.dart';
+-import 'screens/driver_sign_in.dart';
+-import 'screens/merchant_sign_in.dart';
+-
+-
+ 
+ class RouteGenerator {
+   static Route<dynamic> generateRoute(RouteSettings settings) {
+@@ -24,40 +24,48 @@
+       case '/driverSignUpScreen':
+         return MaterialPageRoute(builder: (_) => DriverSignUp());
+       case '/merchantSignUpScreen':
+-        return MaterialPageRoute(builder: (_)=>MerchantSignUp());
++        return MaterialPageRoute(builder: (_) => MerchantSignUp());
+       case '/driverSignInScreen':
+-        return MaterialPageRoute(builder: (_)=>DriverSignIn());
++        return MaterialPageRoute(builder: (_) => DriverSignIn());
+       case '/merchantSignInScreen':
+-        return MaterialPageRoute(builder: (_)=>MerchantSignIn());
++        return MaterialPageRoute(builder: (_) => MerchantSignIn());
+       case '/driverHomePage':
+-        return MaterialPageRoute(builder: (_)=>DriverHomePage());
++        return MaterialPageRoute(
++            builder: (_) => DriverHomeScreen(driverID: args));
+       case '/merchantHomePage':
+-        return MaterialPageRoute(builder: (_)=>MerchantHomePage(merchantID :args));
++        return MaterialPageRoute(
++            builder: (_) => MerchantHomeScreen(merchantID: args));
++      case '/merchantGetDrivers':
++        return MaterialPageRoute(
++            builder: (_) => MerchantDriversPage(merchantID: args));
+       case '/driverReceivingOrder':
+-        return MaterialPageRoute(builder: (_)=>DriverReceivingOrder());
++        return MaterialPageRoute(
++            builder: (_) => DriverReceivingOrder(driverID: args));
++      case '/driverAdd':
++        return MaterialPageRoute(
++            builder: (_) => MerchantRegisterDriver(merchantID: args));
+       case '/test1':
+-        return MaterialPageRoute(builder: (_)=>Test());
++        return MaterialPageRoute(builder: (_) => Test());
+       case '/test2':
+-        return MaterialPageRoute(builder: (_)=>Test2());
++        return MaterialPageRoute(builder: (_) => Test2());
+       case '/test3':
+-        return MaterialPageRoute(builder: (_)=>Test3());
++        return MaterialPageRoute(builder: (_) => Test3());
+       default:
+         //if there is no such named route in the switch statement, e.g /third
+         return _errorRoute();
+     }
+   }
+-  static Route<dynamic> _errorRoute(){
+-    return MaterialPageRoute(
+-        builder: (_){
+-          return Scaffold(
+-            appBar: AppBar(
+-              title: Text("Error"),
+-            ),
+-            body: Center(
+-              child: Text("Error"),
+-            ),
+-          );
+-        }
+-    );
++
++  static Route<dynamic> _errorRoute() {
++    return MaterialPageRoute(builder: (_) {
++      return Scaffold(
++        appBar: AppBar(
++          title: Text("Error"),
++        ),
++        body: Center(
++          child: Text("Error"),
++        ),
++      );
++    });
+   }
+ }
+Index: delivery_app/lib/models/order_details_model.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class OrderDetailsModel {\r\n  int id;\r\n  final String city;\r\n  final String street;\r\n  final String building;\r\n  final String floor;\r\n  final String receiverFullName;\r\n  final String receiverPhoneNumber;\r\n\r\n  OrderDetailsModel(this.id, this.city, this.street, this.building, this.floor,\r\n      this.receiverFullName, this.receiverPhoneNumber);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/models/order_details_model.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/models/order_details_model.dart	(date 1616880172732)
+@@ -9,4 +9,4 @@
+ 
+   OrderDetailsModel(this.id, this.city, this.street, this.building, this.floor,
+       this.receiverFullName, this.receiverPhoneNumber);
+-}
+\ No newline at end of file
++}
+Index: delivery_app/lib/models/merchant_drivers_model.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/models/merchant_drivers_model.dart	(date 1616880172774)
++++ delivery_app/lib/models/merchant_drivers_model.dart	(date 1616880172774)
+@@ -0,0 +1,7 @@
++class MerchantDrivers {
++  final String firstName;
++  final String lastName;
++  final String phoneNumber;
++
++  MerchantDrivers(this.firstName, this.lastName, this.phoneNumber);
++}
+Index: delivery_app/lib/models/merchant_model.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// To parse this JSON data, do\r\n//\r\n//     final merchantModel = merchantModelFromJson(jsonString);\r\n\r\nimport 'dart:convert';\r\n\r\nMerchantModel merchantModelFromJson(String str) => MerchantModel.fromJson(json.decode(str));\r\n\r\nString merchantModelToJson(MerchantModel data) => json.encode(data.toJson());\r\n\r\nclass MerchantModel {\r\n  MerchantModel({\r\n    this.firstName,\r\n    this.lastName,\r\n    this.companyName,\r\n    this.companyAddress,\r\n    this.phoneNumber,\r\n  });\r\n\r\n  String firstName;\r\n  String lastName;\r\n  String companyName;\r\n  String companyAddress;\r\n  String phoneNumber;\r\n\r\n  factory MerchantModel.fromJson(Map<String, dynamic> json) => MerchantModel(\r\n    firstName: json[\"first_name\"],\r\n    lastName: json[\"last_name\"],\r\n    companyName: json[\"company_name\"],\r\n    companyAddress: json[\"company_address\"],\r\n    phoneNumber: json[\"phone_number\"],\r\n  );\r\n\r\n  Map<String, dynamic> toJson() => {\r\n    \"first_name\": firstName,\r\n    \"last_name\": lastName,\r\n    \"company_name\": companyName,\r\n    \"company_address\": companyAddress,\r\n    \"phone_number\": phoneNumber,\r\n  };\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/models/merchant_model.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/models/merchant_model.dart	(date 1616880173012)
+@@ -4,7 +4,8 @@
+ 
+ import 'dart:convert';
+ 
+-MerchantModel merchantModelFromJson(String str) => MerchantModel.fromJson(json.decode(str));
++MerchantModel merchantModelFromJson(String str) =>
++    MerchantModel.fromJson(json.decode(str));
+ 
+ String merchantModelToJson(MerchantModel data) => json.encode(data.toJson());
+ 
+@@ -24,18 +25,18 @@
+   String phoneNumber;
+ 
+   factory MerchantModel.fromJson(Map<String, dynamic> json) => MerchantModel(
+-    firstName: json["first_name"],
+-    lastName: json["last_name"],
+-    companyName: json["company_name"],
+-    companyAddress: json["company_address"],
+-    phoneNumber: json["phone_number"],
+-  );
++        firstName: json["first_name"],
++        lastName: json["last_name"],
++        companyName: json["company_name"],
++        companyAddress: json["company_address"],
++        phoneNumber: json["phone_number"],
++      );
+ 
+   Map<String, dynamic> toJson() => {
+-    "first_name": firstName,
+-    "last_name": lastName,
+-    "company_name": companyName,
+-    "company_address": companyAddress,
+-    "phone_number": phoneNumber,
+-  };
++        "first_name": firstName,
++        "last_name": lastName,
++        "company_name": companyName,
++        "company_address": companyAddress,
++        "phone_number": phoneNumber,
++      };
+ }
+Index: delivery_app/lib/customWidgets/FancyButton.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\n\r\nclass FancyButton extends StatelessWidget {\r\n  FancyButton({this.onPressed});\r\n\r\n  final GestureTapCallback onPressed;\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return RawMaterialButton(\r\n      fillColor: Colors.deepOrange,\r\n      splashColor: Colors.orange,\r\n      child: PulsingWidget(\r\n        child: Row(\r\n          mainAxisSize: MainAxisSize.max,\r\n          mainAxisAlignment: MainAxisAlignment.center,\r\n          children: [\r\n            Icon(\r\n              Icons.drive_eta,\r\n              color: Colors.amber,\r\n              //size: 30.0,\r\n            ),\r\n            const SizedBox(width: 9.0),\r\n            Text(\r\n              'New Order',\r\n              style: TextStyle(\r\n                color: Colors.white,\r\n                fontSize: 20.0,\r\n\r\n              ),\r\n            ),\r\n          ],\r\n        ),\r\n      ),\r\n      onPressed: onPressed,\r\n      shape: const StadiumBorder(),\r\n    );\r\n  }\r\n}\r\n\r\n\r\n\r\nclass PulsingWidget extends StatefulWidget {\r\n  final Tween<double> tween;\r\n  final Widget child;\r\n  final Duration duration;\r\n\r\n  const PulsingWidget({@required this.child, this.duration, this.tween}) : assert(child != null);\r\n  _PulsingWidget createState() => _PulsingWidget();\r\n}\r\n\r\nclass _PulsingWidget extends State<PulsingWidget> with SingleTickerProviderStateMixin {\r\n  AnimationController _animationController;\r\n  Duration _duration;\r\n  Tween<double> _tween;\r\n\r\n  Animation<double> _animation;\r\n\r\n  @override\r\n  void initState() {\r\n    super.initState();\r\n    _tween = widget.tween ?? Tween(begin: 0.25, end: 1.0);\r\n    _duration = widget.duration ?? Duration(milliseconds: 500);\r\n    _animationController = AnimationController(\r\n      vsync: this,\r\n      duration: _duration,\r\n    );\r\n    final CurvedAnimation curve = CurvedAnimation(\r\n      parent: _animationController,\r\n      curve: Curves.linear,\r\n    );\r\n    _animation = _tween.animate(curve);\r\n    _animation.addStatusListener((status) {\r\n      if (status == AnimationStatus.completed) {\r\n        _animationController.reverse();\r\n      } else if (status == AnimationStatus.dismissed) {\r\n        _animationController.forward();\r\n      }\r\n    });\r\n    _animationController.forward();\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return FadeTransition(\r\n      opacity: _animation,\r\n      child: widget.child,\r\n    );\r\n  }\r\n\r\n  @override\r\n  void dispose() {\r\n    _animationController.dispose();\r\n    super.dispose();\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/customWidgets/FancyButton.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/customWidgets/FancyButton.dart	(date 1616880172696)
+@@ -26,7 +26,6 @@
+               style: TextStyle(
+                 color: Colors.white,
+                 fontSize: 20.0,
+-
+               ),
+             ),
+           ],
+@@ -38,18 +37,18 @@
+   }
+ }
+ 
+-
+-
+ class PulsingWidget extends StatefulWidget {
+   final Tween<double> tween;
+   final Widget child;
+   final Duration duration;
+ 
+-  const PulsingWidget({@required this.child, this.duration, this.tween}) : assert(child != null);
++  const PulsingWidget({@required this.child, this.duration, this.tween})
++      : assert(child != null);
+   _PulsingWidget createState() => _PulsingWidget();
+ }
+ 
+-class _PulsingWidget extends State<PulsingWidget> with SingleTickerProviderStateMixin {
++class _PulsingWidget extends State<PulsingWidget>
++    with SingleTickerProviderStateMixin {
+   AnimationController _animationController;
+   Duration _duration;
+   Tween<double> _tween;
+@@ -93,4 +92,4 @@
+     _animationController.dispose();
+     super.dispose();
+   }
+-}
+\ No newline at end of file
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"792af8c6-7ea3-4f1a-852a-8fb644cf2f05\" name=\"Default Changelist\" comment=\"test file auto updated\">\r\n      <change afterPath=\"$PROJECT_DIR$/delivery_app/lib/driver_receiving_order.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/vcs.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/delivery_app/android/app/src/debug/AndroidManifest.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/delivery_app/android/app/src/debug/AndroidManifest.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/delivery_app/lib/test.dart\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/delivery_app/pubspec.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/delivery_app/pubspec.lock\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[Pixel_3a_API_30_x86]\" />\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Dart File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PUSH_UPDATE_ALL_ROOTS\" value=\"false\" />\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"feature-registerNewMerchant\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"ROOT_SYNC\" value=\"DONT_SYNC\" />\r\n  </component>\r\n  <component name=\"KotlinCodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1pIuz152qSDMXyWIcVXFw580tZY\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"dart.analysis.tool.window.visible\" value=\"false\" />\r\n    <property name=\"io.flutter.reload.alreadyRun\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../flictionary_app\" />\r\n    <property name=\"project.structure.last.edited\" value=\"SDKs\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"project.propVCSSupport.Mappings\" />\r\n    <property name=\"show.migrate.to.gradle.popup\" value=\"false\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\user\\AndroidStudioProjects\\365-delivery\\delivery_app\\lib\\test_screens\" />\r\n      <recent name=\"C:\\Users\\user\\AndroidStudioProjects\\365-delivery\\delivery_app\\lib\\screens\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main.dart\" type=\"FlutterRunConfigurationType\" factoryName=\"Flutter\">\r\n      <option name=\"filePath\" value=\"$PROJECT_DIR$/delivery_app/lib/main.dart\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"792af8c6-7ea3-4f1a-852a-8fb644cf2f05\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1614883183530</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1614883183530</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"added whole flutter project\">\r\n      <created>1614883400127</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1614883400127</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"added some project configuration files\">\r\n      <created>1614883605474</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1614883605474</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"removed Ghalayini's main.dart (it was already added in the initial project)\">\r\n      <created>1614883711525</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1614883711525</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Created a custom Widget (Button)\">\r\n      <created>1615335976632</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615335976632</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Finished UI for Merchant order page\">\r\n      <created>1615336182059</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615336182059</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"removed the code in main.dart, created a .dart file for every screen\">\r\n      <created>1615389016782</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615389016782</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"added drivers list (without json)\">\r\n      <created>1615424331587</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615424331587</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"connected driver_signup.dart with backend for authentication&#10;created class driver_authentication.dart to use in token authentication\">\r\n      <created>1615640636262</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615640636262</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"added drivers list (with json)&#10;ability to add driver then authenticate\">\r\n      <created>1615646963828</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1615646963828</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"added route generator\">\r\n      <created>1616609692943</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616609692943</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"deleted old backend\">\r\n      <created>1616610172153</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616610172153</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"added merchant and driver sign in\">\r\n      <created>1616610313365</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616610313365</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"added orderDetailsModel and renamed driver_authentication_model.dart\">\r\n      <created>1616610731108</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616610731108</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"added driver home page\">\r\n      <created>1616610818522</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616610818522</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"added driver order history\">\r\n      <created>1616610893652</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616610893652</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"moved welcome.dart, driver_sign_up.dart, merchant_sign_up.dart to /screens\">\r\n      <created>1616611133399</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616611133399</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"added web_socket_channel dependency.\">\r\n      <created>1616611259005</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616611259005</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"added ID from login screen to the constructor override (passed data between 2 screens)\">\r\n      <created>1616611405945</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616611405945</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"renamed from merchant_page.dart to merchant_home_page.dart\">\r\n      <created>1616611474835</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616611474835</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"passed universal variable (ngrok link) to the http link to string assertion\">\r\n      <created>1616611588927</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616611588927</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"test file auto updated\">\r\n      <created>1616611659387</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616611659387</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"22\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$/delivery_app/DeliveryTest\" />\r\n    </ignored-roots>\r\n    <MESSAGE value=\"added whole flutter project\" />\r\n    <MESSAGE value=\"added some project configuration files\" />\r\n    <MESSAGE value=\"removed Ghalayini's main.dart (it was already added in the initial project)\" />\r\n    <MESSAGE value=\"Created a custom Widget (Button)\" />\r\n    <MESSAGE value=\"Finished UI for Merchant order page\" />\r\n    <MESSAGE value=\"removed the code in main.dart, created a .dart file for every screen\" />\r\n    <MESSAGE value=\"added drivers list (without json)\" />\r\n    <MESSAGE value=\"connected driver_signup.dart with backend for authentication&#10;created class driver_authentication.dart to use in token authentication\" />\r\n    <MESSAGE value=\"added drivers list (with json)&#10;ability to add driver then authenticate\" />\r\n    <MESSAGE value=\"added route generator\" />\r\n    <MESSAGE value=\"deleted old backend\" />\r\n    <MESSAGE value=\"added merchant and driver sign in\" />\r\n    <MESSAGE value=\"added orderDetailsModel and renamed driver_authentication_model.dart\" />\r\n    <MESSAGE value=\"added driver home page\" />\r\n    <MESSAGE value=\"added driver order history\" />\r\n    <MESSAGE value=\"moved welcome.dart, driver_sign_up.dart, merchant_sign_up.dart to /screens\" />\r\n    <MESSAGE value=\"added web_socket_channel dependency.\" />\r\n    <MESSAGE value=\"added ID from login screen to the constructor override (passed data between 2 screens)\" />\r\n    <MESSAGE value=\"renamed from merchant_page.dart to merchant_home_page.dart\" />\r\n    <MESSAGE value=\"passed universal variable (ngrok link) to the http link to string assertion\" />\r\n    <MESSAGE value=\"test file auto updated\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"test file auto updated\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"196\" y=\"106\" key=\"#Unnamed\" timestamp=\"1614902077076\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"196\" y=\"106\" key=\"#Unnamed/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1614902077076\" />\r\n    <state x=\"0\" y=\"178\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog\" timestamp=\"1614902216299\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"0\" y=\"178\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1614902216299\" />\r\n    <state x=\"1215\" y=\"333\" key=\"#com.intellij.fileTypes.FileTypeChooser\" timestamp=\"1615410928185\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"1215\" y=\"333\" key=\"#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615410928185\" />\r\n    <state x=\"765\" y=\"236\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1616290080098\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"765\" y=\"236\" key=\"#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616290080098\" />\r\n    <state x=\"275\" y=\"313\" key=\"#com.intellij.ide.util.TreeFileChooserDialog\" timestamp=\"1614902213254\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"275\" y=\"313\" key=\"#com.intellij.ide.util.TreeFileChooserDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1614902213254\" />\r\n    <state x=\"792\" y=\"256\" key=\"#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog\" timestamp=\"1616095931339\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"792\" y=\"256\" key=\"#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616095931339\" />\r\n    <state x=\"92\" y=\"92\" width=\"1736\" height=\"856\" key=\"AVDManager\" timestamp=\"1615037068063\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"92\" y=\"92\" width=\"1736\" height=\"856\" key=\"AVDManager/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615037068063\" />\r\n    <state x=\"740\" y=\"275\" key=\"FileChooserDialogImpl\" timestamp=\"1616542735344\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"740\" y=\"275\" key=\"FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616542735344\" />\r\n    <state width=\"1877\" height=\"276\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1616610005571\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"276\" key=\"GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616610005571\" />\r\n    <state width=\"1877\" height=\"276\" key=\"GridCell.Tab.0.center\" timestamp=\"1616610005570\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"276\" key=\"GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616610005570\" />\r\n    <state width=\"1877\" height=\"276\" key=\"GridCell.Tab.0.left\" timestamp=\"1616610005570\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"276\" key=\"GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616610005570\" />\r\n    <state width=\"1877\" height=\"276\" key=\"GridCell.Tab.0.right\" timestamp=\"1616610005570\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"276\" key=\"GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616610005570\" />\r\n    <state x=\"1020\" y=\"263\" key=\"IDE.errors.dialog\" timestamp=\"1615636357890\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"1020\" y=\"263\" key=\"IDE.errors.dialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615636357890\" />\r\n    <state x=\"184\" y=\"86\" key=\"MergeDialog\" timestamp=\"1615488905085\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"184\" y=\"86\" key=\"MergeDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615488905085\" />\r\n    <state x=\"349\" y=\"178\" key=\"SettingsEditor\" timestamp=\"1616094977315\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"349\" y=\"178\" key=\"SettingsEditor/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616094977315\" />\r\n    <state x=\"552\" y=\"253\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1616611665618\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"552\" y=\"253\" key=\"Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616611665618\" />\r\n    <state x=\"769\" y=\"434\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1616198546915\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"769\" y=\"434\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616198546915\" />\r\n    <state x=\"730\" y=\"233\" key=\"git4idea.branch.GitSmartOperationDialog\" timestamp=\"1615488820237\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"730\" y=\"233\" key=\"git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615488820237\" />\r\n    <state x=\"228\" y=\"232\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1615420322138\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"228\" y=\"232\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1615420322138\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ .idea/workspace.xml	(date 1616885417424)
+@@ -20,13 +20,31 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="test file auto updated">
+-      <change afterPath="$PROJECT_DIR$/delivery_app/lib/driver_receiving_order.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/customWidgets/driverDrawer.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/customWidgets/merchantDrawer.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/delivery_app/lib/models/merchant_drivers_model.dart" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/delivery_app/android/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/test.dart" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/delivery_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/pubspec.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/customWidgets/FancyButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/customWidgets/FancyButton.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/driver_add.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_registers_driver_screen.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/driver_order_history.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_pages/driver_order_history_page.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/driver_receiving_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_pages/driver_receiving_order_page.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/main.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_drivers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_pages/merchant_drivers_page.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_home_screen.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_pages/merchant_order_page.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/driver_authentication_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/driver_authentication_model.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/driver_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/driver_model.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/merchant_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/merchant_model.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/order_details_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/order_details_model.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/route_generator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/route_generator.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver_home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_home_screen.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver_sign_in.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_sign_in_screen.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver_sign_up.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_sign_up_screen.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant_sign_in.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_in_screen.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant_sign_up.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_up_screen.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/welcome.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/welcome.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/lib/url_link.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/url_link.dart" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/delivery_app/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/test/widget_test.dart" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -68,7 +86,7 @@
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="dart.analysis.tool.window.visible" value="false" />
+     <property name="io.flutter.reload.alreadyRun" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flictionary_app" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+     <property name="project.structure.last.edited" value="SDKs" />
+     <property name="project.structure.proportion" value="0.0" />
+     <property name="project.structure.side.proportion" value="0.0" />
+@@ -77,7 +95,10 @@
+   </component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+-      <recent name="C:\Users\user\AndroidStudioProjects\365-delivery\delivery_app\lib\test_screens" />
++      <recent name="C:\Users\user\AndroidStudioProjects\365-delivery\delivery_app\lib\screens\mechant\merchant_pages" />
++      <recent name="C:\Users\user\AndroidStudioProjects\365-delivery\delivery_app\lib\screens\mechant\merchant_screens" />
++      <recent name="C:\Users\user\AndroidStudioProjects\365-delivery\delivery_app\lib\screens\driver\driver_pages" />
++      <recent name="C:\Users\user\AndroidStudioProjects\365-delivery\delivery_app\lib\screens\driver\driver_screens" />
+       <recent name="C:\Users\user\AndroidStudioProjects\365-delivery\delivery_app\lib\screens" />
+     </key>
+   </component>
+@@ -316,26 +337,26 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1615037068063" />
+-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1616542735344">
++    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1616879044471">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1616542735344" />
+-    <state width="1877" height="276" key="GridCell.Tab.0.bottom" timestamp="1616610005571">
++    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1616879044471" />
++    <state width="1877" height="276" key="GridCell.Tab.0.bottom" timestamp="1616879533863">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616610005571" />
+-    <state width="1877" height="276" key="GridCell.Tab.0.center" timestamp="1616610005570">
++    <state width="1877" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616879533863" />
++    <state width="1877" height="276" key="GridCell.Tab.0.center" timestamp="1616879533863">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="276" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616610005570" />
+-    <state width="1877" height="276" key="GridCell.Tab.0.left" timestamp="1616610005570">
++    <state width="1877" height="276" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616879533863" />
++    <state width="1877" height="276" key="GridCell.Tab.0.left" timestamp="1616879533863">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="276" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616610005570" />
+-    <state width="1877" height="276" key="GridCell.Tab.0.right" timestamp="1616610005570">
++    <state width="1877" height="276" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616879533863" />
++    <state width="1877" height="276" key="GridCell.Tab.0.right" timestamp="1616879533863">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="276" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616610005570" />
++    <state width="1877" height="276" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616879533863" />
+     <state x="1020" y="263" key="IDE.errors.dialog" timestamp="1615636357890">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+Index: delivery_app/lib/customWidgets/driverDrawer.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/customWidgets/driverDrawer.dart	(date 1616877462833)
++++ delivery_app/lib/customWidgets/driverDrawer.dart	(date 1616877462833)
+@@ -0,0 +1,22 @@
++import 'package:flutter/material.dart';
++
++class DriverDrawer extends StatelessWidget {
++  @override
++  Widget build(BuildContext context) {
++    return Drawer(
++      child: ListView(
++        children: [
++          DrawerHeader(child: Text('Hello')),
++          ListTile(title: Text('A')),
++          ListTile(title: Text('B')),
++          SizedBox(height: 300),
++          TextButton(
++              onPressed: () {
++                Navigator.of(context).pushNamed('/');
++              },
++              child: Text('Sign out', style: TextStyle(fontSize: 20))),
++        ],
++      ),
++    );
++  }
++}
+Index: delivery_app/lib/screens/driver_sign_up.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\nimport 'package:delivery_app/models/driver_authentication_model.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'dart:convert';\r\nimport 'package:delivery_app/url_link.dart';\r\n\r\nclass DriverSignUp extends StatefulWidget {\r\n  @override\r\n  _DriverSignUpState createState() => _DriverSignUpState();\r\n}\r\n\r\nclass _DriverSignUpState extends State<DriverSignUp> {\r\n\r\n\r\n  Future<DriverAuthentication> createToken(String token) async{\r\n\r\n    //http://7bc54ac38e57.ngrok.io/register/auth_driver\r\n    var uri = Uri(\r\n        scheme: 'https',\r\n        host: theLink,\r\n        path: '/register/auth_driver',\r\n    );\r\n    assert(//http://f60fc987a44e.ngrok.io/\r\n    uri.toString() == 'https://$theLink/register/auth_driver');\r\n    Map<String,String> a = {\"token\":token};\r\n    var b = json.encode(a);\r\n    print(b);\r\n    http.Response response = await http.post(uri,body: b,headers: {\"content-type\" :\"application/json\"});\r\n    final String responseString = response.body;\r\n    return driverAuthenticationFromJson(responseString);\r\n  }\r\n\r\n\r\n  DriverAuthentication _token;\r\n  final TextEditingController tokenController = TextEditingController();\r\n\r\n  \r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n        appBar: AppBar(\r\n          backgroundColor: Colors.orange[800],\r\n          title: Text('Driver Sign up'),\r\n          centerTitle: true,\r\n        ),\r\n        body: Column(\r\n            mainAxisAlignment: MainAxisAlignment.center,\r\n            children: [\r\n              Text(\r\n                'Enter your token',\r\n                style: TextStyle(\r\n                    fontSize: 25\r\n                ),\r\n              ),\r\n              SizedBox(height: 10),\r\n              Container(\r\n                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n                child: TextField(\r\n                  controller: tokenController,\r\n                  style: TextStyle(fontSize: 16),\r\n                  decoration: new InputDecoration(\r\n                    fillColor: Color(0xFFF8F8F8),\r\n                    filled: true,\r\n                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n                    hintText: 'e.g: yj18N3JiVJtu0lPob7BFs4MlHXBGREhh',\r\n                    border: new OutlineInputBorder(\r\n                      borderRadius: const BorderRadius.all(\r\n                        const Radius.circular(10.0),\r\n                      ),\r\n                    ),\r\n                  ),\r\n                ),\r\n              ),\r\n              SizedBox(height: 15),\r\n              TextButton(onPressed: () async {\r\n                final String uniqueToken = tokenController.text;\r\n                final DriverAuthentication driverToken = await createToken(uniqueToken);\r\n                setState(() {\r\n                  _token = driverToken;\r\n                });\r\n              }, child: Text('Validate'),\r\n              ),\r\n              SizedBox(height: 5),\r\n              _token == null ? Text(\"You haven't entered a valid token yet\") : Text(\"Token was successfully accepted\"),\r\n              SizedBox(height: 200),\r\n              FlatButton(\r\n                  onPressed: () => {Navigator.of(context).pushNamed('/driverSignInScreen')},\r\n                  child: Text(\r\n                    \"Already have an account? Sign in\",\r\n                    style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),\r\n                  )),\r\n            ]\r\n        )\r\n    );\r\n  }\r\n}
+===================================================================
+--- delivery_app/lib/screens/driver_sign_up.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/driver/driver_screens/driver_sign_up_screen.dart	(date 1616880172954)
+@@ -10,31 +10,27 @@
+ }
+ 
+ class _DriverSignUpState extends State<DriverSignUp> {
+-
+-
+-  Future<DriverAuthentication> createToken(String token) async{
+-
++  Future<DriverAuthentication> createToken(String token) async {
+     //http://7bc54ac38e57.ngrok.io/register/auth_driver
+     var uri = Uri(
+-        scheme: 'https',
+-        host: theLink,
+-        path: '/register/auth_driver',
++      scheme: 'https',
++      host: ngrokLink,
++      path: '/driver/auth_driver',
+     );
+     assert(//http://f60fc987a44e.ngrok.io/
+-    uri.toString() == 'https://$theLink/register/auth_driver');
+-    Map<String,String> a = {"token":token};
++        uri.toString() == 'https://$ngrokLink/driver/auth_driver');
++    Map<String, String> a = {"token": token};
+     var b = json.encode(a);
+     print(b);
+-    http.Response response = await http.post(uri,body: b,headers: {"content-type" :"application/json"});
++    http.Response response = await http
++        .post(uri, body: b, headers: {"content-type": "application/json"});
+     final String responseString = response.body;
+     return driverAuthenticationFromJson(responseString);
+   }
+ 
+-
+   DriverAuthentication _token;
+   final TextEditingController tokenController = TextEditingController();
+ 
+-  
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+@@ -43,54 +39,54 @@
+           title: Text('Driver Sign up'),
+           centerTitle: true,
+         ),
+-        body: Column(
+-            mainAxisAlignment: MainAxisAlignment.center,
+-            children: [
+-              Text(
+-                'Enter your token',
+-                style: TextStyle(
+-                    fontSize: 25
+-                ),
+-              ),
+-              SizedBox(height: 10),
+-              Container(
+-                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+-                child: TextField(
+-                  controller: tokenController,
+-                  style: TextStyle(fontSize: 16),
+-                  decoration: new InputDecoration(
+-                    fillColor: Color(0xFFF8F8F8),
+-                    filled: true,
+-                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+-                    hintText: 'e.g: yj18N3JiVJtu0lPob7BFs4MlHXBGREhh',
+-                    border: new OutlineInputBorder(
+-                      borderRadius: const BorderRadius.all(
+-                        const Radius.circular(10.0),
+-                      ),
+-                    ),
+-                  ),
+-                ),
+-              ),
+-              SizedBox(height: 15),
+-              TextButton(onPressed: () async {
+-                final String uniqueToken = tokenController.text;
+-                final DriverAuthentication driverToken = await createToken(uniqueToken);
+-                setState(() {
+-                  _token = driverToken;
+-                });
+-              }, child: Text('Validate'),
+-              ),
+-              SizedBox(height: 5),
+-              _token == null ? Text("You haven't entered a valid token yet") : Text("Token was successfully accepted"),
+-              SizedBox(height: 200),
+-              FlatButton(
+-                  onPressed: () => {Navigator.of(context).pushNamed('/driverSignInScreen')},
+-                  child: Text(
+-                    "Already have an account? Sign in",
+-                    style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),
+-                  )),
+-            ]
+-        )
+-    );
++        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
++          Text(
++            'Enter your token',
++            style: TextStyle(fontSize: 25),
++          ),
++          SizedBox(height: 10),
++          Container(
++            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
++            child: TextField(
++              controller: tokenController,
++              style: TextStyle(fontSize: 16),
++              decoration: new InputDecoration(
++                fillColor: Color(0xFFF8F8F8),
++                filled: true,
++                contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
++                hintText: 'e.g: yj18N3JiVJtu0lPob7BFs4MlHXBGREhh',
++                border: new OutlineInputBorder(
++                  borderRadius: const BorderRadius.all(
++                    const Radius.circular(10.0),
++                  ),
++                ),
++              ),
++            ),
++          ),
++          SizedBox(height: 15),
++          TextButton(
++            onPressed: () async {
++              final String uniqueToken = tokenController.text;
++              final DriverAuthentication driverToken =
++                  await createToken(uniqueToken);
++              setState(() {
++                _token = driverToken;
++              });
++            },
++            child: Text('Validate'),
++          ),
++          SizedBox(height: 5),
++          _token == null
++              ? Text("You haven't entered a valid token yet")
++              : Text("Token was successfully accepted"),
++          SizedBox(height: 200),
++          FlatButton(
++              onPressed: () =>
++                  {Navigator.of(context).pushNamed('/driverSignInScreen')},
++              child: Text(
++                "Already have an account? Sign in",
++                style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),
++              )),
++        ]));
+   }
+-}
+\ No newline at end of file
++}
+Index: delivery_app/lib/screens/driver_home_page.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/driver_receiving_order.dart';\r\nimport 'package:delivery_app/merchant_drivers.dart';\r\nimport 'package:delivery_app/merchant_order.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\n\r\nclass DriverHomePage extends StatefulWidget {\r\n  final String driverID;\r\n  DriverHomePage({Key key, @required this.driverID}) : super(key: key);\r\n\r\n\r\n  @override\r\n  _DriverHomePageState createState() => _DriverHomePageState();\r\n}\r\n\r\n\r\n\r\nclass _DriverHomePageState extends State<DriverHomePage> {\r\n\r\n\r\n  int _currentIndex = 0;\r\n  PageController _pageController = PageController();\r\n  List<Widget> _screens = [DriverReceivingOrder(), MerchantDriversPage()];\r\n  int _selectedIndex = 0;\r\n  void _onPageChanged(int index) {\r\n    setState(() {\r\n      _selectedIndex = index;\r\n    });\r\n  }\r\n  void _onItemTapped(int selectedIndex) {\r\n    _pageController.jumpToPage(selectedIndex);\r\n    _currentIndex = selectedIndex;\r\n  }\r\n\r\n\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    print(widget.driverID);\r\n    // final String data = ModalRoute.of(context).settings.arguments;\r\n    return Scaffold(\r\n      drawer: Drawer(\r\n        child: ListView(\r\n          children: [\r\n            DrawerHeader(child: Text('Hello')),\r\n            ListTile(title: Text('A')),\r\n            ListTile(title: Text('B')),\r\n          ],\r\n        ),\r\n      ),\r\n      backgroundColor: Colors.white,\r\n\r\n      body: PageView(\r\n        controller: _pageController,\r\n        children: _screens,\r\n        onPageChanged: _onPageChanged,\r\n        physics: NeverScrollableScrollPhysics(),\r\n      ),\r\n      bottomNavigationBar: BottomNavigationBar(\r\n        currentIndex: _currentIndex,\r\n        backgroundColor: Colors.deepOrange,\r\n        items: [\r\n          BottomNavigationBarItem(\r\n            icon: Icon(Icons.drive_eta),\r\n            label: 'Home',\r\n          ),\r\n          BottomNavigationBarItem(\r\n            icon: Icon(\r\n              Icons.delivery_dining,\r\n            ),\r\n            label: 'Example',\r\n          )\r\n        ],\r\n        onTap: _onItemTapped,\r\n        selectedItemColor: Colors.amber,\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+===================================================================
+--- delivery_app/lib/screens/driver_home_page.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/driver/driver_screens/driver_home_screen.dart	(date 1616880173072)
+@@ -1,58 +1,41 @@
+-import 'package:delivery_app/driver_receiving_order.dart';
+-import 'package:delivery_app/merchant_drivers.dart';
+-import 'package:delivery_app/merchant_order.dart';
+-import 'package:flutter/cupertino.dart';
++import 'package:delivery_app/screens/driver/driver_pages/driver_order_history_page.dart';
++import 'package:delivery_app/screens/driver/driver_pages/driver_receiving_order_page.dart';
+ import 'package:flutter/material.dart';
+ 
+-class DriverHomePage extends StatefulWidget {
++class DriverHomeScreen extends StatefulWidget {
+   final String driverID;
+-  DriverHomePage({Key key, @required this.driverID}) : super(key: key);
+-
++  DriverHomeScreen({Key key, @required this.driverID}) : super(key: key);
+ 
+   @override
+-  _DriverHomePageState createState() => _DriverHomePageState();
++  _DriverHomeScreenState createState() => _DriverHomeScreenState();
+ }
+ 
+-
+-
+-class _DriverHomePageState extends State<DriverHomePage> {
+-
+-
++class _DriverHomeScreenState extends State<DriverHomeScreen> {
+   int _currentIndex = 0;
+   PageController _pageController = PageController();
+-  List<Widget> _screens = [DriverReceivingOrder(), MerchantDriversPage()];
+   int _selectedIndex = 0;
+   void _onPageChanged(int index) {
+     setState(() {
+       _selectedIndex = index;
+     });
+   }
++
+   void _onItemTapped(int selectedIndex) {
+     _pageController.jumpToPage(selectedIndex);
+     _currentIndex = selectedIndex;
+   }
+ 
+-
+-
+   @override
+   Widget build(BuildContext context) {
+     print(widget.driverID);
+-    // final String data = ModalRoute.of(context).settings.arguments;
+     return Scaffold(
+-      drawer: Drawer(
+-        child: ListView(
+-          children: [
+-            DrawerHeader(child: Text('Hello')),
+-            ListTile(title: Text('A')),
+-            ListTile(title: Text('B')),
+-          ],
+-        ),
+-      ),
+       backgroundColor: Colors.white,
+-
+       body: PageView(
+         controller: _pageController,
+-        children: _screens,
++        children: [
++          DriverReceivingOrder(driverID: widget.driverID),
++          DriverOrderHistory(driverID: widget.driverID)
++        ],
+         onPageChanged: _onPageChanged,
+         physics: NeverScrollableScrollPhysics(),
+       ),
+@@ -68,7 +51,7 @@
+             icon: Icon(
+               Icons.delivery_dining,
+             ),
+-            label: 'Example',
++            label: 'Order History',
+           )
+         ],
+         onTap: _onItemTapped,
+Index: delivery_app/lib/customWidgets/merchantDrawer.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/customWidgets/merchantDrawer.dart	(date 1616877462855)
++++ delivery_app/lib/customWidgets/merchantDrawer.dart	(date 1616877462855)
+@@ -0,0 +1,22 @@
++import 'package:flutter/material.dart';
++
++class MerchantDrawer extends StatelessWidget {
++  @override
++  Widget build(BuildContext context) {
++    return Drawer(
++      child: ListView(
++        children: [
++          DrawerHeader(child: Text('Hello')),
++          ListTile(title: Text('A')),
++          ListTile(title: Text('B')),
++          SizedBox(height: 300),
++          TextButton(
++              onPressed: () {
++                Navigator.of(context).pushNamed('/');
++              },
++              child: Text('Sign out', style: TextStyle(fontSize: 20))),
++        ],
++      ),
++    );
++  }
++}
+Index: delivery_app/test/widget_test.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// This is a basic Flutter widget test.\r\n//\r\n// To perform an interaction with a widget in your test, use the WidgetTester\r\n// utility that Flutter provides. For example, you can send tap and scroll\r\n// gestures. You can also use WidgetTester to find child widgets in the widget\r\n// tree, read text, and verify that the values of widget properties are correct.\r\n\r\nimport 'package:flutter/material.dart';\r\nimport 'package:flutter_test/flutter_test.dart';\r\n\r\n\r\nvoid main() {\r\n  testWidgets('Counter increments smoke test', (WidgetTester tester) async {\r\n    // Build our app and trigger a frame.\r\n    await tester.pumpWidget(MyApp());\r\n\r\n    // Verify that our counter starts at 0.\r\n    expect(find.text('0'), findsOneWidget);\r\n    expect(find.text('1'), findsNothing);\r\n\r\n    // Tap the '+' icon and trigger a frame.\r\n    await tester.tap(find.byIcon(Icons.add));\r\n    await tester.pump();\r\n\r\n    // Verify that our counter has incremented.\r\n    expect(find.text('0'), findsNothing);\r\n    expect(find.text('1'), findsOneWidget);\r\n  });\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/test/widget_test.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/test/widget_test.dart	(date 1616879772546)
+@@ -5,25 +5,25 @@
+ // gestures. You can also use WidgetTester to find child widgets in the widget
+ // tree, read text, and verify that the values of widget properties are correct.
+ 
+-import 'package:flutter/material.dart';
+-import 'package:flutter_test/flutter_test.dart';
+-
+-
+-void main() {
+-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+-    // Build our app and trigger a frame.
+-    await tester.pumpWidget(MyApp());
+-
+-    // Verify that our counter starts at 0.
+-    expect(find.text('0'), findsOneWidget);
+-    expect(find.text('1'), findsNothing);
+-
+-    // Tap the '+' icon and trigger a frame.
+-    await tester.tap(find.byIcon(Icons.add));
+-    await tester.pump();
+-
+-    // Verify that our counter has incremented.
+-    expect(find.text('0'), findsNothing);
+-    expect(find.text('1'), findsOneWidget);
+-  });
+-}
++// import 'package:flutter/material.dart';
++// import 'package:flutter_test/flutter_test.dart';
++//
++//
++// void main() {
++//   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
++//     // Build our app and trigger a frame.
++//     await tester.pumpWidget(MyApp());
++//
++//     // Verify that our counter starts at 0.
++//     expect(find.text('0'), findsOneWidget);
++//     expect(find.text('1'), findsNothing);
++//
++//     // Tap the '+' icon and trigger a frame.
++//     await tester.tap(find.byIcon(Icons.add));
++//     await tester.pump();
++//
++//     // Verify that our counter has incremented.
++//     expect(find.text('0'), findsNothing);
++//     expect(find.text('1'), findsOneWidget);
++//   });
++// }
+Index: delivery_app/lib/models/driver_model.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// To parse this JSON data, do\r\n//\r\n//     final driverModel = driverModelFromJson(jsonString);\r\n\r\nimport 'dart:convert';\r\n\r\nDriverModel driverModelFromJson(String str) => DriverModel.fromJson(json.decode(str));\r\n\r\nString driverModelToJson(DriverModel data) => json.encode(data.toJson());\r\n\r\nclass DriverModel {\r\n  DriverModel({\r\n    this.firstName,\r\n    this.lastName,\r\n    this.phoneNumber,\r\n  });\r\n\r\n  String firstName;\r\n  String lastName;\r\n  String phoneNumber;\r\n\r\n  factory DriverModel.fromJson(Map<String, dynamic> json) => DriverModel(\r\n    firstName: json[\"first_name\"],\r\n    lastName: json[\"last_name\"],\r\n    phoneNumber: json[\"phone_number\"],\r\n  );\r\n\r\n  Map<String, dynamic> toJson() => {\r\n    \"first_name\": firstName,\r\n    \"last_name\": lastName,\r\n    \"phone_number\": phoneNumber,\r\n  };\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/models/driver_model.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/models/driver_model.dart	(date 1616880172711)
+@@ -4,7 +4,8 @@
+ 
+ import 'dart:convert';
+ 
+-DriverModel driverModelFromJson(String str) => DriverModel.fromJson(json.decode(str));
++DriverModel driverModelFromJson(String str) =>
++    DriverModel.fromJson(json.decode(str));
+ 
+ String driverModelToJson(DriverModel data) => json.encode(data.toJson());
+ 
+@@ -20,14 +21,14 @@
+   String phoneNumber;
+ 
+   factory DriverModel.fromJson(Map<String, dynamic> json) => DriverModel(
+-    firstName: json["first_name"],
+-    lastName: json["last_name"],
+-    phoneNumber: json["phone_number"],
+-  );
++        firstName: json["first_name"],
++        lastName: json["last_name"],
++        phoneNumber: json["phone_number"],
++      );
+ 
+   Map<String, dynamic> toJson() => {
+-    "first_name": firstName,
+-    "last_name": lastName,
+-    "phone_number": phoneNumber,
+-  };
++        "first_name": firstName,
++        "last_name": lastName,
++        "phone_number": phoneNumber,
++      };
+ }
+Index: delivery_app/lib/screens/driver_sign_in.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\n\r\nclass DriverSignIn extends StatefulWidget {\r\n  @override\r\n  _DriverSignInState createState() => _DriverSignInState();\r\n}\r\n\r\nclass _DriverSignInState extends State<DriverSignIn> {\r\n\r\n  final TextEditingController driverIdController = TextEditingController();\r\n\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n        appBar: AppBar(\r\n          backgroundColor: Colors.orange[800],\r\n          title: Text('Driver Sign in'),\r\n          centerTitle: true,\r\n        ),\r\n        body: Column(\r\n            mainAxisAlignment: MainAxisAlignment.center,\r\n            children: [\r\n              Text(\r\n                'Enter your ID',\r\n                style: TextStyle(\r\n                    fontSize: 25\r\n                ),\r\n              ),\r\n              SizedBox(height: 10),\r\n              Container(\r\n                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n                child: TextField(\r\n                  controller: driverIdController,\r\n                  style: TextStyle(fontSize: 16),\r\n                  decoration: new InputDecoration(\r\n                    fillColor: Color(0xFFF8F8F8),\r\n                    filled: true,\r\n                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n                    hintText: 'e.g: 28',\r\n                    border: new OutlineInputBorder(\r\n                      borderRadius: const BorderRadius.all(\r\n                        const Radius.circular(10.0),\r\n                      ),\r\n                    ),\r\n                  ),\r\n                ),\r\n              ),\r\n              SizedBox(height: 15),\r\n              TextButton(onPressed: ()  {\r\n                final String driverID = driverIdController.text;\r\n                Navigator.of(context).pushReplacementNamed('/driverHomePage',arguments: driverID);\r\n              }, child: Text('Sign in'),\r\n              ),\r\n              SizedBox(height: 20),\r\n            ]\r\n        )\r\n\r\n    );\r\n  }\r\n}\r\n
+===================================================================
+--- delivery_app/lib/screens/driver_sign_in.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/driver/driver_screens/driver_sign_in_screen.dart	(date 1616880173000)
+@@ -6,10 +6,8 @@
+ }
+ 
+ class _DriverSignInState extends State<DriverSignIn> {
+-
+   final TextEditingController driverIdController = TextEditingController();
+ 
+-
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+@@ -18,44 +16,41 @@
+           title: Text('Driver Sign in'),
+           centerTitle: true,
+         ),
+-        body: Column(
+-            mainAxisAlignment: MainAxisAlignment.center,
+-            children: [
+-              Text(
+-                'Enter your ID',
+-                style: TextStyle(
+-                    fontSize: 25
+-                ),
+-              ),
+-              SizedBox(height: 10),
+-              Container(
+-                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+-                child: TextField(
+-                  controller: driverIdController,
+-                  style: TextStyle(fontSize: 16),
+-                  decoration: new InputDecoration(
+-                    fillColor: Color(0xFFF8F8F8),
+-                    filled: true,
+-                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+-                    hintText: 'e.g: 28',
+-                    border: new OutlineInputBorder(
+-                      borderRadius: const BorderRadius.all(
+-                        const Radius.circular(10.0),
+-                      ),
+-                    ),
+-                  ),
+-                ),
+-              ),
+-              SizedBox(height: 15),
+-              TextButton(onPressed: ()  {
+-                final String driverID = driverIdController.text;
+-                Navigator.of(context).pushReplacementNamed('/driverHomePage',arguments: driverID);
+-              }, child: Text('Sign in'),
+-              ),
+-              SizedBox(height: 20),
+-            ]
+-        )
+-
+-    );
++        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
++          Text(
++            'Enter your ID',
++            style: TextStyle(fontSize: 25),
++          ),
++          SizedBox(height: 10),
++          Container(
++            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
++            child: TextField(
++              controller: driverIdController,
++              style: TextStyle(fontSize: 16),
++              decoration: new InputDecoration(
++                fillColor: Color(0xFFF8F8F8),
++                filled: true,
++                contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
++                hintText: 'e.g: 28',
++                border: new OutlineInputBorder(
++                  borderRadius: const BorderRadius.all(
++                    const Radius.circular(10.0),
++                  ),
++                ),
++              ),
++            ),
++          ),
++          SizedBox(height: 15),
++          TextButton(
++            onPressed: () {
++              final String driverID = driverIdController.text;
++              print('The entered ID is: $driverID');
++              Navigator.of(context)
++                  .pushReplacementNamed('/driverHomePage', arguments: driverID);
++            },
++            child: Text('Sign in'),
++          ),
++          SizedBox(height: 20),
++        ]));
+   }
+ }
+Index: delivery_app/lib/screens/merchant_sign_up.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/merchant_home_page.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:delivery_app/models/merchant_model.dart';\r\nimport 'package:delivery_app/url_link.dart';\r\nimport 'dart:convert';\r\nimport 'package:http/http.dart' as http;\r\n\r\n// Merchant: full name, phone number, company name, company address.\r\nclass MerchantSignUp extends StatefulWidget {\r\n  @override\r\n  _MerchantSignUpState createState() => _MerchantSignUpState();\r\n}\r\n\r\nclass _MerchantSignUpState extends State<MerchantSignUp> {\r\n  Future<MerchantModel> addMerchant(String firstName, String lastName,\r\n      String companyName, String companyAddress, String phoneNumber) async {\r\n    //http://a84a794b3db6.ngrok.io/\r\n    var uri = Uri(\r\n      scheme: 'https',\r\n      host: theLink,\r\n      path: '/register/driver/39',\r\n    );\r\n    assert(\r\n        uri.toString() == 'https://$theLink/register/merchant');\r\n\r\n    Map<String, String> a = {\r\n      \"first_name\": firstName,\r\n      \"last_name\": lastName,\r\n      \"company_name\": companyName,\r\n      \"company_address\": companyAddress,\r\n      \"phone_number\": phoneNumber\r\n    };\r\n    var b = json.encode(a);\r\n    print(b);\r\n    http.Response response = await http\r\n        .post(uri, body: b, headers: {\"content-type\": \"application/json\"});\r\n    final String responseString = response.body;\r\n    return merchantModelFromJson(responseString);\r\n  }\r\n\r\n  MerchantModel _merchant;\r\n\r\n  final TextEditingController firstNameController = TextEditingController();\r\n  final TextEditingController lastNameController = TextEditingController();\r\n  final TextEditingController companyNameController = TextEditingController();\r\n  final TextEditingController companyAddressController = TextEditingController();\r\n  final TextEditingController phoneNumberController = TextEditingController();\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    double screenSize = MediaQuery.of(context).size.width;\r\n    return Scaffold(\r\n      appBar: AppBar(\r\n        leadingWidth: 56 * 2.0,\r\n        leading: Center(\r\n          child: FlatButton(\r\n            onPressed: () => Navigator.pop(context),\r\n            child: Text(\r\n              \"Cancel\",\r\n              style: TextStyle(\r\n                fontSize: 20,\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n          ),\r\n        ),\r\n        actions: [\r\n          Center(\r\n            child: FlatButton(\r\n              onPressed: () async {\r\n                final String firstName = firstNameController.text;\r\n                final String lastName = lastNameController.text;\r\n                final String companyName = companyNameController.text;\r\n                final String companyAddress = companyAddressController.text;\r\n                final String phoneNumber = phoneNumberController.text;\r\n                final MerchantModel newMerchant = await addMerchant(firstName,\r\n                    lastName, companyName, companyAddress, phoneNumber);\r\n                setState(() {\r\n                  _merchant = newMerchant;\r\n                });\r\n\r\n                Navigator.of(context).pushNamed('/merchantPage');\r\n              },\r\n              child: Text(\r\n                \"Done\",\r\n                style: TextStyle(\r\n                  fontSize: 20,\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n            ),\r\n          ),\r\n        ],\r\n        automaticallyImplyLeading: false,\r\n        title: Text(\r\n          \"Sign up\",\r\n          style: TextStyle(color: Colors.white, fontSize: 23),\r\n        ),\r\n        centerTitle: true,\r\n        backgroundColor: Color(0xFFFF6200),\r\n        toolbarHeight: 53,\r\n      ),\r\n      body: Container(\r\n          transform: Matrix4.translationValues(0.0, (screenSize * 0.15), 0.0),\r\n          child: Center(\r\n              child: Column(children: [\r\n            Image(\r\n              height: screenSize * 0.2,\r\n              image: AssetImage(\"assets/portrait.png\"),\r\n            ),\r\n            Container(\r\n                margin: EdgeInsets.only(top: screenSize * 0.06),\r\n                child: new Wrap(\r\n                  direction: Axis.horizontal,\r\n                  crossAxisAlignment: WrapCrossAlignment.start,\r\n                  spacing: screenSize * 0.05,\r\n                  runSpacing: 15,\r\n                  children: [\r\n                    Container(\r\n                      width: screenSize * 0.4,\r\n                      child: TextField(\r\n                        controller: firstNameController,\r\n                        style: TextStyle(fontSize: 22),\r\n                        decoration: new InputDecoration(\r\n                          fillColor: Color(0xFFF8F8F8),\r\n                          filled: true,\r\n                          contentPadding: EdgeInsets.only(left: 7.0),\r\n                          hintText: 'First name',\r\n                          border: new OutlineInputBorder(\r\n                            borderRadius: const BorderRadius.all(\r\n                              const Radius.circular(10.0),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                      ),\r\n                    ),\r\n                    Container(\r\n                      width: screenSize * 0.4,\r\n                      child: TextField(\r\n                        controller: lastNameController,\r\n                        style: TextStyle(fontSize: 22),\r\n                        decoration: new InputDecoration(\r\n                          fillColor: Color(0xFFF8F8F8),\r\n                          filled: true,\r\n                          contentPadding: EdgeInsets.only(left: 7.0),\r\n                          hintText: 'Last name',\r\n                          border: new OutlineInputBorder(\r\n                            borderRadius: const BorderRadius.all(\r\n                              const Radius.circular(10.0),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                      ),\r\n                    ),\r\n                    Container(\r\n                      width: screenSize * 0.85,\r\n                      child: TextField(\r\n                        controller: companyNameController,\r\n                        style: TextStyle(fontSize: 22),\r\n                        decoration: new InputDecoration(\r\n                          fillColor: Color(0xFFF8F8F8),\r\n                          filled: true,\r\n                          contentPadding: EdgeInsets.only(left: 15.0),\r\n                          hintText: 'Company name',\r\n                          border: new OutlineInputBorder(\r\n                            borderRadius: const BorderRadius.all(\r\n                              const Radius.circular(10.0),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                      ),\r\n                    ),\r\n                    Container(\r\n                        width: screenSize * 0.85,\r\n                        child: TextField(\r\n                          controller: companyAddressController,\r\n                          style: TextStyle(fontSize: 22),\r\n                          decoration: new InputDecoration(\r\n                            fillColor: Color(0xFFF8F8F8),\r\n                            filled: true,\r\n                            contentPadding: EdgeInsets.only(left: 15.0),\r\n                            hintText: 'Company address',\r\n                            border: new OutlineInputBorder(\r\n                              borderRadius: const BorderRadius.all(\r\n                                const Radius.circular(10.0),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                        )),\r\n                    Container(\r\n                        width: screenSize * 0.85,\r\n                        child: TextField(\r\n                          controller: phoneNumberController,\r\n                          style: TextStyle(fontSize: 22),\r\n                          decoration: new InputDecoration(\r\n                            fillColor: Color(0xFFF8F8F8),\r\n                            filled: true,\r\n                            contentPadding: EdgeInsets.only(left: 15.0),\r\n                            hintText: 'Phone number',\r\n                            border: new OutlineInputBorder(\r\n                              borderRadius: const BorderRadius.all(\r\n                                const Radius.circular(10.0),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                        ))\r\n                  ],\r\n                )),\r\n            Container(\r\n              margin: EdgeInsets.only(\r\n                top: screenSize * 0.35,\r\n              ),\r\n              child: FlatButton(\r\n                  onPressed: () => {Navigator.of(context).pushNamed('/merchantSignInScreen')},\r\n                  child: Text(\r\n                    \"Already have an account? Sign in\",\r\n                    style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),\r\n                  )),\r\n            )\r\n          ]))),\r\n      backgroundColor: Color(0xFFF6F8F5),\r\n    );\r\n  }\r\n}\r\n
+===================================================================
+--- delivery_app/lib/screens/merchant_sign_up.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_up_screen.dart	(date 1616880172828)
+@@ -1,4 +1,3 @@
+-import 'package:delivery_app/merchant_home_page.dart';
+ import 'package:flutter/material.dart';
+ import 'package:delivery_app/models/merchant_model.dart';
+ import 'package:delivery_app/url_link.dart';
+@@ -17,11 +16,10 @@
+     //http://a84a794b3db6.ngrok.io/
+     var uri = Uri(
+       scheme: 'https',
+-      host: theLink,
++      host: ngrokLink,
+       path: '/register/driver/39',
+     );
+-    assert(
+-        uri.toString() == 'https://$theLink/register/merchant');
++    assert(uri.toString() == 'https://$ngrokLink/register/merchant');
+ 
+     Map<String, String> a = {
+       "first_name": firstName,
+@@ -43,7 +41,8 @@
+   final TextEditingController firstNameController = TextEditingController();
+   final TextEditingController lastNameController = TextEditingController();
+   final TextEditingController companyNameController = TextEditingController();
+-  final TextEditingController companyAddressController = TextEditingController();
++  final TextEditingController companyAddressController =
++      TextEditingController();
+   final TextEditingController phoneNumberController = TextEditingController();
+ 
+   @override
+@@ -211,7 +210,9 @@
+                 top: screenSize * 0.35,
+               ),
+               child: FlatButton(
+-                  onPressed: () => {Navigator.of(context).pushNamed('/merchantSignInScreen')},
++                  onPressed: () => {
++                        Navigator.of(context).pushNamed('/merchantSignInScreen')
++                      },
+                   child: Text(
+                     "Already have an account? Sign in",
+                     style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),
+Index: delivery_app/lib/driver_receiving_order.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\nimport 'package:delivery_app/url_link.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'dart:convert';\r\nimport 'models/order_details_model.dart';\r\nimport 'package:web_socket_channel/io.dart';\r\n\r\nclass DriverReceivingOrder extends StatefulWidget {\r\n  final String driverID;\r\n  DriverReceivingOrder({Key key, @required this.driverID}) : super(key: key);\r\n  @override\r\n  _DriverReceivingOrderState createState() => _DriverReceivingOrderState();\r\n}\r\n\r\nclass _DriverReceivingOrderState extends State<DriverReceivingOrder> {\r\n  final channel = IOWebSocketChannel.connect('ws://echo.websocket.org');\r\n  Future<List<OrderDetailsModel>> _getNewOrders() async {\r\n    //http://a84a794b3db6.ngrok.io/\r\n    //{{ngrok}}/orders/merchant/get/42\r\n    var client = http.Client();\r\n    try {\r\n      var data =\r\n          await client.get(Uri.parse('https://1dd6f3ebf015.ngrok.io/orders/driver/get/${widget.driverID}'));\r\n      var jsonData = json.decode(data.body);\r\n      List<OrderDetailsModel> orders = [];\r\n      for (var u in jsonData) {\r\n        OrderDetailsModel driver = OrderDetailsModel(\r\n            u[\"id\"],\r\n            u[\"city\"],\r\n            u[\"street\"],\r\n            u[\"building\"],\r\n            u[\"floor\"],\r\n            u[\"receiver_full_name\"],\r\n            u[\"receiver_phone_number\"]);\r\n        orders.add(driver);\r\n      }\r\n      print(orders.length);\r\n      return orders;\r\n    } finally {\r\n      //client.close();\r\n    }\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n\r\n      drawer: Drawer(\r\n        child: ListView(\r\n          children: [\r\n            DrawerHeader(child: Text('Hello')),\r\n            ListTile(title: Text('A')),\r\n            ListTile(title: Text('B')),\r\n          ],\r\n        ),\r\n      ),\r\n      appBar: AppBar(\r\n        title: Text('Driver Home Page'),\r\n        centerTitle: true,\r\n\r\n      ),\r\n      body: Container(\r\n        margin: EdgeInsets.all(5),\r\n        child: StreamBuilder(\r\n          stream: channel.stream,\r\n          builder: (BuildContext context, AsyncSnapshot snapshot) {\r\n            if (snapshot.data == null) {\r\n              return Container(\r\n                child: Center(child: Text(\"Loading...\")),\r\n              );\r\n            } else {\r\n              return ListView.builder(\r\n                itemCount: snapshot.data.length,\r\n                itemBuilder: (BuildContext context, int index) {\r\n                  return Card(\r\n                    color: Colors.orange,\r\n                    shadowColor: Colors.blue,\r\n                    child: Container(\r\n                      child: Column(\r\n                        children: [\r\n                          Text(snapshot.data[index].receiverFullName,style:TextStyle(color: Colors.red)),\r\n                          Text(\r\n                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '\r\n                          ),\r\n                          Row(\r\n                            mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                            crossAxisAlignment: CrossAxisAlignment.end,\r\n                            children: [\r\n                              TextButton(\r\n                                  onPressed: (){\r\n                                  }, child: Text(\"Mark as Completed\")\r\n                              ),\r\n                            ],\r\n                          )\r\n                        ],\r\n                      ),\r\n                    ),\r\n                  );\r\n                },\r\n              );\r\n            }\r\n          },\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n\r\n
+===================================================================
+--- delivery_app/lib/driver_receiving_order.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/driver/driver_pages/driver_receiving_order_page.dart	(date 1616880172753)
+@@ -1,9 +1,9 @@
++import 'package:delivery_app/customWidgets/driverDrawer.dart';
+ import 'package:flutter/material.dart';
+ import 'package:delivery_app/url_link.dart';
+ import 'package:http/http.dart' as http;
+ import 'dart:convert';
+-import 'models/order_details_model.dart';
+-import 'package:web_socket_channel/io.dart';
++import 'package:delivery_app/models/order_details_model.dart';
+ 
+ class DriverReceivingOrder extends StatefulWidget {
+   final String driverID;
+@@ -13,56 +13,48 @@
+ }
+ 
+ class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
+-  final channel = IOWebSocketChannel.connect('ws://echo.websocket.org');
+-  Future<List<OrderDetailsModel>> _getNewOrders() async {
+-    //http://a84a794b3db6.ngrok.io/
+-    //{{ngrok}}/orders/merchant/get/42
+-    var client = http.Client();
+-    try {
+-      var data =
+-          await client.get(Uri.parse('https://1dd6f3ebf015.ngrok.io/orders/driver/get/${widget.driverID}'));
+-      var jsonData = json.decode(data.body);
+-      List<OrderDetailsModel> orders = [];
+-      for (var u in jsonData) {
+-        OrderDetailsModel driver = OrderDetailsModel(
+-            u["id"],
+-            u["city"],
+-            u["street"],
+-            u["building"],
+-            u["floor"],
+-            u["receiver_full_name"],
+-            u["receiver_phone_number"]);
+-        orders.add(driver);
+-      }
+-      print(orders.length);
+-      return orders;
+-    } finally {
+-      //client.close();
+-    }
++  Future<List<OrderDetailsModel>> _getOrders() async {
++    var data = await http.get(
++        Uri.parse('https://$ngrokLink/orders/driver/get/${widget.driverID}'));
++    var jsonData = json.decode(data.body);
++    List<OrderDetailsModel> orders = [];
++    for (var u in jsonData) {
++      OrderDetailsModel driver = OrderDetailsModel(
++          u["id"],
++          u["city"],
++          u["street"],
++          u["building"],
++          u["floor"],
++          u["receiver_full_name"],
++          u["receiver_phone_number"]);
++      orders.add(driver);
++    }
++    print(orders.length);
++    return orders;
+   }
+ 
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+-
+-      drawer: Drawer(
+-        child: ListView(
+-          children: [
+-            DrawerHeader(child: Text('Hello')),
+-            ListTile(title: Text('A')),
+-            ListTile(title: Text('B')),
+-          ],
+-        ),
+-      ),
++      drawer: DriverDrawer(),
+       appBar: AppBar(
+-        title: Text('Driver Home Page'),
++        backgroundColor: Colors.orange[800],
++        title: Text('New orders'),
+         centerTitle: true,
+-
++        actions: [
++          IconButton(
++              icon: Icon(Icons.refresh),
++              onPressed: () {
++                setState(() {
++                  return Scaffold();
++                });
++              })
++        ],
+       ),
+       body: Container(
+         margin: EdgeInsets.all(5),
+-        child: StreamBuilder(
+-          stream: channel.stream,
++        child: FutureBuilder(
++          future: _getOrders(),
+           builder: (BuildContext context, AsyncSnapshot snapshot) {
+             if (snapshot.data == null) {
+               return Container(
+@@ -78,18 +70,23 @@
+                     child: Container(
+                       child: Column(
+                         children: [
+-                          Text(snapshot.data[index].receiverFullName,style:TextStyle(color: Colors.red)),
++                          Text(snapshot.data[index].receiverFullName,
++                              style: TextStyle(color: Colors.red)),
+                           Text(
+-                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '
+-                          ),
++                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '),
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             crossAxisAlignment: CrossAxisAlignment.end,
+                             children: [
+                               TextButton(
+-                                  onPressed: (){
+-                                  }, child: Text("Mark as Completed")
+-                              ),
++                                  onPressed: () async {
++                                    await http.put(Uri.parse(
++                                        'http://$ngrokLink/orders/driver/is_done/${snapshot.data[index].id}'));
++                                    setState(() {
++                                      return Scaffold();
++                                    });
++                                  },
++                                  child: Text("Mark as Completed")),
+                             ],
+                           )
+                         ],
+@@ -105,4 +102,3 @@
+     );
+   }
+ }
+-
+Index: delivery_app/lib/driver_order_history.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\nimport 'package:delivery_app/url_link.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'dart:convert';\r\nimport 'models/order_details_model.dart';\r\n\r\nclass DriverOrderHistory extends StatefulWidget {\r\n  final String driverID;\r\n  DriverOrderHistory({Key key, @required this.driverID}) : super(key: key);\r\n  @override\r\n  _DriverOrderHistoryState createState() => _DriverOrderHistoryState();\r\n}\r\n\r\nclass _DriverOrderHistoryState extends State<DriverOrderHistory> {\r\n  Future<List<OrderDetailsModel>> _getOrders() async {\r\n    //http://a84a794b3db6.ngrok.io/\r\n    //{{ngrok}}/orders/merchant/get/42\r\n    var client = http.Client();\r\n    try {\r\n      var data =\r\n      await client.get(Uri.parse('https://1dd6f3ebf015.ngrok.io/orders/driver/get/${widget.driverID}'));\r\n      var jsonData = json.decode(data.body);\r\n      List<OrderDetailsModel> orders = [];\r\n      for (var u in jsonData) {\r\n        OrderDetailsModel driver = OrderDetailsModel(\r\n            u[\"id\"],\r\n            u[\"city\"],\r\n            u[\"street\"],\r\n            u[\"building\"],\r\n            u[\"floor\"],\r\n            u[\"receiver_full_name\"],\r\n            u[\"receiver_phone_number\"]);\r\n        orders.add(driver);\r\n      }\r\n      print(orders.length);\r\n      return orders;\r\n    } finally {\r\n      //client.close();\r\n    }\r\n    // var uri = Uri(\r\n    //   scheme: 'https',\r\n    //   host: theLink,\r\n    //   path: '/mydrivers/39',\r\n    // );\r\n    // assert(//http://f60fc987a44e.ngrok.io/\r\n    // uri.toString() == 'https://$theLink/mydrivers/39');\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n\r\n      drawer: Drawer(\r\n        child: ListView(\r\n          children: [\r\n            DrawerHeader(child: Text('Hello')),\r\n            ListTile(title: Text('A')),\r\n            ListTile(title: Text('B')),\r\n          ],\r\n        ),\r\n      ),\r\n      appBar: AppBar(\r\n        title: Text('Driver Home Page'),\r\n        centerTitle: true,\r\n\r\n      ),\r\n      body: Container(\r\n        margin: EdgeInsets.all(5),\r\n        child: FutureBuilder(\r\n          future: _getOrders(),\r\n          builder: (BuildContext context, AsyncSnapshot snapshot) {\r\n            if (snapshot.data == null) {\r\n              return Container(\r\n                child: Center(child: Text(\"Loading...\")),\r\n              );\r\n            } else {\r\n              return ListView.builder(\r\n                itemCount: snapshot.data.length,\r\n                itemBuilder: (BuildContext context, int index) {\r\n                  return Card(\r\n                    color: Colors.orange,\r\n                    shadowColor: Colors.blue,\r\n                    child: Container(\r\n                      child: Column(\r\n                        children: [\r\n                          Text(snapshot.data[index].receiverFullName,style:TextStyle(color: Colors.red)),\r\n                          Text(\r\n                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '\r\n                          ),\r\n                          Row(\r\n                            mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                            crossAxisAlignment: CrossAxisAlignment.end,\r\n                            children: [\r\n                              TextButton(\r\n                                  onPressed: (){\r\n                                  }, child: Text(\"Mark as Completed\")\r\n                              ),\r\n                            ],\r\n                          )\r\n                        ],\r\n                      ),\r\n                    ),\r\n                  );\r\n                },\r\n              );\r\n            }\r\n          },\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n\r\n
+===================================================================
+--- delivery_app/lib/driver_order_history.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/driver/driver_pages/driver_order_history_page.dart	(date 1616880173036)
+@@ -1,8 +1,11 @@
++import 'package:delivery_app/customWidgets/driverDrawer.dart';
+ import 'package:flutter/material.dart';
+ import 'package:delivery_app/url_link.dart';
+ import 'package:http/http.dart' as http;
+ import 'dart:convert';
+-import 'models/order_details_model.dart';
++import 'package:delivery_app/models/order_details_model.dart';
++
++//CLASS NOT WORKING YET
+ 
+ class DriverOrderHistory extends StatefulWidget {
+   final String driverID;
+@@ -13,56 +16,34 @@
+ 
+ class _DriverOrderHistoryState extends State<DriverOrderHistory> {
+   Future<List<OrderDetailsModel>> _getOrders() async {
+-    //http://a84a794b3db6.ngrok.io/
+-    //{{ngrok}}/orders/merchant/get/42
+     var client = http.Client();
+-    try {
+-      var data =
+-      await client.get(Uri.parse('https://1dd6f3ebf015.ngrok.io/orders/driver/get/${widget.driverID}'));
+-      var jsonData = json.decode(data.body);
+-      List<OrderDetailsModel> orders = [];
+-      for (var u in jsonData) {
+-        OrderDetailsModel driver = OrderDetailsModel(
+-            u["id"],
+-            u["city"],
+-            u["street"],
+-            u["building"],
+-            u["floor"],
+-            u["receiver_full_name"],
+-            u["receiver_phone_number"]);
+-        orders.add(driver);
+-      }
+-      print(orders.length);
+-      return orders;
+-    } finally {
+-      //client.close();
+-    }
+-    // var uri = Uri(
+-    //   scheme: 'https',
+-    //   host: theLink,
+-    //   path: '/mydrivers/39',
+-    // );
+-    // assert(//http://f60fc987a44e.ngrok.io/
+-    // uri.toString() == 'https://$theLink/mydrivers/39');
++    var data = await client.get(
++        Uri.parse('https://$ngrokLink/orders/driver/get/${widget.driverID}TEST'));
++    var jsonData = json.decode(data.body);
++    List<OrderDetailsModel> orders = [];
++    for (var u in jsonData) {
++      OrderDetailsModel driver = OrderDetailsModel(
++          u["id"],
++          u["city"],
++          u["street"],
++          u["building"],
++          u["floor"],
++          u["receiver_full_name"],
++          u["receiver_phone_number"]);
++      orders.add(driver);
++    }
++    print(orders.length);
++    return orders;
+   }
+ 
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+-
+-      drawer: Drawer(
+-        child: ListView(
+-          children: [
+-            DrawerHeader(child: Text('Hello')),
+-            ListTile(title: Text('A')),
+-            ListTile(title: Text('B')),
+-          ],
+-        ),
+-      ),
++      drawer: DriverDrawer(),
+       appBar: AppBar(
+-        title: Text('Driver Home Page'),
++        title: Text('Order History'),
++        backgroundColor: Colors.orange[800],
+         centerTitle: true,
+-
+       ),
+       body: Container(
+         margin: EdgeInsets.all(5),
+@@ -83,18 +64,17 @@
+                     child: Container(
+                       child: Column(
+                         children: [
+-                          Text(snapshot.data[index].receiverFullName,style:TextStyle(color: Colors.red)),
++                          Text(snapshot.data[index].receiverFullName,
++                              style: TextStyle(color: Colors.red)),
+                           Text(
+-                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '
+-                          ),
++                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '),
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             crossAxisAlignment: CrossAxisAlignment.end,
+                             children: [
+                               TextButton(
+-                                  onPressed: (){
+-                                  }, child: Text("Mark as Completed")
+-                              ),
++                                  onPressed: () {},
++                                  child: Text("Mark as Completed")),
+                             ],
+                           )
+                         ],
+@@ -110,4 +90,3 @@
+     );
+   }
+ }
+-
+Index: delivery_app/lib/merchant_home_page.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/merchant_drivers.dart';\r\nimport 'package:delivery_app/merchant_order.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\n\r\nclass MerchantHomePage extends StatefulWidget {\r\n  final String merchantID;\r\n  MerchantHomePage({Key key, @required this.merchantID}) : super(key: key);\r\n\r\n\r\n  @override\r\n  _MerchantHomePageState createState() => _MerchantHomePageState();\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\nclass _MerchantHomePageState extends State<MerchantHomePage> {\r\n\r\n\r\n  int _currentIndex = 0;\r\n  PageController _pageController = PageController();\r\n  List<Widget> _screens = [MerchantOrder(), MerchantDriversPage()];\r\n  int _selectedIndex = 0;\r\n  void _onPageChanged(int index) {\r\n    setState(() {\r\n      _selectedIndex = index;\r\n    });\r\n  }\r\n  void _onItemTapped(int selectedIndex) {\r\n    _pageController.jumpToPage(selectedIndex);\r\n    _currentIndex = selectedIndex;\r\n  }\r\n\r\n\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    print(widget.merchantID);\r\n    // final String data = ModalRoute.of(context).settings.arguments;\r\n    return Scaffold(\r\n      drawer: Drawer(\r\n        child: ListView(\r\n          children: [\r\n            DrawerHeader(child: Text('Hello')),\r\n            ListTile(title: Text('A')),\r\n            ListTile(title: Text('B')),\r\n          ],\r\n        ),\r\n      ),\r\n      backgroundColor: Colors.white,\r\n\r\n      body: PageView(\r\n        controller: _pageController,\r\n        children: _screens,\r\n        onPageChanged: _onPageChanged,\r\n        physics: NeverScrollableScrollPhysics(),\r\n      ),\r\n      bottomNavigationBar: BottomNavigationBar(\r\n        currentIndex: _currentIndex,\r\n        backgroundColor: Colors.deepOrange,\r\n        items: [\r\n          BottomNavigationBarItem(\r\n            icon: Icon(Icons.drive_eta),\r\n            label: 'Home',\r\n          ),\r\n          BottomNavigationBarItem(\r\n            icon: Icon(\r\n              Icons.delivery_dining,\r\n            ),\r\n            label: 'Drivers',\r\n          )\r\n        ],\r\n      onTap: _onItemTapped,\r\n        selectedItemColor: Colors.amber,\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+===================================================================
+--- delivery_app/lib/merchant_home_page.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/merchant/merchant_screens/merchant_home_screen.dart	(date 1616880172974)
+@@ -1,41 +1,31 @@
+-import 'package:delivery_app/merchant_drivers.dart';
+-import 'package:delivery_app/merchant_order.dart';
+-import 'package:flutter/cupertino.dart';
++import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';
++import 'package:delivery_app/screens/merchant/merchant_pages/merchant_order_page.dart';
+ import 'package:flutter/material.dart';
+ 
+-class MerchantHomePage extends StatefulWidget {
++class MerchantHomeScreen extends StatefulWidget {
+   final String merchantID;
+-  MerchantHomePage({Key key, @required this.merchantID}) : super(key: key);
+-
++  MerchantHomeScreen({Key key, @required this.merchantID}) : super(key: key);
+ 
+   @override
+-  _MerchantHomePageState createState() => _MerchantHomePageState();
++  _MerchantHomeScreenState createState() => _MerchantHomeScreenState();
+ }
+ 
+-
+-
+-
+-
+-
+-class _MerchantHomePageState extends State<MerchantHomePage> {
+-
+-
++class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
+   int _currentIndex = 0;
+-  PageController _pageController = PageController();
+-  List<Widget> _screens = [MerchantOrder(), MerchantDriversPage()];
+   int _selectedIndex = 0;
++  PageController _pageController = PageController();
++
+   void _onPageChanged(int index) {
+     setState(() {
+       _selectedIndex = index;
+     });
+   }
++
+   void _onItemTapped(int selectedIndex) {
+     _pageController.jumpToPage(selectedIndex);
+     _currentIndex = selectedIndex;
+   }
+ 
+-
+-
+   @override
+   Widget build(BuildContext context) {
+     print(widget.merchantID);
+@@ -51,10 +41,12 @@
+         ),
+       ),
+       backgroundColor: Colors.white,
+-
+       body: PageView(
+         controller: _pageController,
+-        children: _screens,
++        children: <Widget>[
++          MerchantOrder(),
++          MerchantDriversPage(merchantID: widget.merchantID)
++        ],
+         onPageChanged: _onPageChanged,
+         physics: NeverScrollableScrollPhysics(),
+       ),
+@@ -73,7 +65,7 @@
+             label: 'Drivers',
+           )
+         ],
+-      onTap: _onItemTapped,
++        onTap: _onItemTapped,
+         selectedItemColor: Colors.amber,
+       ),
+     );
+Index: delivery_app/lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:delivery_app/route_generator.dart';\r\n\r\n\r\n\r\n\r\nvoid main() => runApp(MaterialApp(\r\n    initialRoute: '/',\r\n    onGenerateRoute: RouteGenerator.generateRoute,\r\n    debugShowCheckedModeBanner: false,\r\n));\r\n//SystemChrome.setEnabledSystemUIOverlays([]);\r\n\r\n/*\r\n      home: MyApp(), debugShowCheckedModeBanner: false));\r\n  SystemChrome.setEnabledSystemUIOverlays([]);\r\n}\r\n*/\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/main.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/main.dart	(date 1616880172927)
+@@ -2,18 +2,9 @@
+ import 'package:flutter/material.dart';
+ import 'package:delivery_app/route_generator.dart';
+ 
+-
+-
+-
+ void main() => runApp(MaterialApp(
+-    initialRoute: '/',
+-    onGenerateRoute: RouteGenerator.generateRoute,
+-    debugShowCheckedModeBanner: false,
+-));
+-//SystemChrome.setEnabledSystemUIOverlays([]);
++      initialRoute: '/',
++      onGenerateRoute: RouteGenerator.generateRoute,
++      debugShowCheckedModeBanner: false,
++    ));
+ 
+-/*
+-      home: MyApp(), debugShowCheckedModeBanner: false));
+-  SystemChrome.setEnabledSystemUIOverlays([]);
+-}
+-*/
+Index: delivery_app/lib/merchant_order.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/customWidgets/FancyButton.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\n\r\nclass MerchantOrder extends StatefulWidget {\r\n  @override\r\n  _MerchantOrderState createState() => _MerchantOrderState();\r\n}\r\n\r\nclass _MerchantOrderState extends State<MerchantOrder> {\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n      appBar: AppBar(\r\n        actions: [],\r\n        backgroundColor: Colors.orange[800],\r\n        title: Text(\r\n          'Delivery Status',\r\n        ),\r\n        centerTitle: true,\r\n      ),\r\n      drawer: Drawer(\r\n        child: ListView(\r\n          children: [\r\n            DrawerHeader(child: Text('Hello')),\r\n            ListTile(title: Text('A')),\r\n            ListTile(title: Text('B')),\r\n          ],\r\n        ),\r\n      ),\r\n      backgroundColor: Colors.white,\r\n      body: Column(\r\n        mainAxisAlignment: MainAxisAlignment.spaceEvenly,\r\n        //mainAxisSize: MainAxisSize.max,\r\n        //crossAxisAlignment: CrossAxisAlignment.center,\r\n        children: [\r\n          SizedBox(),\r\n          Center(\r\n              child: Container(\r\n                margin: EdgeInsets.fromLTRB(0, 250, 0, 250),\r\n                child: Text(\r\n                  'No orders yet',\r\n                  style: TextStyle(fontSize: 40.0, color: Colors.orange[500]),\r\n                ),\r\n              )),\r\n          Container(\r\n            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n            child: FancyButton(\r\n              onPressed: () {},\r\n            ),\r\n          ),\r\n        ],\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+===================================================================
+--- delivery_app/lib/merchant_order.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/merchant/merchant_pages/merchant_order_page.dart	(date 1616880173047)
+@@ -1,4 +1,5 @@
+ import 'package:delivery_app/customWidgets/FancyButton.dart';
++import 'package:delivery_app/customWidgets/merchantDrawer.dart';
+ import 'package:flutter/cupertino.dart';
+ import 'package:flutter/material.dart';
+ 
+@@ -8,7 +9,6 @@
+ }
+ 
+ class _MerchantOrderState extends State<MerchantOrder> {
+-
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+@@ -20,15 +20,7 @@
+         ),
+         centerTitle: true,
+       ),
+-      drawer: Drawer(
+-        child: ListView(
+-          children: [
+-            DrawerHeader(child: Text('Hello')),
+-            ListTile(title: Text('A')),
+-            ListTile(title: Text('B')),
+-          ],
+-        ),
+-      ),
++      drawer: MerchantDrawer(),
+       backgroundColor: Colors.white,
+       body: Column(
+         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+@@ -38,12 +30,12 @@
+           SizedBox(),
+           Center(
+               child: Container(
+-                margin: EdgeInsets.fromLTRB(0, 250, 0, 250),
+-                child: Text(
+-                  'No orders yet',
+-                  style: TextStyle(fontSize: 40.0, color: Colors.orange[500]),
+-                ),
+-              )),
++            margin: EdgeInsets.fromLTRB(0, 250, 0, 250),
++            child: Text(
++              'No orders yet',
++              style: TextStyle(fontSize: 40.0, color: Colors.orange[500]),
++            ),
++          )),
+           Container(
+             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+             child: FancyButton(
+Index: delivery_app/lib/screens/merchant_sign_in.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\n\r\nclass MerchantSignIn extends StatefulWidget {\r\n  @override\r\n  _MerchantSignInState createState() => _MerchantSignInState();\r\n}\r\n\r\nclass _MerchantSignInState extends State<MerchantSignIn> {\r\n\r\n  final TextEditingController merchantIdController = TextEditingController();\r\n\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n        appBar: AppBar(\r\n          backgroundColor: Colors.orange[800],\r\n          title: Text('Merchant Sign in'),\r\n          centerTitle: true,\r\n        ),\r\n        body: Column(\r\n            mainAxisAlignment: MainAxisAlignment.center,\r\n            children: [\r\n              Text(\r\n                'Enter your ID',\r\n                style: TextStyle(\r\n                    fontSize: 25\r\n                ),\r\n              ),\r\n              SizedBox(height: 10),\r\n              Container(\r\n                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n                child: TextField(\r\n                  controller: merchantIdController,\r\n                  style: TextStyle(fontSize: 16),\r\n                  decoration: new InputDecoration(\r\n                    fillColor: Color(0xFFF8F8F8),\r\n                    filled: true,\r\n                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),\r\n                    hintText: 'e.g: 28',\r\n                    border: new OutlineInputBorder(\r\n                      borderRadius: const BorderRadius.all(\r\n                        const Radius.circular(10.0),\r\n                      ),\r\n                    ),\r\n                  ),\r\n                ),\r\n              ),\r\n              SizedBox(height: 15),\r\n              TextButton(onPressed: ()  {\r\n                final String merchantID = merchantIdController.text;\r\n                print('Entered text is $merchantID');\r\n                Navigator.pushNamed(context,'/merchantHomePage',arguments: merchantID);\r\n              }, child: Text('Sign in'),\r\n              ),\r\n              SizedBox(height: 20),\r\n            ]\r\n        )\r\n\r\n    );\r\n  }\r\n}\r\n
+===================================================================
+--- delivery_app/lib/screens/merchant_sign_in.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_in_screen.dart	(date 1616880172987)
+@@ -6,10 +6,9 @@
+ }
+ 
+ class _MerchantSignInState extends State<MerchantSignIn> {
+-
+   final TextEditingController merchantIdController = TextEditingController();
+ 
+-
++//merchant id is 1
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+@@ -18,45 +17,41 @@
+           title: Text('Merchant Sign in'),
+           centerTitle: true,
+         ),
+-        body: Column(
+-            mainAxisAlignment: MainAxisAlignment.center,
+-            children: [
+-              Text(
+-                'Enter your ID',
+-                style: TextStyle(
+-                    fontSize: 25
+-                ),
+-              ),
+-              SizedBox(height: 10),
+-              Container(
+-                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+-                child: TextField(
+-                  controller: merchantIdController,
+-                  style: TextStyle(fontSize: 16),
+-                  decoration: new InputDecoration(
+-                    fillColor: Color(0xFFF8F8F8),
+-                    filled: true,
+-                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+-                    hintText: 'e.g: 28',
+-                    border: new OutlineInputBorder(
+-                      borderRadius: const BorderRadius.all(
+-                        const Radius.circular(10.0),
+-                      ),
+-                    ),
+-                  ),
+-                ),
+-              ),
+-              SizedBox(height: 15),
+-              TextButton(onPressed: ()  {
+-                final String merchantID = merchantIdController.text;
+-                print('Entered text is $merchantID');
+-                Navigator.pushNamed(context,'/merchantHomePage',arguments: merchantID);
+-              }, child: Text('Sign in'),
+-              ),
+-              SizedBox(height: 20),
+-            ]
+-        )
+-
+-    );
++        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
++          Text(
++            'Enter your ID',
++            style: TextStyle(fontSize: 25),
++          ),
++          SizedBox(height: 10),
++          Container(
++            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
++            child: TextField(
++              controller: merchantIdController,
++              style: TextStyle(fontSize: 16),
++              decoration: new InputDecoration(
++                fillColor: Color(0xFFF8F8F8),
++                filled: true,
++                contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
++                hintText: 'e.g: 28',
++                border: new OutlineInputBorder(
++                  borderRadius: const BorderRadius.all(
++                    const Radius.circular(10.0),
++                  ),
++                ),
++              ),
++            ),
++          ),
++          SizedBox(height: 15),
++          TextButton(
++            onPressed: () {
++              final String merchantID = merchantIdController.text;
++              print('Entered text is $merchantID');
++              Navigator.pushNamed(context, '/merchantHomePage',
++                  arguments: merchantID);
++            },
++            child: Text('Sign in'),
++          ),
++          SizedBox(height: 20),
++        ]));
+   }
+ }
+Index: delivery_app/lib/driver_add.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\nimport 'models/driver_model.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'dart:convert';\r\nimport 'package:delivery_app/url_link.dart';\r\n\r\n// Driver: full name, phone number, address.\r\nclass DriverAdd extends StatefulWidget {\r\n  @override\r\n  _DriverAddState createState() => _DriverAddState();\r\n}\r\n\r\nclass _DriverAddState extends State<DriverAdd> {\r\n\r\n  Future<DriverModel> addDriver(String firstName,String lastName, String phoneNumber) async{\r\n    //http://a84a794b3db6.ngrok.io/\r\n    var uri = Uri(\r\n      scheme: 'https',\r\n      host: theLink,\r\n      path: '/register/driver/39',\r\n    );\r\n    assert(\r\n    uri.toString() == 'https://$theLink/register/driver/39');\r\n\r\n    Map<String,String> a = {\"first_name\":firstName,\"last_name\":lastName,\"phone_number\":phoneNumber};\r\n    var b = json.encode(a);\r\n    print(b);\r\n    http.Response response = await http.post(uri,body: b,headers: {\"content-type\" :\"application/json\"});\r\n    final String responseString = response.body;\r\n    return driverModelFromJson(responseString);\r\n\r\n  }\r\n\r\n  DriverModel _driver;\r\n\r\n\r\n  final TextEditingController firstNameController = TextEditingController();\r\n  final TextEditingController lastNameController = TextEditingController();\r\n  final TextEditingController phoneNumberController = TextEditingController();\r\n\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    double screenSize = MediaQuery.of(context).size.width;\r\n    return Scaffold(\r\n      appBar: AppBar(\r\n        leadingWidth: 56 * 2.0,\r\n        leading: Center(\r\n          child: FlatButton(\r\n            onPressed: () => Navigator.pop(context),\r\n            child: Text(\r\n              \"Cancel\",\r\n              style: TextStyle(\r\n                fontSize: 20,\r\n                color: Colors.white,\r\n              ),\r\n            ),\r\n          ),\r\n        ),\r\n        actions: [\r\n          Center(\r\n            child: FlatButton(\r\n              onPressed: () async {\r\n                final String firstName = firstNameController.text;\r\n                final String lastName = lastNameController.text;\r\n                final String phoneNumber = phoneNumberController.text;\r\n                final DriverModel newDriver = await addDriver(firstName, lastName, phoneNumber);\r\n                setState(() {\r\n                  _driver = newDriver;\r\n                });\r\n              },\r\n              child: Text(\r\n                \"Done\",\r\n                style: TextStyle(\r\n                  fontSize: 20,\r\n                  color: Colors.white,\r\n                ),\r\n              ),\r\n            ),\r\n          ),\r\n        ],\r\n        automaticallyImplyLeading: false,\r\n        title: Text(\r\n          \"Add Driver\",\r\n          style: TextStyle(color: Colors.white, fontSize: 23),\r\n        ),\r\n        centerTitle: true,\r\n        backgroundColor: Color(0xFFFF6200),\r\n        toolbarHeight: 53,\r\n      ),\r\n      body: Container(\r\n          transform: Matrix4.translationValues(0.0, (screenSize * 0.15), 0.0),\r\n          child: Center(\r\n              child: Column(children: [\r\n                Image(\r\n                  height: screenSize * 0.2,\r\n                  image: AssetImage(\"assets/portrait.png\"),\r\n                ),\r\n                Container(\r\n                    margin: EdgeInsets.only(top: screenSize * 0.06),\r\n                    child: new Wrap(\r\n                      direction: Axis.horizontal,\r\n                      crossAxisAlignment: WrapCrossAlignment.start,\r\n                      spacing: screenSize * 0.05,\r\n                      runSpacing: 15,\r\n                      children: [\r\n                        Container(\r\n                          width: screenSize * 0.4,\r\n                          child: TextField(\r\n                            controller: firstNameController,\r\n                            style: TextStyle(fontSize: 22),\r\n                            decoration: new InputDecoration(\r\n                              fillColor: Color(0xFFF8F8F8),\r\n                              filled: true,\r\n                              contentPadding: EdgeInsets.only(left: 7.0),\r\n                              hintText: 'First name',\r\n                              border: new OutlineInputBorder(\r\n                                borderRadius: const BorderRadius.all(\r\n                                  const Radius.circular(10.0),\r\n                                ),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                        Container(\r\n                          width: screenSize * 0.4,\r\n                          child: TextField(\r\n                            controller: lastNameController,\r\n                            style: TextStyle(fontSize: 22),\r\n                            decoration: new InputDecoration(\r\n                              fillColor: Color(0xFFF8F8F8),\r\n                              filled: true,\r\n                              contentPadding: EdgeInsets.only(left: 7.0),\r\n                              hintText: 'Last name',\r\n                              border: new OutlineInputBorder(\r\n                                borderRadius: const BorderRadius.all(\r\n                                  const Radius.circular(10.0),\r\n                                ),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                        ),\r\n                        // Container(\r\n                        //   width: screenSize * 0.85,\r\n                        //   child: TextField(\r\n                        //     style: TextStyle(fontSize: 22),\r\n                        //     decoration: new InputDecoration(\r\n                        //       fillColor: Color(0xFFF8F8F8),\r\n                        //       filled: true,\r\n                        //       contentPadding: EdgeInsets.only(left: 15.0),\r\n                        //       hintText: 'Home address',\r\n                        //       border: new OutlineInputBorder(\r\n                        //         borderRadius: const BorderRadius.all(\r\n                        //           const Radius.circular(10.0),\r\n                        //         ),\r\n                        //       ),\r\n                        //     ),\r\n                        //   ),\r\n                        // ),\r\n                        Container(\r\n                            width: screenSize * 0.85,\r\n                            child: TextField(\r\n                              controller: phoneNumberController,\r\n                              style: TextStyle(fontSize: 22),\r\n                              decoration: new InputDecoration(\r\n                                fillColor: Color(0xFFF8F8F8),\r\n                                filled: true,\r\n                                contentPadding: EdgeInsets.only(left: 15.0),\r\n                                hintText: 'Phone number',\r\n                                border: new OutlineInputBorder(\r\n                                  borderRadius: const BorderRadius.all(\r\n                                    const Radius.circular(10.0),\r\n                                  ),\r\n                                ),\r\n                              ),\r\n                            ))\r\n                      ],\r\n                    )),\r\n                Container(\r\n                  margin: EdgeInsets.only(\r\n                    top: screenSize * 0.5,\r\n                  ),\r\n                )\r\n              ]))),\r\n      backgroundColor: Color(0xFFF6F8F5),\r\n    );\r\n  }\r\n}
+===================================================================
+--- delivery_app/lib/driver_add.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/merchant/merchant_screens/merchant_registers_driver_screen.dart	(date 1616880172861)
+@@ -1,44 +1,48 @@
+ import 'package:flutter/material.dart';
+-import 'models/driver_model.dart';
++import 'package:delivery_app/models/driver_model.dart';
+ import 'package:http/http.dart' as http;
+ import 'dart:convert';
+ import 'package:delivery_app/url_link.dart';
+ 
+ // Driver: full name, phone number, address.
+-class DriverAdd extends StatefulWidget {
++class MerchantRegisterDriver extends StatefulWidget {
++  final String merchantID;
++  MerchantRegisterDriver({Key key, @required this.merchantID})
++      : super(key: key);
+   @override
+-  _DriverAddState createState() => _DriverAddState();
++  _MerchantRegisterDriverState createState() => _MerchantRegisterDriverState();
+ }
+ 
+-class _DriverAddState extends State<DriverAdd> {
+-
+-  Future<DriverModel> addDriver(String firstName,String lastName, String phoneNumber) async{
+-    //http://a84a794b3db6.ngrok.io/
++class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
++  Future<DriverModel> addDriver(
++      String firstName, String lastName, String phoneNumber) async {
+     var uri = Uri(
+       scheme: 'https',
+-      host: theLink,
+-      path: '/register/driver/39',
++      host: ngrokLink,
++      path: '/driver/register/${widget.merchantID}',
+     );
+-    assert(
+-    uri.toString() == 'https://$theLink/register/driver/39');
++    assert(uri.toString() ==
++        'https://$ngrokLink/driver/register/${widget.merchantID}');
+ 
+-    Map<String,String> a = {"first_name":firstName,"last_name":lastName,"phone_number":phoneNumber};
++    Map<String, String> a = {
++      "first_name": firstName,
++      "last_name": lastName,
++      "phone_number": phoneNumber
++    };
+     var b = json.encode(a);
+     print(b);
+-    http.Response response = await http.post(uri,body: b,headers: {"content-type" :"application/json"});
++    http.Response response = await http
++        .post(uri, body: b, headers: {"content-type": "application/json"});
+     final String responseString = response.body;
+     return driverModelFromJson(responseString);
+-
+   }
+ 
+   DriverModel _driver;
+ 
+-
+   final TextEditingController firstNameController = TextEditingController();
+   final TextEditingController lastNameController = TextEditingController();
+   final TextEditingController phoneNumberController = TextEditingController();
+ 
+-
+   @override
+   Widget build(BuildContext context) {
+     double screenSize = MediaQuery.of(context).size.width;
+@@ -64,7 +68,8 @@
+                 final String firstName = firstNameController.text;
+                 final String lastName = lastNameController.text;
+                 final String phoneNumber = phoneNumberController.text;
+-                final DriverModel newDriver = await addDriver(firstName, lastName, phoneNumber);
++                final DriverModel newDriver =
++                    await addDriver(firstName, lastName, phoneNumber);
+                 setState(() {
+                   _driver = newDriver;
+                 });
+@@ -92,97 +97,97 @@
+           transform: Matrix4.translationValues(0.0, (screenSize * 0.15), 0.0),
+           child: Center(
+               child: Column(children: [
+-                Image(
+-                  height: screenSize * 0.2,
+-                  image: AssetImage("assets/portrait.png"),
+-                ),
+-                Container(
+-                    margin: EdgeInsets.only(top: screenSize * 0.06),
+-                    child: new Wrap(
+-                      direction: Axis.horizontal,
+-                      crossAxisAlignment: WrapCrossAlignment.start,
+-                      spacing: screenSize * 0.05,
+-                      runSpacing: 15,
+-                      children: [
+-                        Container(
+-                          width: screenSize * 0.4,
+-                          child: TextField(
+-                            controller: firstNameController,
+-                            style: TextStyle(fontSize: 22),
+-                            decoration: new InputDecoration(
+-                              fillColor: Color(0xFFF8F8F8),
+-                              filled: true,
+-                              contentPadding: EdgeInsets.only(left: 7.0),
+-                              hintText: 'First name',
+-                              border: new OutlineInputBorder(
+-                                borderRadius: const BorderRadius.all(
+-                                  const Radius.circular(10.0),
+-                                ),
+-                              ),
+-                            ),
+-                          ),
+-                        ),
+-                        Container(
+-                          width: screenSize * 0.4,
+-                          child: TextField(
+-                            controller: lastNameController,
+-                            style: TextStyle(fontSize: 22),
+-                            decoration: new InputDecoration(
+-                              fillColor: Color(0xFFF8F8F8),
+-                              filled: true,
+-                              contentPadding: EdgeInsets.only(left: 7.0),
+-                              hintText: 'Last name',
+-                              border: new OutlineInputBorder(
+-                                borderRadius: const BorderRadius.all(
+-                                  const Radius.circular(10.0),
+-                                ),
+-                              ),
+-                            ),
+-                          ),
+-                        ),
+-                        // Container(
+-                        //   width: screenSize * 0.85,
+-                        //   child: TextField(
+-                        //     style: TextStyle(fontSize: 22),
+-                        //     decoration: new InputDecoration(
+-                        //       fillColor: Color(0xFFF8F8F8),
+-                        //       filled: true,
+-                        //       contentPadding: EdgeInsets.only(left: 15.0),
+-                        //       hintText: 'Home address',
+-                        //       border: new OutlineInputBorder(
+-                        //         borderRadius: const BorderRadius.all(
+-                        //           const Radius.circular(10.0),
+-                        //         ),
+-                        //       ),
+-                        //     ),
+-                        //   ),
+-                        // ),
+-                        Container(
+-                            width: screenSize * 0.85,
+-                            child: TextField(
+-                              controller: phoneNumberController,
+-                              style: TextStyle(fontSize: 22),
+-                              decoration: new InputDecoration(
+-                                fillColor: Color(0xFFF8F8F8),
+-                                filled: true,
+-                                contentPadding: EdgeInsets.only(left: 15.0),
+-                                hintText: 'Phone number',
+-                                border: new OutlineInputBorder(
+-                                  borderRadius: const BorderRadius.all(
+-                                    const Radius.circular(10.0),
+-                                  ),
+-                                ),
+-                              ),
+-                            ))
+-                      ],
+-                    )),
+-                Container(
+-                  margin: EdgeInsets.only(
+-                    top: screenSize * 0.5,
+-                  ),
+-                )
+-              ]))),
++            Image(
++              height: screenSize * 0.2,
++              image: AssetImage("assets/portrait.png"),
++            ),
++            Container(
++                margin: EdgeInsets.only(top: screenSize * 0.06),
++                child: new Wrap(
++                  direction: Axis.horizontal,
++                  crossAxisAlignment: WrapCrossAlignment.start,
++                  spacing: screenSize * 0.05,
++                  runSpacing: 15,
++                  children: [
++                    Container(
++                      width: screenSize * 0.4,
++                      child: TextField(
++                        controller: firstNameController,
++                        style: TextStyle(fontSize: 22),
++                        decoration: new InputDecoration(
++                          fillColor: Color(0xFFF8F8F8),
++                          filled: true,
++                          contentPadding: EdgeInsets.only(left: 7.0),
++                          hintText: 'First name',
++                          border: new OutlineInputBorder(
++                            borderRadius: const BorderRadius.all(
++                              const Radius.circular(10.0),
++                            ),
++                          ),
++                        ),
++                      ),
++                    ),
++                    Container(
++                      width: screenSize * 0.4,
++                      child: TextField(
++                        controller: lastNameController,
++                        style: TextStyle(fontSize: 22),
++                        decoration: new InputDecoration(
++                          fillColor: Color(0xFFF8F8F8),
++                          filled: true,
++                          contentPadding: EdgeInsets.only(left: 7.0),
++                          hintText: 'Last name',
++                          border: new OutlineInputBorder(
++                            borderRadius: const BorderRadius.all(
++                              const Radius.circular(10.0),
++                            ),
++                          ),
++                        ),
++                      ),
++                    ),
++                    // Container(
++                    //   width: screenSize * 0.85,
++                    //   child: TextField(
++                    //     style: TextStyle(fontSize: 22),
++                    //     decoration: new InputDecoration(
++                    //       fillColor: Color(0xFFF8F8F8),
++                    //       filled: true,
++                    //       contentPadding: EdgeInsets.only(left: 15.0),
++                    //       hintText: 'Home address',
++                    //       border: new OutlineInputBorder(
++                    //         borderRadius: const BorderRadius.all(
++                    //           const Radius.circular(10.0),
++                    //         ),
++                    //       ),
++                    //     ),
++                    //   ),
++                    // ),
++                    Container(
++                        width: screenSize * 0.85,
++                        child: TextField(
++                          controller: phoneNumberController,
++                          style: TextStyle(fontSize: 22),
++                          decoration: new InputDecoration(
++                            fillColor: Color(0xFFF8F8F8),
++                            filled: true,
++                            contentPadding: EdgeInsets.only(left: 15.0),
++                            hintText: 'Phone number',
++                            border: new OutlineInputBorder(
++                              borderRadius: const BorderRadius.all(
++                                const Radius.circular(10.0),
++                              ),
++                            ),
++                          ),
++                        ))
++                  ],
++                )),
++            Container(
++              margin: EdgeInsets.only(
++                top: screenSize * 0.5,
++              ),
++            )
++          ]))),
+       backgroundColor: Color(0xFFF6F8F5),
+     );
+   }
+-}
+\ No newline at end of file
++}
+Index: delivery_app/lib/merchant_drivers.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:delivery_app/driver_add.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'dart:convert';\r\nimport 'package:delivery_app/url_link.dart';\r\n\r\n\r\nclass MerchantDriversPage extends StatefulWidget {\r\n  final String merchantID;\r\n  MerchantDriversPage({Key key, @required this.merchantID}) : super(key: key);\r\n  @override\r\n  _MerchantDriversPageState createState() => _MerchantDriversPageState();\r\n}\r\n\r\nclass _MerchantDriversPageState extends State<MerchantDriversPage> {\r\n\r\n  Future<List<MerchantDrivers>> _getDrivers() async {\r\n    //http://a84a794b3db6.ngrok.io/\r\n    var uri = Uri(\r\n      scheme: 'https',\r\n      host: theLink,\r\n      path: '/mydrivers/${widget.merchantID}',\r\n    );\r\n    assert(//http://f60fc987a44e.ngrok.io/\r\n    uri.toString() == 'https://$theLink/mydrivers/${widget.merchantID}');\r\n    var data = await http.get(uri);\r\n    var jsonData = json.decode(data.body);\r\n    List<MerchantDrivers> drivers = [];\r\n    for(var u in jsonData){\r\n      MerchantDrivers driver = MerchantDrivers(u[\"first_name\"],u[\"last_name\"],u[\"phone_number\"]);\r\n      drivers.add(driver);\r\n    }\r\n    print(drivers.length);\r\n    return drivers;\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n\r\n\r\n\r\n    return Scaffold(\r\n\r\n      appBar: AppBar(\r\n        title: Text('Drivers'),\r\n        centerTitle: true,\r\n        backgroundColor: Colors.orange[800],\r\n        actions: [\r\n         IconButton(icon: Icon(Icons.add), onPressed: (){\r\n           Navigator.push(context, MaterialPageRoute(\r\n               builder: (context) => DriverAdd()\r\n           ));\r\n         })\r\n        ],\r\n      ),\r\n      body: Container(\r\n        child: FutureBuilder(\r\n          future: _getDrivers(),\r\n          builder: (BuildContext context, AsyncSnapshot snapshot){\r\n            if(snapshot.data == null){\r\n              return Container(\r\n                child: Center(child: Text(\"Loading...\")),\r\n              );\r\n            }\r\n            else {\r\n              return ListView.builder(\r\n                itemCount: snapshot.data.length,\r\n                itemBuilder: (BuildContext context, int index) {\r\n                  return Card(\r\n                    color: Colors.orange,\r\n                    shadowColor: Colors.blue,\r\n                    child: ListTile(\r\n                      leading: Text(snapshot.data[index].lastName),\r\n                      title: Text(snapshot.data[index].firstName),\r\n                      subtitle: Text(snapshot.data[index].phoneNumber),\r\n                    ),\r\n                  );\r\n                },\r\n              );\r\n            }\r\n          },\r\n        ),\r\n      )\r\n    );\r\n  }\r\n}\r\n\r\n\r\nclass MerchantDrivers{\r\n  final String firstName;\r\n  final String lastName;\r\n  final String phoneNumber;\r\n\r\n  MerchantDrivers(this.firstName,this.lastName,this.phoneNumber);\r\n\r\n}\r\n
+===================================================================
+--- delivery_app/lib/merchant_drivers.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/merchant/merchant_pages/merchant_drivers_page.dart	(date 1616880173083)
+@@ -1,10 +1,10 @@
+-import 'package:delivery_app/driver_add.dart';
++import 'package:delivery_app/customWidgets/merchantDrawer.dart';
++import 'package:delivery_app/models/merchant_drivers_model.dart';
+ import 'package:flutter/material.dart';
+ import 'package:http/http.dart' as http;
+ import 'dart:convert';
+ import 'package:delivery_app/url_link.dart';
+ 
+-
+ class MerchantDriversPage extends StatefulWidget {
+   final String merchantID;
+   MerchantDriversPage({Key key, @required this.merchantID}) : super(key: key);
+@@ -13,21 +13,21 @@
+ }
+ 
+ class _MerchantDriversPageState extends State<MerchantDriversPage> {
+-
+   Future<List<MerchantDrivers>> _getDrivers() async {
+-    //http://a84a794b3db6.ngrok.io/
+     var uri = Uri(
+       scheme: 'https',
+-      host: theLink,
+-      path: '/mydrivers/${widget.merchantID}',
++      host: ngrokLink,
++      path: '/merchant/drivers/${widget.merchantID}',
+     );
+-    assert(//http://f60fc987a44e.ngrok.io/
+-    uri.toString() == 'https://$theLink/mydrivers/${widget.merchantID}');
++    assert(uri.toString() ==
++        'https://$ngrokLink/merchant/drivers/${widget.merchantID}');
++    print(uri);
+     var data = await http.get(uri);
+     var jsonData = json.decode(data.body);
+     List<MerchantDrivers> drivers = [];
+-    for(var u in jsonData){
+-      MerchantDrivers driver = MerchantDrivers(u["first_name"],u["last_name"],u["phone_number"]);
++    for (var u in jsonData) {
++      MerchantDrivers driver =
++          MerchantDrivers(u["first_name"], u["last_name"], u["phone_number"]);
+       drivers.add(driver);
+     }
+     print(drivers.length);
+@@ -36,61 +36,47 @@
+ 
+   @override
+   Widget build(BuildContext context) {
+-
+-
+-
+     return Scaffold(
+-
+-      appBar: AppBar(
+-        title: Text('Drivers'),
+-        centerTitle: true,
+-        backgroundColor: Colors.orange[800],
+-        actions: [
+-         IconButton(icon: Icon(Icons.add), onPressed: (){
+-           Navigator.push(context, MaterialPageRoute(
+-               builder: (context) => DriverAdd()
+-           ));
+-         })
+-        ],
+-      ),
+-      body: Container(
+-        child: FutureBuilder(
+-          future: _getDrivers(),
+-          builder: (BuildContext context, AsyncSnapshot snapshot){
+-            if(snapshot.data == null){
+-              return Container(
+-                child: Center(child: Text("Loading...")),
+-              );
+-            }
+-            else {
+-              return ListView.builder(
+-                itemCount: snapshot.data.length,
+-                itemBuilder: (BuildContext context, int index) {
+-                  return Card(
+-                    color: Colors.orange,
+-                    shadowColor: Colors.blue,
+-                    child: ListTile(
+-                      leading: Text(snapshot.data[index].lastName),
+-                      title: Text(snapshot.data[index].firstName),
+-                      subtitle: Text(snapshot.data[index].phoneNumber),
+-                    ),
+-                  );
+-                },
+-              );
+-            }
+-          },
+-        ),
+-      )
+-    );
++        drawer: MerchantDrawer(),
++        appBar: AppBar(
++          title: Text('My Drivers'),
++          centerTitle: true,
++          backgroundColor: Colors.orange[800],
++          actions: [
++            IconButton(
++                icon: Icon(Icons.add),
++                onPressed: () {
++                  Navigator.of(context)
++                      .pushNamed('/driverAdd', arguments: widget.merchantID);
++                })
++          ],
++        ),
++        body: Container(
++          child: FutureBuilder(
++            future: _getDrivers(),
++            builder: (BuildContext context, AsyncSnapshot snapshot) {
++              if (snapshot.data == null) {
++                return Container(
++                  child: Center(child: Text("Loading...")),
++                );
++              } else {
++                return ListView.builder(
++                  itemCount: snapshot.data.length,
++                  itemBuilder: (BuildContext context, int index) {
++                    return Card(
++                      color: Colors.orange,
++                      shadowColor: Colors.blue,
++                      child: ListTile(
++                        leading: Text(snapshot.data[index].lastName),
++                        title: Text(snapshot.data[index].firstName),
++                        subtitle: Text(snapshot.data[index].phoneNumber),
++                      ),
++                    );
++                  },
++                );
++              }
++            },
++          ),
++        ));
+   }
+ }
+-
+-
+-class MerchantDrivers{
+-  final String firstName;
+-  final String lastName;
+-  final String phoneNumber;
+-
+-  MerchantDrivers(this.firstName,this.lastName,this.phoneNumber);
+-
+-}
+Index: delivery_app/lib/screens/welcome.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\n\r\n\r\nclass MyApp extends StatelessWidget {\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n      body: Column(\r\n        children: [\r\n          Center(\r\n            child: Text(\"Welcome!\",\r\n                style: TextStyle(color: Color(0xFFF6F8F5), fontSize: 33)),\r\n            heightFactor: 9,\r\n          ),\r\n          Center(\r\n              child: Text(\"Please select a role\",\r\n                  style: TextStyle(color: Color(0xFFF6F8F5), fontSize: 22))),\r\n          Center(\r\n            child: Container(\r\n                width: 300,\r\n                height: 50,\r\n                child: RaisedButton(\r\n                    onPressed: () => {\r\n                      Navigator.of(context).pushNamed('/driverSignUpScreen')\r\n                    },\r\n                    child:\r\n                    Text(\"I'm a Driver!\", style: TextStyle(fontSize: 20)),\r\n                    shape: RoundedRectangleBorder(\r\n                        borderRadius: BorderRadius.circular(1000),\r\n                        side: BorderSide(color: Colors.orange[500])))),\r\n            heightFactor: 1.93,\r\n          ),\r\n          Center(\r\n              child: Container(\r\n                  width: 300,\r\n                  height: 50,\r\n                  child: RaisedButton(\r\n                      onPressed: () => {\r\n                        Navigator.of(context).pushNamed('/merchantSignUpScreen')},\r\n                      child: Text(\"I'm the Merchant.\",\r\n                          style: TextStyle(fontSize: 20)),\r\n                      shape: RoundedRectangleBorder(\r\n                          borderRadius: BorderRadius.circular(1000),\r\n                          side: BorderSide(color: Color(0xFFFF6200))))))\r\n        ],\r\n      ),\r\n      backgroundColor: Color(0xFFFF6F1A),\r\n    );\r\n  }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/screens/welcome.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/screens/welcome.dart	(date 1616880172904)
+@@ -1,6 +1,5 @@
+ import 'package:flutter/material.dart';
+ 
+-
+ class MyApp extends StatelessWidget {
+   @override
+   Widget build(BuildContext context) {
+@@ -21,10 +20,10 @@
+                 height: 50,
+                 child: RaisedButton(
+                     onPressed: () => {
+-                      Navigator.of(context).pushNamed('/driverSignUpScreen')
+-                    },
++                          Navigator.of(context).pushNamed('/driverSignUpScreen')
++                        },
+                     child:
+-                    Text("I'm a Driver!", style: TextStyle(fontSize: 20)),
++                        Text("I'm a Driver!", style: TextStyle(fontSize: 20)),
+                     shape: RoundedRectangleBorder(
+                         borderRadius: BorderRadius.circular(1000),
+                         side: BorderSide(color: Colors.orange[500])))),
+@@ -36,7 +35,9 @@
+                   height: 50,
+                   child: RaisedButton(
+                       onPressed: () => {
+-                        Navigator.of(context).pushNamed('/merchantSignUpScreen')},
++                            Navigator.of(context)
++                                .pushNamed('/merchantSignUpScreen')
++                          },
+                       child: Text("I'm the Merchant.",
+                           style: TextStyle(fontSize: 20)),
+                       shape: RoundedRectangleBorder(
+@@ -48,5 +49,3 @@
+     );
+   }
+ }
+-
+-
+Index: delivery_app/lib/models/driver_authentication_model.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// To parse this JSON data, do\r\n//\r\n//     final driverAuthentication = driverAuthenticationFromJson(jsonString);\r\n\r\nimport 'dart:convert';\r\n\r\nDriverAuthentication driverAuthenticationFromJson(String str) => DriverAuthentication.fromJson(json.decode(str));\r\n\r\nString driverAuthenticationToJson(DriverAuthentication data) => json.encode(data.toJson());\r\n\r\nclass DriverAuthentication {\r\n  DriverAuthentication({\r\n    this.token,\r\n  });\r\n\r\n  String token;\r\n\r\n  factory DriverAuthentication.fromJson(Map<String, dynamic> json) => DriverAuthentication(\r\n    token: json[\"token\"],\r\n  );\r\n\r\n  Map<String, dynamic> toJson() => {\r\n    \"token\": token,\r\n  };\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- delivery_app/lib/models/driver_authentication_model.dart	(revision 18596e1d3727c48b4465e67f317f00aba47a3cfa)
++++ delivery_app/lib/models/driver_authentication_model.dart	(date 1616880173060)
+@@ -4,9 +4,11 @@
+ 
+ import 'dart:convert';
+ 
+-DriverAuthentication driverAuthenticationFromJson(String str) => DriverAuthentication.fromJson(json.decode(str));
++DriverAuthentication driverAuthenticationFromJson(String str) =>
++    DriverAuthentication.fromJson(json.decode(str));
+ 
+-String driverAuthenticationToJson(DriverAuthentication data) => json.encode(data.toJson());
++String driverAuthenticationToJson(DriverAuthentication data) =>
++    json.encode(data.toJson());
+ 
+ class DriverAuthentication {
+   DriverAuthentication({
+@@ -15,11 +17,12 @@
+ 
+   String token;
+ 
+-  factory DriverAuthentication.fromJson(Map<String, dynamic> json) => DriverAuthentication(
+-    token: json["token"],
+-  );
++  factory DriverAuthentication.fromJson(Map<String, dynamic> json) =>
++      DriverAuthentication(
++        token: json["token"],
++      );
+ 
+   Map<String, dynamic> toJson() => {
+-    "token": token,
+-  };
+-}
+\ No newline at end of file
++        "token": token,
++      };
++}

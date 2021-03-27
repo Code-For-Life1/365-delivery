@@ -42,7 +42,18 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "1.15.0-nullsafety.3"
+=======
+    version: "1.15.0"
+  crypto:
+    dependency: transitive
+    description:
+      name: crypto
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
+>>>>>>> origin/feature-receiveOrder
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -169,6 +180,17 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.1.0-nullsafety.3"
+=======
+    version: "2.1.0"
+  web_socket_channel:
+    dependency: "direct main"
+    description:
+      name: web_socket_channel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+>>>>>>> origin/feature-receiveOrder
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
