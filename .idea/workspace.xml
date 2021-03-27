@@ -19,33 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="test file auto updated">
-      <change afterPath="$PROJECT_DIR$/delivery_app/lib/customWidgets/driverDrawer.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/delivery_app/lib/customWidgets/merchantDrawer.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/delivery_app/lib/models/merchant_drivers_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/customWidgets/FancyButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/customWidgets/FancyButton.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/driver_add.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_registers_driver_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/driver_order_history.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_pages/driver_order_history_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/driver_receiving_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_pages/driver_receiving_order_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_drivers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_pages/merchant_drivers_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/merchant_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_pages/merchant_order_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/driver_authentication_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/driver_authentication_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/driver_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/driver_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/merchant_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/merchant_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/models/order_details_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/models/order_details_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/route_generator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/route_generator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver_home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver_sign_in.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_sign_in_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver_sign_up.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_sign_up_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant_sign_in.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_in_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant_sign_up.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_up_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/welcome.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/welcome.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/url_link.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/url_link.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/test/widget_test.dart" afterDir="false" />
-    </list>
+    <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="test file auto updated" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -266,7 +240,126 @@
       <option name="project" value="LOCAL" />
       <updated>1616611659387</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="renamed file to driver_authentication_model.dart">
+      <created>1616880381855</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880381855</updated>
+    </task>
+    <task id="LOCAL-00023" summary="renamed to driver_home_screen.dart + moved file">
+      <created>1616880436961</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880436961</updated>
+    </task>
+    <task id="LOCAL-00024" summary="renamed driver_model.dart">
+      <created>1616880451447</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880451447</updated>
+    </task>
+    <task id="LOCAL-00025" summary="finished driver_order_history_page.dart">
+      <created>1616880466368</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880466368</updated>
+    </task>
+    <task id="LOCAL-00026" summary="finished driver_receiving_order_page.dart + added refresh button and mark as completed order">
+      <created>1616880495860</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880495860</updated>
+    </task>
+    <task id="LOCAL-00027" summary="rearranged some files">
+      <created>1616880539666</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880539666</updated>
+    </task>
+    <task id="LOCAL-00028" summary="added two drawer widgets, one for Merchant and one for Driver">
+      <created>1616880600742</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880600742</updated>
+    </task>
+    <task id="LOCAL-00029" summary="modified main.dart to work with the route_generator.dart">
+      <created>1616880636186</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880636186</updated>
+    </task>
+    <task id="LOCAL-00030" summary="renamed driver_drawer.dart, merchant_drawer.dart and new_order_button.dart (previously FancyButton.dart)">
+      <created>1616880769407</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880769407</updated>
+    </task>
+    <task id="LOCAL-00031" summary="created a new file for merchant_drivers_model.dart">
+      <created>1616880790676</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880790676</updated>
+    </task>
+    <task id="LOCAL-00032" summary="finished order_details_model.dart">
+      <created>1616880826564</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880826564</updated>
+    </task>
+    <task id="LOCAL-00033" summary="created url_link.dart to store ngrok link as a global variable">
+      <created>1616880872129</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880872129</updated>
+    </task>
+    <task id="LOCAL-00034" summary="unfinished driver_order_history_page.dart">
+      <created>1616880927684</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880927684</updated>
+    </task>
+    <task id="LOCAL-00035" summary="functional driver_receiving_new_order_page.dart with refresh button and mark as completed">
+      <created>1616880995635</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880995635</updated>
+    </task>
+    <task id="LOCAL-00036" summary="added some imports">
+      <created>1616881013747</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1616881013747</updated>
+    </task>
+    <task id="LOCAL-00037" summary="added some imports and reformatted">
+      <created>1616881082610</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1616881082610</updated>
+    </task>
+    <task id="LOCAL-00038" summary="added some test screens to test web sockets later">
+      <created>1616881117072</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1616881117072</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -285,19 +378,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/delivery_app/DeliveryTest" />
     </ignored-roots>
-    <MESSAGE value="added whole flutter project" />
-    <MESSAGE value="added some project configuration files" />
-    <MESSAGE value="removed Ghalayini's main.dart (it was already added in the initial project)" />
-    <MESSAGE value="Created a custom Widget (Button)" />
-    <MESSAGE value="Finished UI for Merchant order page" />
-    <MESSAGE value="removed the code in main.dart, created a .dart file for every screen" />
-    <MESSAGE value="added drivers list (without json)" />
-    <MESSAGE value="connected driver_signup.dart with backend for authentication&#10;created class driver_authentication.dart to use in token authentication" />
-    <MESSAGE value="added drivers list (with json)&#10;ability to add driver then authenticate" />
-    <MESSAGE value="added route generator" />
-    <MESSAGE value="deleted old backend" />
-    <MESSAGE value="added merchant and driver sign in" />
-    <MESSAGE value="added orderDetailsModel and renamed driver_authentication_model.dart" />
     <MESSAGE value="added driver home page" />
     <MESSAGE value="added driver order history" />
     <MESSAGE value="moved welcome.dart, driver_sign_up.dart, merchant_sign_up.dart to /screens" />
@@ -306,7 +386,24 @@
     <MESSAGE value="renamed from merchant_page.dart to merchant_home_page.dart" />
     <MESSAGE value="passed universal variable (ngrok link) to the http link to string assertion" />
     <MESSAGE value="test file auto updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="test file auto updated" />
+    <MESSAGE value="renamed file to driver_authentication_model.dart" />
+    <MESSAGE value="renamed to driver_home_screen.dart + moved file" />
+    <MESSAGE value="renamed driver_model.dart" />
+    <MESSAGE value="finished driver_order_history_page.dart" />
+    <MESSAGE value="finished driver_receiving_order_page.dart + added refresh button and mark as completed order" />
+    <MESSAGE value="rearranged some files" />
+    <MESSAGE value="added two drawer widgets, one for Merchant and one for Driver" />
+    <MESSAGE value="modified main.dart to work with the route_generator.dart" />
+    <MESSAGE value="renamed driver_drawer.dart, merchant_drawer.dart and new_order_button.dart (previously FancyButton.dart)" />
+    <MESSAGE value="created a new file for merchant_drivers_model.dart" />
+    <MESSAGE value="finished order_details_model.dart" />
+    <MESSAGE value="created url_link.dart to store ngrok link as a global variable" />
+    <MESSAGE value="unfinished driver_order_history_page.dart" />
+    <MESSAGE value="functional driver_receiving_new_order_page.dart with refresh button and mark as completed" />
+    <MESSAGE value="added some imports" />
+    <MESSAGE value="added some imports and reformatted" />
+    <MESSAGE value="added some test screens to test web sockets later" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some test screens to test web sockets later" />
   </component>
   <component name="WindowStateProjectService">
     <state x="196" y="106" key="#Unnamed" timestamp="1614902077076">
