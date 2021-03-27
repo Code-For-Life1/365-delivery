@@ -1,40 +1,30 @@
-import 'package:delivery_app/merchant_drivers.dart';
-import 'package:delivery_app/merchant_order.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';
+import 'package:delivery_app/screens/merchant/merchant_pages/merchant_order_page.dart';
 import 'package:flutter/material.dart';
 
-class MerchantHomePage extends StatefulWidget {
+class MerchantHomeScreen extends StatefulWidget {
   final String merchantID;
-  MerchantHomePage({Key key, @required this.merchantID}) : super(key: key);
-
+  MerchantHomeScreen({Key key, @required this.merchantID}) : super(key: key);
 
   @override
-  _MerchantHomePageState createState() => _MerchantHomePageState();
+  _MerchantHomeScreenState createState() => _MerchantHomeScreenState();
 }
 
-
-
-
-
-
-class _MerchantHomePageState extends State<MerchantHomePage> {
-
-
+class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
   int _currentIndex = 0;
-  PageController _pageController = PageController();
-  List<Widget> _screens = [MerchantOrder(), MerchantDriversPage()];
   int _selectedIndex = 0;
+  PageController _pageController = PageController();
+
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   void _onItemTapped(int selectedIndex) {
     _pageController.jumpToPage(selectedIndex);
     _currentIndex = selectedIndex;
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +41,12 @@ class _MerchantHomePageState extends State<MerchantHomePage> {
         ),
       ),
       backgroundColor: Colors.white,
-
       body: PageView(
         controller: _pageController,
-        children: _screens,
+        children: <Widget>[
+          MerchantOrder(),
+          MerchantDriversPage(merchantID: widget.merchantID)
+        ],
         onPageChanged: _onPageChanged,
         physics: NeverScrollableScrollPhysics(),
       ),
@@ -73,7 +65,7 @@ class _MerchantHomePageState extends State<MerchantHomePage> {
             label: 'Drivers',
           )
         ],
-      onTap: _onItemTapped,
+        onTap: _onItemTapped,
         selectedItemColor: Colors.amber,
       ),
     );
