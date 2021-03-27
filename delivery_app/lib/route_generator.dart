@@ -1,4 +1,4 @@
-import 'package:delivery_app/screens/driver/driver_pages/driver_receiving_order_page.dart';
+import 'package:delivery_app/screens/driver/driver_pages/driver_receiving_new_order_page.dart';
 import 'package:delivery_app/screens/driver/driver_screens/driver_sign_in_screen.dart';
 import 'package:delivery_app/screens/driver/driver_screens/driver_sign_up_screen.dart';
 import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';

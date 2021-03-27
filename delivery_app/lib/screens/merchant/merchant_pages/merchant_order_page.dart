@@ -1,5 +1,5 @@
-import 'package:delivery_app/customWidgets/FancyButton.dart';
-import 'package:delivery_app/customWidgets/merchantDrawer.dart';
+import 'package:delivery_app/customWidgets/new_order_button.dart';
+import 'package:delivery_app/customWidgets/merchant_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

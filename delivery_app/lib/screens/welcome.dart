@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,10 +20,10 @@ class MyApp extends StatelessWidget {
                 height: 50,
                 child: RaisedButton(
                     onPressed: () => {
-                      Navigator.of(context).pushNamed('/driverSignUpScreen')
-                    },
+                          Navigator.of(context).pushNamed('/driverSignUpScreen')
+                        },
                     child:
-                    Text("I'm a Driver!", style: TextStyle(fontSize: 20)),
+                        Text("I'm a Driver!", style: TextStyle(fontSize: 20)),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(1000),
                         side: BorderSide(color: Colors.orange[500])))),
@@ -36,7 +35,9 @@ class MyApp extends StatelessWidget {
                   height: 50,
                   child: RaisedButton(
                       onPressed: () => {
-                        Navigator.of(context).pushNamed('/merchantSignUpScreen')},
+                            Navigator.of(context)
+                                .pushNamed('/merchantSignUpScreen')
+                          },
                       child: Text("I'm the Merchant.",
                           style: TextStyle(fontSize: 20)),
                       shape: RoundedRectangleBorder(
@@ -48,5 +49,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
