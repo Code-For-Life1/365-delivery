@@ -1,58 +1,41 @@
-import 'package:delivery_app/driver_receiving_order.dart';
-import 'package:delivery_app/merchant_drivers.dart';
-import 'package:delivery_app/merchant_order.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:delivery_app/screens/driver/driver_pages/driver_order_history_page.dart';
+import 'package:delivery_app/screens/driver/driver_pages/driver_receiving_order_page.dart';
 import 'package:flutter/material.dart';
 
-class DriverHomePage extends StatefulWidget {
+class DriverHomeScreen extends StatefulWidget {
   final String driverID;
-  DriverHomePage({Key key, @required this.driverID}) : super(key: key);
-
+  DriverHomeScreen({Key key, @required this.driverID}) : super(key: key);
 
   @override
-  _DriverHomePageState createState() => _DriverHomePageState();
+  _DriverHomeScreenState createState() => _DriverHomeScreenState();
 }
 
-
-
-class _DriverHomePageState extends State<DriverHomePage> {
-
-
+class _DriverHomeScreenState extends State<DriverHomeScreen> {
   int _currentIndex = 0;
   PageController _pageController = PageController();
-  List<Widget> _screens = [DriverReceivingOrder(), MerchantDriversPage()];
   int _selectedIndex = 0;
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   void _onItemTapped(int selectedIndex) {
     _pageController.jumpToPage(selectedIndex);
     _currentIndex = selectedIndex;
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     print(widget.driverID);
-    // final String data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(child: Text('Hello')),
-            ListTile(title: Text('A')),
-            ListTile(title: Text('B')),
-          ],
-        ),
-      ),
       backgroundColor: Colors.white,
-
       body: PageView(
         controller: _pageController,
-        children: _screens,
+        children: [
+          DriverReceivingOrder(driverID: widget.driverID),
+          DriverOrderHistory(driverID: widget.driverID)
+        ],
         onPageChanged: _onPageChanged,
         physics: NeverScrollableScrollPhysics(),
       ),
@@ -68,7 +51,7 @@ class _DriverHomePageState extends State<DriverHomePage> {
             icon: Icon(
               Icons.delivery_dining,
             ),
-            label: 'Example',
+            label: 'Order History',
           )
         ],
         onTap: _onItemTapped,
