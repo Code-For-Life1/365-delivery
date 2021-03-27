@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'models/order.dart';
+import 'package:delivery_app/url_link.dart';
 
 class new_order extends StatefulWidget {
   @override
@@ -23,7 +24,7 @@ class S extends State<new_order>{
     drivers.clear();
     var uri = Uri(
       scheme: 'https',
-      host: '341ef0d16512.ngrok.io',
+      host: theLink,
       path: '/mydrivers/39',
     );
     var data = await http.get(uri);
@@ -37,7 +38,7 @@ class S extends State<new_order>{
   Future<Order> createOrder(String r_name, String r_phone, String st, String bldg, String city, int flr, int driver_id, int merchant_id) async {
     var uri = Uri(
       scheme: 'https',
-      host: '341ef0d16512.ngrok.io',
+      host: 'b5a8706515bb.ngrok.io',
       path: '/orders/merchant/set_order',
     );
     Map<String, dynamic> info = {
@@ -52,7 +53,6 @@ class S extends State<new_order>{
     };
     final response = await http.post(uri, body: json.encode(info), headers: {"content-type": "application/json"});
     if (response.statusCode >= 200) {
-      print("Successfulllllllllllllllllllll");
       // to do: receive order id
     } else {
       throw Exception('Failed to create order');

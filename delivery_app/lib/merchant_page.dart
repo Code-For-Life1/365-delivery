@@ -2,6 +2,7 @@ import 'package:delivery_app/merchant_drivers.dart';
 import 'package:delivery_app/merchant_order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'orders_placed.dart';
 
 class MerchantPage extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class MerchantPage extends StatefulWidget {
 class _MerchantPageState extends State<MerchantPage> {
   int _currentIndex = 0;
   PageController _pageController = PageController();
-  List<Widget> _screens = [MerchantOrder(), MerchantDriversPage()];
+  List<Widget> _screens = [MerchantOrder(), MerchantDriversPage(), Orders_Placed()];
   int _selectedIndex = 0;
   void _onPageChanged(int index) {
     setState(() {
@@ -56,6 +57,10 @@ class _MerchantPageState extends State<MerchantPage> {
               Icons.delivery_dining,
             ),
             label: 'Drivers',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment_outlined),
+            label: 'Orders'
           )
         ],
       onTap: _onItemTapped,

@@ -18,11 +18,9 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
     var uri = Uri(
       scheme: 'https',
       host: theLink,
-      path: '/register/driver/39',
+      path: '/register/merchant',
     );
-    assert(
-        uri.toString() == 'https://a84a794b3db6.ngrok.io/register/driver/39');
-
+    assert(uri.toString() == 'https://' + theLink + '/register/merchant');
     Map<String, String> a = {
       "first_name": firstName,
       "last_name": lastName,
