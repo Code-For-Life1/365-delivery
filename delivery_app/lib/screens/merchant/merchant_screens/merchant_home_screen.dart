@@ -1,7 +1,7 @@
 import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';
 import 'package:delivery_app/screens/merchant/merchant_pages/merchant_order_page.dart';
 import 'package:flutter/material.dart';
-import 'package:delivery_app/models/order_details_model.dart';
+import 'merchant_orders_history_screen.dart';
 
 class MerchantHomeScreen extends StatefulWidget {
   final String merchantID;
@@ -30,7 +30,6 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
   @override
   Widget build(BuildContext context) {
     print(widget.merchantID);
-    // final String data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -46,7 +45,8 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
         controller: _pageController,
         children: <Widget>[
           MerchantOrder(),
-          MerchantDriversPage(merchantID: widget.merchantID)
+          MerchantDriversPage(merchantID: widget.merchantID),
+          MerchantOrdersHistory(merchantID: widget.merchantID)
         ],
         onPageChanged: _onPageChanged,
         physics: NeverScrollableScrollPhysics(),

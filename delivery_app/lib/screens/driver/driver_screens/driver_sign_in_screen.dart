@@ -46,7 +46,7 @@ class _DriverSignInState extends State<DriverSignIn> {
               final String driverID = driverIdController.text;
               print('The entered ID is: $driverID');
               Navigator.of(context)
-                  .pushReplacementNamed('/driverHomePage', arguments: driverID);
+                  .pushReplacementNamed('/driverHomeScreen', arguments: driverID);
             },
             child: Text('Sign in'),
           ),

@@ -3,6 +3,7 @@ import 'package:delivery_app/screens/driver/driver_screens/driver_sign_in_screen
 import 'package:delivery_app/screens/driver/driver_screens/driver_sign_up_screen.dart';
 import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';
 import 'package:delivery_app/screens/merchant/merchant_screens/merchant_home_screen.dart';
+import 'package:delivery_app/screens/merchant/merchant_screens/merchant_place_new_order_screen.dart';
 import 'package:delivery_app/screens/merchant/merchant_screens/merchant_registers_driver_screen.dart';
 import 'package:delivery_app/screens/merchant/merchant_screens/merchant_sign_in_screen.dart';
 import 'package:delivery_app/screens/merchant/merchant_screens/merchant_sign_up_screen.dart';
@@ -29,10 +30,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => DriverSignIn());
       case '/merchantSignInScreen':
         return MaterialPageRoute(builder: (_) => MerchantSignIn());
-      case '/driverHomePage':
+      case '/driverHomeScreen':
         return MaterialPageRoute(
             builder: (_) => DriverHomeScreen(driverID: args));
-      case '/merchantHomePage':
+      case '/merchantHomeScreen':
         return MaterialPageRoute(
             builder: (_) => MerchantHomeScreen(merchantID: args));
       case '/merchantGetDrivers':
@@ -44,6 +45,8 @@ class RouteGenerator {
       case '/driverAdd':
         return MaterialPageRoute(
             builder: (_) => MerchantRegisterDriver(merchantID: args));
+      case '/placeNewOrder':
+        return MaterialPageRoute(builder: (_)=>MerchantPlaceNewOrder());
       case '/test1':
         return MaterialPageRoute(builder: (_) => Test());
       case '/test2':

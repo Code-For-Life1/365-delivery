@@ -46,7 +46,7 @@ class _MerchantSignInState extends State<MerchantSignIn> {
             onPressed: () {
               final String merchantID = merchantIdController.text;
               print('Entered text is $merchantID');
-              Navigator.pushNamed(context, '/merchantHomePage',
+              Navigator.pushNamed(context, '/merchantHomeScreen',
                   arguments: merchantID);
             },
             child: Text('Sign in'),

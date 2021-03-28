@@ -49,10 +49,10 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.delivery_dining,
+              Icons.assignment_outlined,
             ),
             label: 'Order History',
-          )
+          ),
         ],
         onTap: _onItemTapped,
         selectedItemColor: Colors.amber,

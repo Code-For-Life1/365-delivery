@@ -1,15 +1,18 @@
 import 'dart:convert';
+import 'package:delivery_app/customWidgets/merchant_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:delivery_app/url_link.dart';
 
-class Orders_Placed extends StatefulWidget {
+class MerchantOrdersHistory extends StatefulWidget {
+  final String merchantID;
+  MerchantOrdersHistory({Key key, @required this.merchantID}) : super(key: key);
   @override
-  _Orders_Placed createState() => _Orders_Placed();
+  _MerchantOrdersHistory createState() => _MerchantOrdersHistory();
 }
 
-class _Orders_Placed extends State<Orders_Placed> {
-  Future<List<List<String>>> get_order_history() async{
+class _MerchantOrdersHistory extends State<MerchantOrdersHistory> {
+  Future<List<List<String>>> getOrderHistory() async{
     List<List<String>> orders = [];
     var uri = Uri(
       scheme: 'https',
@@ -28,6 +31,7 @@ class _Orders_Placed extends State<Orders_Placed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MerchantDrawer(),
       appBar: AppBar(
         title: Text(
           "Most Recent Orders",
@@ -38,7 +42,7 @@ class _Orders_Placed extends State<Orders_Placed> {
         toolbarHeight: 53,
       ),
       body: FutureBuilder(
-        future: get_order_history(),
+        future: getOrderHistory(),
         builder: (BuildContext context, AsyncSnapshot snapshot){
           if(snapshot.data == null){
             return Container(

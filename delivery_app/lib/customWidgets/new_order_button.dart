@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../new_order.dart';
 
 class FancyButton extends StatelessWidget {
   FancyButton({this.onPressed});
@@ -34,11 +33,7 @@ class FancyButton extends StatelessWidget {
         ),
       ),
       onPressed: () => {
-        onPressed,
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => new_order()))
+        onPressed,Navigator.of(context).pushNamed('/placeNewOrder')
       },
       shape: const StadiumBorder(),
     );
