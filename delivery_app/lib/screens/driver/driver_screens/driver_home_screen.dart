@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class DriverHomeScreen extends StatefulWidget {
   final String driverID;
-  DriverHomeScreen({Key key, @required this.driverID}) : super(key: key);
+  final String token;
+  DriverHomeScreen({Key key, @required this.driverID, @required this.token}) : super(key: key);
 
   @override
   _DriverHomeScreenState createState() => _DriverHomeScreenState();

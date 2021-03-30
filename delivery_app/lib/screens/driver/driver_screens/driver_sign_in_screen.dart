@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../url_link.dart';
 
 class DriverSignIn extends StatefulWidget {
   @override
@@ -6,32 +11,38 @@ class DriverSignIn extends StatefulWidget {
 }
 
 class _DriverSignInState extends State<DriverSignIn> {
-  final TextEditingController driverIdController = TextEditingController();
+  final TextEditingController driverUserNameController = TextEditingController();
+  final TextEditingController driverPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    double screenSize = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[800],
           title: Text('Driver Sign in'),
           centerTitle: true,
         ),
-        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(
-            'Enter your ID',
-            style: TextStyle(fontSize: 25),
+        body: Container(
+            margin: EdgeInsets.only(top: 100),
+            child:Column(children: [
+          Container(
+            transform: Matrix4.translationValues(-screenSize * 0.3, 0.0, 0.0),
+            child: Text(
+              'Username',
+              style: TextStyle(fontSize: 25),
+            ),
           ),
           SizedBox(height: 10),
           Container(
             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: TextField(
-              controller: driverIdController,
+              controller: driverUserNameController,
               style: TextStyle(fontSize: 16),
               decoration: new InputDecoration(
                 fillColor: Color(0xFFF8F8F8),
                 filled: true,
                 contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                hintText: 'e.g: 28',
                 border: new OutlineInputBorder(
                   borderRadius: const BorderRadius.all(
                     const Radius.circular(10.0),
@@ -40,17 +51,64 @@ class _DriverSignInState extends State<DriverSignIn> {
               ),
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(top:30),
+            transform: Matrix4.translationValues(-screenSize * 0.3, 0.0, 0.0),
+            child: Text(
+              'Password',
+              style: TextStyle(fontSize: 25),
+            ),
+          ),
+              SizedBox(height: 10),
+              Container(
+                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: TextField(
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  controller: driverPasswordController,
+                  style: TextStyle(fontSize: 16),
+                  decoration: new InputDecoration(
+                    fillColor: Color(0xFFF8F8F8),
+                    filled: true,
+                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    border: new OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(
+                        const Radius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
           SizedBox(height: 15),
           TextButton(
-            onPressed: () {
-              final String driverID = driverIdController.text;
-              print('The entered ID is: $driverID');
-              Navigator.of(context)
-                  .pushReplacementNamed('/driverHomeScreen', arguments: driverID);
+            onPressed: () async {
+              final String driver_username = driverUserNameController.text;
+              final String driver_pass = driverPasswordController.text;
+              var uri = Uri(
+                scheme: 'https',
+                host: ngrokLink,
+                path: '/users/login',
+              );
+              Map<String, dynamic> info = {
+                "username": driver_username,
+                "password": driver_pass,
+              };
+              final response = await http.post(uri,
+                  // "token": "Token "
+                  body: json.encode(info), headers: {"content-type": "application/json"});
+              if (response.statusCode == 200) {
+                var jsonData = json.decode(response.body);
+                Navigator.of(context).pushReplacementNamed('/driverHomeScreen', arguments: jsonData["token"]);
+              } else {
+                throw Exception('Failed to sign in');
+              }
+              // Navigator.of(context)
+              //     .pushReplacementNamed('/driverHomeScreen', arguments: driverID);
             },
             child: Text('Sign in'),
           ),
           SizedBox(height: 20),
-        ]));
+        ])));
   }
 }
