@@ -3,9 +3,8 @@ import 'package:delivery_app/screens/driver/driver_pages/driver_receiving_new_or
 import 'package:flutter/material.dart';
 
 class DriverHomeScreen extends StatefulWidget {
-  final String driverID;
   final String token;
-  DriverHomeScreen({Key key, @required this.driverID, @required this.token}) : super(key: key);
+  DriverHomeScreen({Key key, @required this.token}) : super(key: key);
 
   @override
   _DriverHomeScreenState createState() => _DriverHomeScreenState();
@@ -28,14 +27,13 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.driverID);
     return Scaffold(
       backgroundColor: Colors.white,
       body: PageView(
         controller: _pageController,
         children: [
-          DriverReceivingOrder(driverID: widget.driverID),
-          DriverOrderHistory(driverID: widget.driverID)
+          DriverReceivingOrder(token: widget.token),
+          DriverOrderHistory(token: widget.token)
         ],
         onPageChanged: _onPageChanged,
         physics: NeverScrollableScrollPhysics(),

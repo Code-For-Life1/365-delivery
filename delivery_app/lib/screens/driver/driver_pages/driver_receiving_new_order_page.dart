@@ -6,8 +6,8 @@ import 'dart:convert';
 import 'package:delivery_app/models/order_details_model.dart';
 
 class DriverReceivingOrder extends StatefulWidget {
-  final String driverID;
-  DriverReceivingOrder({Key key, @required this.driverID}) : super(key: key);
+  final String token;
+  DriverReceivingOrder({Key key, @required this.token}) : super(key: key);
   @override
   _DriverReceivingOrderState createState() => _DriverReceivingOrderState();
 }
@@ -15,7 +15,7 @@ class DriverReceivingOrder extends StatefulWidget {
 class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
   Future<List<OrderDetailsModel>> _getOrders() async {
     var data = await http.get(
-        Uri.parse('https://$ngrokLink/orders/driver/get/${widget.driverID}'));
+        Uri.parse('https://$ngrokLink/orders/driver/get/${widget.token}'));
     var jsonData = json.decode(data.body);
     List<OrderDetailsModel> orders = [];
     for (var u in jsonData) {

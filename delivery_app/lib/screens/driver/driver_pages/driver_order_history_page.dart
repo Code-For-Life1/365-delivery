@@ -8,8 +8,8 @@ import 'package:delivery_app/models/order_details_model.dart';
 //CLASS NOT WORKING YET
 
 class DriverOrderHistory extends StatefulWidget {
-  final String driverID;
-  DriverOrderHistory({Key key, @required this.driverID}) : super(key: key);
+  final String token;
+  DriverOrderHistory({Key key, @required this.token}) : super(key: key);
   @override
   _DriverOrderHistoryState createState() => _DriverOrderHistoryState();
 }
@@ -17,8 +17,12 @@ class DriverOrderHistory extends StatefulWidget {
 class _DriverOrderHistoryState extends State<DriverOrderHistory> {
   Future<List<OrderDetailsModel>> _getOrders() async {
     var client = http.Client();
-    var data = await client.get(
-        Uri.parse('https://$ngrokLink/orders/driver/get/${widget.driverID}TEST'));
+    var uri = Uri(
+      scheme: 'https',
+      host: ngrokLink,
+      path: '/orders/driver/get',
+    );
+    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
     var jsonData = json.decode(data.body);
     List<OrderDetailsModel> orders = [];
     for (var u in jsonData) {

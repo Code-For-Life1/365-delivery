@@ -95,7 +95,6 @@ class _DriverSignInState extends State<DriverSignIn> {
                 "password": driver_pass,
               };
               final response = await http.post(uri,
-                  // "token": "Token "
                   body: json.encode(info), headers: {"content-type": "application/json"});
               if (response.statusCode == 200) {
                 var jsonData = json.decode(response.body);

@@ -6,8 +6,8 @@ import 'dart:convert';
 import 'package:delivery_app/url_link.dart';
 
 class MerchantDriversPage extends StatefulWidget {
-  final String merchantID;
-  MerchantDriversPage({Key key, @required this.merchantID}) : super(key: key);
+  final String token;
+  MerchantDriversPage({Key key, @required this.token}) : super(key: key);
   @override
   _MerchantDriversPageState createState() => _MerchantDriversPageState();
 }
@@ -17,17 +17,13 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/merchant/drivers/${widget.merchantID}',
+      path: '/users/merchant/drivers/',
     );
-    assert(uri.toString() ==
-        'https://$ngrokLink/merchant/drivers/${widget.merchantID}');
-    print(uri);
-    var data = await http.get(uri);
+    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
     var jsonData = json.decode(data.body);
     List<MerchantDrivers> drivers = [];
     for (var u in jsonData) {
-      MerchantDrivers driver =
-          MerchantDrivers(u["first_name"], u["last_name"], u["phone_number"]);
+      MerchantDrivers driver = MerchantDrivers(u["first_name"], u["last_name"], u["phone_number"]);
       drivers.add(driver);
     }
     print(drivers.length);
@@ -47,7 +43,7 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
                 icon: Icon(Icons.add),
                 onPressed: () {
                   Navigator.of(context)
-                      .pushNamed('/driverAdd', arguments: widget.merchantID);
+                      .pushNamed('/driverAdd', arguments: widget.token);
                 })
           ],
         ),
