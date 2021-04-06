@@ -17,7 +17,7 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/users/merchant/drivers/',
+      path: '/users/merchant/drivers',
     );
     var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
     var jsonData = json.decode(data.body);

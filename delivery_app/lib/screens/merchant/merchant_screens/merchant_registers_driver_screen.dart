@@ -6,8 +6,7 @@ import 'package:delivery_app/url_link.dart';
 
 class MerchantRegisterDriver extends StatefulWidget {
   final String token;
-  MerchantRegisterDriver({Key key, @required this.token})
-      : super(key: key);
+  MerchantRegisterDriver({Key key, @required this.token}): super(key: key);
   @override
   _MerchantRegisterDriverState createState() => _MerchantRegisterDriverState();
 }
@@ -18,7 +17,7 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/users/driver/register/',
+      path: '/users/driver/register',
     );
     Map<String, String> a = {
       "first_name": firstName,
@@ -28,8 +27,10 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
     var b = json.encode(a);
     print(b);
     try{
+      print(widget.token);
       http.Response response = await http.post(uri, body: b, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
       // all the code below will be skipped if http.post throws an Exception
+      print(response.body);
       var data = json.decode(response.body);
       if (response.statusCode == 400){
         showDialog(context: context, builder: (BuildContext context) {

@@ -26,7 +26,7 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
       "company_address": companyAddress,
       "phone_number": phoneNumber,
       "password": password,
-      "confirmation_password": confirmation_password
+      "password2": confirmation_password
     };
     var b = json.encode(a);
     print(b);

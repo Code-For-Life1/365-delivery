@@ -68,7 +68,7 @@ class _DriverRegistrationCredentialsState
                       var uri = Uri(
                         scheme: 'https',
                         host: ngrokLink,
-                        path: '/users/driver/auth_driver/',
+                        path: '/users/driver/auth_driver',
                       );
                       Map<String, String> a = {
                         "token": widget.token,
@@ -83,10 +83,8 @@ class _DriverRegistrationCredentialsState
                             headers: {"content-type": "application/json"});
                         // all the code below will be skipped if http.post throws an Exception
                         var data = json.decode(response.body);
-                        if (response.statusCode == 200) {
-                          Navigator.of(context).pushReplacementNamed(
-                              '/driverHomeScreen',
-                              arguments: data["token"]);
+                        if (response.statusCode == 201) {
+                          Navigator.of(context).pushReplacementNamed('/driverHomeScreen', arguments: data["token"]);
                         } else {
                           // error
                         }

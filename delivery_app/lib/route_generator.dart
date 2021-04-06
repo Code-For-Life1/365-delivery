@@ -38,13 +38,13 @@ class RouteGenerator {
             builder: (_) => MerchantHomeScreen(token: args));
       case '/merchantGetDrivers':
         return MaterialPageRoute(
-            builder: (_) => MerchantDriversPage());
+            builder: (_) => MerchantDriversPage(token: args));
       case '/driverReceivingOrder':
         return MaterialPageRoute(
             builder: (_) => DriverReceivingOrder());
       case '/driverAdd':
         return MaterialPageRoute(
-            builder: (_) => MerchantRegisterDriver());
+            builder: (_) => MerchantRegisterDriver(token: args));
       case '/DriverRegisterationCredentials':
         return MaterialPageRoute(builder: (_) => DriverRegistrationCredentials(token: args));
       case '/placeNewOrder':
