@@ -46,7 +46,7 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
       int merchant_id) async {
     var uri = Uri(
       scheme: 'https',
-      host: 'b5a8706515bb.ngrok.io',
+      host: ngrokLink,
       path: '/orders/merchant/set_order',
     );
     Map<String, dynamic> info = {

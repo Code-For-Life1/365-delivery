@@ -11,21 +11,60 @@ class DriverSignUp extends StatefulWidget {
 
 class _DriverSignUpState extends State<DriverSignUp> {
   Future<DriverAuthentication> createToken(String token) async {
-    //http://7bc54ac38e57.ngrok.io/register/auth_driver
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/driver/auth_driver',
+      path: '/users/driver/check_token',
     );
-    assert(//http://f60fc987a44e.ngrok.io/
-        uri.toString() == 'https://$ngrokLink/driver/auth_driver');
     Map<String, String> a = {"token": token};
     var b = json.encode(a);
     print(b);
-    http.Response response = await http
-        .post(uri, body: b, headers: {"content-type": "application/json"});
-    final String responseString = response.body;
-    return driverAuthenticationFromJson(responseString);
+
+    try {
+      http.Response response = await http
+          .post(uri, body: b, headers: {"content-type": "application/json"});
+      var data = json.decode(response.body);
+      if (response.statusCode == 400) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.3),
+                  child: AlertDialog(
+                    title: Text("Error"),
+                    content: Text(data["response"]),
+                  ));
+            });
+      } else {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                  margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
+                  child: AlertDialog(
+                    title: Text("Success"),
+                    content: Text(data["response"]),
+                    actions: [TextButton(onPressed: () {Navigator.pushNamed(context, '/DriverRegisterationCredentials', arguments: data["token"]);}, child: Text("Continue"))],
+                  ));
+            });
+      }
+    } catch (exception) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Container(
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.3),
+                child: AlertDialog(
+                  actions: [TextButton(onPressed: (){Navigator.of(context).pushReplacementNamed('/DriverRegisterationCredentials', arguments: "a32r");}, child: Text("continue"))],
+                  title: Text("Error"),
+                  content: Text("Unable to validate right now."),
+                ));
+          });
+    }
+
+    // return driverAuthenticationFromJson(responseString);
   }
 
   DriverAuthentication _token;

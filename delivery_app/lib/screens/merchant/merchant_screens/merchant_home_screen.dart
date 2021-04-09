@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'merchant_orders_history_screen.dart';
 
 class MerchantHomeScreen extends StatefulWidget {
-  final String merchantID;
-  MerchantHomeScreen({Key key, @required this.merchantID}) : super(key: key);
+  final String token;
+  MerchantHomeScreen({Key key, @required this.token}) : super(key: key);
 
   @override
   _MerchantHomeScreenState createState() => _MerchantHomeScreenState();
@@ -29,7 +29,7 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.merchantID);
+    print(widget.token);
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -45,8 +45,8 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
         controller: _pageController,
         children: <Widget>[
           MerchantOrder(),
-          MerchantDriversPage(merchantID: widget.merchantID),
-          MerchantOrdersHistory(merchantID: widget.merchantID)
+          MerchantDriversPage(token: widget.token),
+          MerchantOrdersHistory(token: widget.token)
         ],
         onPageChanged: _onPageChanged,
         physics: NeverScrollableScrollPhysics(),
@@ -66,8 +66,8 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
             label: 'Drivers',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment_outlined),
-            label: 'Orders'
+              icon: Icon(Icons.assignment_outlined),
+              label: 'Orders'
           )
         ],
         onTap: _onItemTapped,

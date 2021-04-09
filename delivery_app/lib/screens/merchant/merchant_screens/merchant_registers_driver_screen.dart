@@ -4,11 +4,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:delivery_app/url_link.dart';
 
-// Driver: full name, phone number, address.
 class MerchantRegisterDriver extends StatefulWidget {
-  final String merchantID;
-  MerchantRegisterDriver({Key key, @required this.merchantID})
-      : super(key: key);
+  final String token;
+  MerchantRegisterDriver({Key key, @required this.token}): super(key: key);
   @override
   _MerchantRegisterDriverState createState() => _MerchantRegisterDriverState();
 }
@@ -19,11 +17,8 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/driver/register/${widget.merchantID}',
+      path: '/users/driver/register',
     );
-    assert(uri.toString() ==
-        'https://$ngrokLink/driver/register/${widget.merchantID}');
-
     Map<String, String> a = {
       "first_name": firstName,
       "last_name": lastName,
@@ -31,10 +26,46 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
     };
     var b = json.encode(a);
     print(b);
-    http.Response response = await http
-        .post(uri, body: b, headers: {"content-type": "application/json"});
-    final String responseString = response.body;
-    return driverModelFromJson(responseString);
+    try{
+      print(widget.token);
+      http.Response response = await http.post(uri, body: b, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
+      // all the code below will be skipped if http.post throws an Exception
+      print(response.body);
+      var data = json.decode(response.body);
+      if (response.statusCode == 400){
+        showDialog(context: context, builder: (BuildContext context) {
+          return Container(
+              margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
+              child: AlertDialog(
+                  title: Text("Error"),
+                content: Text("At least one field is missing.")
+              )
+          );
+        });
+      }
+      else if (response.statusCode == 201){
+        showDialog(context: context, builder: (BuildContext context) {
+          return Container(
+              margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
+              child: AlertDialog(
+                title: Text("Success!"),
+                content: Text("Driver " + data["first_name"] + " " + data["last_name"] + " successfully added."),)
+          );
+        });
+      }
+    }
+    catch(exception){
+      showDialog(context: context, builder: (BuildContext context) {
+      return Container(
+        margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
+          child: AlertDialog(
+            title: Text("Error"),
+            content: Text("Unable to add driver at the moment."),
+          )
+      );
+    });
+    }
+    // return driverModelFromJson(responseString);
   }
 
   DriverModel _driver;

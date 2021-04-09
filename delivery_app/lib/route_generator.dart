@@ -1,4 +1,5 @@
 import 'package:delivery_app/screens/driver/driver_pages/driver_receiving_new_order_page.dart';
+import 'package:delivery_app/screens/driver/driver_screens/driver_register_credentials.dart';
 import 'package:delivery_app/screens/driver/driver_screens/driver_sign_in_screen.dart';
 import 'package:delivery_app/screens/driver/driver_screens/driver_sign_up_screen.dart';
 import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';
@@ -18,7 +19,6 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     //Getting arguments passed in while calling Navigator.pushNamed
     final args = settings.arguments;
-
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => MyApp());
@@ -32,19 +32,21 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => MerchantSignIn());
       case '/driverHomeScreen':
         return MaterialPageRoute(
-            builder: (_) => DriverHomeScreen(driverID: args));
+            builder: (_) => DriverHomeScreen(token: args));
       case '/merchantHomeScreen':
         return MaterialPageRoute(
-            builder: (_) => MerchantHomeScreen(merchantID: args));
+            builder: (_) => MerchantHomeScreen(token: args));
       case '/merchantGetDrivers':
         return MaterialPageRoute(
-            builder: (_) => MerchantDriversPage(merchantID: args));
+            builder: (_) => MerchantDriversPage(token: args));
       case '/driverReceivingOrder':
         return MaterialPageRoute(
-            builder: (_) => DriverReceivingOrder(driverID: args));
+            builder: (_) => DriverReceivingOrder());
       case '/driverAdd':
         return MaterialPageRoute(
-            builder: (_) => MerchantRegisterDriver(merchantID: args));
+            builder: (_) => MerchantRegisterDriver(token: args));
+      case '/DriverRegisterationCredentials':
+        return MaterialPageRoute(builder: (_) => DriverRegistrationCredentials(token: args));
       case '/placeNewOrder':
         return MaterialPageRoute(builder: (_)=>MerchantPlaceNewOrder());
       case '/test1':
@@ -54,7 +56,7 @@ class RouteGenerator {
       case '/test3':
         return MaterialPageRoute(builder: (_) => Test3());
       default:
-        //if there is no such named route in the switch statement, e.g /third
+      //if there is no such named route in the switch statement, e.g /third
         return _errorRoute();
     }
   }

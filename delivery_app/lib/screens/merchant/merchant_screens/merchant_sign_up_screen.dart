@@ -11,29 +11,68 @@ class MerchantSignUp extends StatefulWidget {
 }
 
 class _MerchantSignUpState extends State<MerchantSignUp> {
-  Future<MerchantModel> addMerchant(String firstName, String lastName,
-      String companyName, String companyAddress, String phoneNumber) async {
-    //http://a84a794b3db6.ngrok.io/
+  Future<MerchantModel> addMerchant(String firstName, String lastName, String companyName,
+                                    String companyAddress, String phoneNumber, String password,
+                                    String confirmation_password) async {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/register/driver/39',
+      path: '/users/merchant/register',
     );
-    assert(uri.toString() == 'https://$ngrokLink/register/merchant');
-
     Map<String, String> a = {
       "first_name": firstName,
       "last_name": lastName,
       "company_name": companyName,
       "company_address": companyAddress,
-      "phone_number": phoneNumber
+      "phone_number": phoneNumber,
+      "password": password,
+      "password2": confirmation_password
     };
     var b = json.encode(a);
     print(b);
-    http.Response response = await http
-        .post(uri, body: b, headers: {"content-type": "application/json"});
-    final String responseString = response.body;
-    return merchantModelFromJson(responseString);
+    try{
+      http.Response response = await http.post(uri, body: b, headers: {"content-type": "application/json"});
+      var data = json.decode(response.body);
+      if(response.statusCode == 201){
+        Navigator.of(context).pushReplacementNamed('/merchantHomeScreen', arguments: data["token"]);
+      }
+      else{
+        if (password != confirmation_password){
+          showDialog(context: context, builder: (BuildContext context) {
+            return Container(
+                margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
+                child: AlertDialog(
+                  title: Text("Error"),
+                  content: Text("Passwords do not match."),
+                )
+            );
+          });
+        }
+        else {
+          showDialog(context: context, builder: (BuildContext context) {
+            return Container(
+                margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
+                child: AlertDialog(
+                  title: Text("Error"),
+                  content: Text("Merchant with this phone number already exists.\nPlease log in."),
+                )
+            );
+          });
+        }
+      }
+    }
+    catch(exception){
+      showDialog(context: context, builder: (BuildContext context) {
+        return Container(
+            margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
+            child: AlertDialog(
+              title: Text("Error"),
+              content: Text("Unable to add merchant at the moment."),
+            )
+        );
+      });
+    }
+
   }
 
   MerchantModel _merchant;
@@ -41,10 +80,10 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController companyNameController = TextEditingController();
-  final TextEditingController companyAddressController =
-      TextEditingController();
+  final TextEditingController companyAddressController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
-
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmationController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double screenSize = MediaQuery.of(context).size.width;
@@ -65,20 +104,16 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
         ),
         actions: [
           Center(
-            child: FlatButton(
+            child: TextButton(
               onPressed: () async {
                 final String firstName = firstNameController.text;
                 final String lastName = lastNameController.text;
                 final String companyName = companyNameController.text;
                 final String companyAddress = companyAddressController.text;
                 final String phoneNumber = phoneNumberController.text;
-                final MerchantModel newMerchant = await addMerchant(firstName,
-                    lastName, companyName, companyAddress, phoneNumber);
-                setState(() {
-                  _merchant = newMerchant;
-                });
-
-                Navigator.of(context).pushNamed('/merchantPage');
+                final String password = passwordController.text;
+                final String password2 = passwordConfirmationController.text;
+                addMerchant(firstName, lastName, companyName, companyAddress, phoneNumber, password, password2);
               },
               child: Text(
                 "Done",
@@ -104,7 +139,7 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
           child: Center(
               child: Column(children: [
             Image(
-              height: screenSize * 0.2,
+              height: screenSize * 0.15,
               image: AssetImage("assets/portrait.png"),
             ),
             Container(
@@ -202,14 +237,54 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
                               ),
                             ),
                           ),
+                        )),
+                    Container(
+                        width: screenSize * 0.85,
+                        child: TextField(
+                          obscureText: true,
+                          autocorrect: false,
+                          enableSuggestions: false,
+                          controller: passwordController,
+                          style: TextStyle(fontSize: 22),
+                          decoration: new InputDecoration(
+                            fillColor: Color(0xFFF8F8F8),
+                            filled: true,
+                            contentPadding: EdgeInsets.only(left: 15.0),
+                            hintText: 'Password',
+                            border: new OutlineInputBorder(
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                        )),
+                    Container(
+                        width: screenSize * 0.85,
+                        child: TextField(
+                          obscureText: true,
+                          autocorrect: false,
+                          enableSuggestions: false,
+                          controller: passwordConfirmationController,
+                          style: TextStyle(fontSize: 22),
+                          decoration: new InputDecoration(
+                            fillColor: Color(0xFFF8F8F8),
+                            filled: true,
+                            contentPadding: EdgeInsets.only(left: 15.0),
+                            hintText: 'Confirm password',
+                            border: new OutlineInputBorder(
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(10.0),
+                              ),
+                            ),
+                          ),
                         ))
                   ],
                 )),
             Container(
               margin: EdgeInsets.only(
-                top: screenSize * 0.35,
+                top: screenSize * 0.13,
               ),
-              child: FlatButton(
+              child: TextButton(
                   onPressed: () => {
                         Navigator.of(context).pushNamed('/merchantSignInScreen')
                       },

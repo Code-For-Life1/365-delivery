@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:delivery_app/url_link.dart';
 
 class MerchantOrdersHistory extends StatefulWidget {
-  final String merchantID;
-  MerchantOrdersHistory({Key key, @required this.merchantID}) : super(key: key);
+  final String token;
+  MerchantOrdersHistory({Key key, @required this.token}) : super(key: key);
   @override
   _MerchantOrdersHistory createState() => _MerchantOrdersHistory();
 }
@@ -17,9 +17,9 @@ class _MerchantOrdersHistory extends State<MerchantOrdersHistory> {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/orders/merchant/get/3'
+      path: '/orders/merchant/get'
     );
-    var data = await http.get(uri);
+    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
     var jsonData = json.decode(data.body);
     print(jsonData.toString() + "\n");
     for (var order in jsonData){
