@@ -19,34 +19,34 @@
     <select />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="12e29ef8-5a42-414b-b7a7-8c08aed8ae6e" name="Default Changelist" comment="unfinished web-socket implementation for driver_receiving_order.dart" />
-=======
-    <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="test file auto updated" />
->>>>>>> origin/feature-receiveOrder
+    <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="test file auto updated">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/main.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-<<<<<<< HEAD
-        <entry key="$PROJECT_DIR$" value="feature-receiveOrder" />
-=======
         <entry key="$PROJECT_DIR$" value="feature-registerNewMerchant" />
->>>>>>> origin/feature-receiveOrder
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="1qOZ6hoJUqjSmiaX55hlR8iwILx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-<<<<<<< HEAD
-=======
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -69,14 +69,11 @@
       <option name="filePath" value="$PROJECT_DIR$/delivery_app/lib/main.dart" />
       <method v="2" />
     </configuration>
->>>>>>> origin/feature-receiveOrder
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
-<<<<<<< HEAD
-=======
     <task active="true" id="Default" summary="Default task">
       <changelist id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="" />
       <created>1614883183530</created>
@@ -351,7 +348,6 @@
       <updated>1616881117072</updated>
     </task>
     <option name="localTasksCounter" value="39" />
->>>>>>> origin/feature-receiveOrder
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -366,29 +362,6 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="WindowStateProjectService">
-    <state width="1877" height="276" key="GridCell.Tab.0.bottom" timestamp="1616613119078">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616613119078" />
-    <state width="1877" height="276" key="GridCell.Tab.0.center" timestamp="1616613119078">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616613119078" />
-    <state width="1877" height="276" key="GridCell.Tab.0.left" timestamp="1616613119078">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616613119078" />
-    <state width="1877" height="276" key="GridCell.Tab.0.right" timestamp="1616613119078">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616613119078" />
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616613062350">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616613062350" />
-=======
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/delivery_app/DeliveryTest" />
@@ -445,30 +418,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="792" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616095931339" />
-    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1615037068063">
+    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1616952745667">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1615037068063" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1616879044471">
+    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1616952745667" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1617000448841">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1616879044471" />
-    <state width="1877" height="276" key="GridCell.Tab.0.bottom" timestamp="1616879533863">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1617000448841" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1616953500453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616879533863" />
-    <state width="1877" height="276" key="GridCell.Tab.0.center" timestamp="1616879533863">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1616953500453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616879533863" />
-    <state width="1877" height="276" key="GridCell.Tab.0.left" timestamp="1616879533863">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1616953500453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616879533863" />
-    <state width="1877" height="276" key="GridCell.Tab.0.right" timestamp="1616879533863">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1616953500453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616879533863" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
     <state x="1020" y="263" key="IDE.errors.dialog" timestamp="1615636357890">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -497,6 +470,5 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="228" y="232" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615420322138" />
->>>>>>> origin/feature-receiveOrder
   </component>
 </project>
