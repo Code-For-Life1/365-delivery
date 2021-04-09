@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../url_link.dart';
 
 class MerchantSignIn extends StatefulWidget {
@@ -98,8 +99,11 @@ class _MerchantSignInState extends State<MerchantSignIn> {
                   try {
                     final response = await http.post(uri, body: json.encode(info), headers: {"content-type": "application/json"});
                     if (response.statusCode == 200) {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
                       var jsonData = json.decode(response.body);
-                      Navigator.of(context).pushReplacementNamed('/merchantHomeScreen',arguments: jsonData["token"]);
+                      prefs.setString('token', jsonData["token"]);
+                      prefs.setString('role', 'merchant');
+                      Navigator.of(context).pushReplacementNamed('/merchantHomeScreen', arguments: jsonData["token"]);
                     } else {
                       showDialog(
                           context: context,

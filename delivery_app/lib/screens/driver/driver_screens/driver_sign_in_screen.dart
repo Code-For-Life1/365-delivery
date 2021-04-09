@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../url_link.dart';
 
@@ -97,13 +99,14 @@ class _DriverSignInState extends State<DriverSignIn> {
               final response = await http.post(uri,
                   body: json.encode(info), headers: {"content-type": "application/json"});
               if (response.statusCode == 200) {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
                 var jsonData = json.decode(response.body);
+                prefs.setString('token', jsonData["token"]);
+                prefs.setString('role', 'driver');
                 Navigator.of(context).pushReplacementNamed('/driverHomeScreen', arguments: jsonData["token"]);
               } else {
                 throw Exception('Failed to sign in');
               }
-              // Navigator.of(context)
-              //     .pushReplacementNamed('/driverHomeScreen', arguments: driverID);
             },
             child: Text('Sign in'),
           ),
