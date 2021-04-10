@@ -20,15 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="test file auto updated">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_pages/driver_receiving_new_order_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_pages/driver_receiving_new_order_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_sign_in_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_pages/merchant_drivers_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_pages/merchant_drivers_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_place_new_order_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_place_new_order_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_in_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/url_link.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/url_link.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[0816082164814005]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -419,30 +428,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="792" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616095931339" />
-    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1616952745667">
+    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1617991794193">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1616952745667" />
+    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1617991794193" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1617000448841">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1617000448841" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1616953500453">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1617995063151">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1616953500453">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617995063151" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1617995063151">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1616953500453">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617995063151" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1617995063151">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1616953500453">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617995063151" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1617995063151">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617995063151" />
     <state x="1020" y="263" key="IDE.errors.dialog" timestamp="1615636357890">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -459,10 +468,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616611665618" />
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616198546915">
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617989258126">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616198546915" />
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617989258126" />
     <state x="730" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1615488820237">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
