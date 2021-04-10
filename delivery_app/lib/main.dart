@@ -12,9 +12,14 @@ Future<void> main() async {
   String token = prefs.getString('token');
   String role  = prefs.getString('role');
   print(token);
+  print(role);
   runApp(MaterialApp(
     home: token == null ? MyApp() : role == 'driver' ? DriverHomeScreen(token: token) : MerchantHomeScreen(token: token),
     initialRoute: token == null ? '/' : role == 'driver' ? '/driverHomeScreen' : '/merchantHomeScreen',
+    routes: {
+      '/driverHomeScreen': (context) => DriverHomeScreen(token: token),
+      '/merchantHomeScreen': (context) => MerchantHomeScreen(token: token)
+    },
     onGenerateRoute: RouteGenerator.generateRoute,
     debugShowCheckedModeBanner: false,
   ));

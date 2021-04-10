@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 
 class FancyButton extends StatelessWidget {
-  FancyButton({this.onPressed});
-
-  final GestureTapCallback onPressed;
+  FancyButton({this.token});
+  final String token;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,8 @@ class FancyButton extends StatelessWidget {
         ),
       ),
       onPressed: () => {
-        onPressed,Navigator.of(context).pushNamed('/placeNewOrder')
+        print("presseddd\n"),
+          Navigator.of(context).pushReplacementNamed('/placeNewOrder', arguments: this.token)
       },
       shape: const StadiumBorder(),
     );

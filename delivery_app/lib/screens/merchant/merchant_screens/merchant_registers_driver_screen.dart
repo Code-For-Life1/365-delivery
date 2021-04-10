@@ -49,7 +49,7 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
               margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
               child: AlertDialog(
                 title: Text("Success!"),
-                content: Text("Driver " + data["first_name"] + " " + data["last_name"] + " successfully added."),)
+                content: Text("Driver " + data["first_name"] + " " + data["last_name"] + " successfully added."))
           );
         });
       }

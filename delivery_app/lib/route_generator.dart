@@ -48,7 +48,7 @@ class RouteGenerator {
       case '/DriverRegisterationCredentials':
         return MaterialPageRoute(builder: (_) => DriverRegistrationCredentials(token: args));
       case '/placeNewOrder':
-        return MaterialPageRoute(builder: (_)=>MerchantPlaceNewOrder());
+        return MaterialPageRoute(builder: (_)=>MerchantPlaceNewOrder(token: args));
       case '/test1':
         return MaterialPageRoute(builder: (_) => Test());
       case '/test2':

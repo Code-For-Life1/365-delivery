@@ -23,6 +23,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
   void _onItemTapped(int selectedIndex) {
     _pageController.jumpToPage(selectedIndex);
     _currentIndex = selectedIndex;
+    print("widget.token = " + (widget.token == null? "null" : widget.token) + "\n");
   }
 
   @override

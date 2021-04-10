@@ -6,7 +6,6 @@ import 'merchant_orders_history_screen.dart';
 class MerchantHomeScreen extends StatefulWidget {
   final String token;
   MerchantHomeScreen({Key key, @required this.token}) : super(key: key);
-
   @override
   _MerchantHomeScreenState createState() => _MerchantHomeScreenState();
 }
@@ -17,6 +16,7 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
   PageController _pageController = PageController();
 
   void _onPageChanged(int index) {
+    print("widget.token on homescreen is " + (widget.token == null ? "null" : widget.token));
     setState(() {
       _selectedIndex = index;
     });
@@ -29,7 +29,6 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.token);
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -44,7 +43,7 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
       body: PageView(
         controller: _pageController,
         children: <Widget>[
-          MerchantOrder(),
+          MerchantOrder(token: widget.token),
           MerchantDriversPage(token: widget.token),
           MerchantOrdersHistory(token: widget.token)
         ],

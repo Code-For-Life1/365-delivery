@@ -103,7 +103,7 @@ class _MerchantSignInState extends State<MerchantSignIn> {
                       var jsonData = json.decode(response.body);
                       prefs.setString('token', jsonData["token"]);
                       prefs.setString('role', 'merchant');
-                      Navigator.of(context).pushReplacementNamed('/merchantHomeScreen', arguments: jsonData["token"]);
+                      Navigator.pushReplacementNamed(context, '/merchantHomeScreen', arguments: jsonData['token']);
                     } else {
                       showDialog(
                           context: context,

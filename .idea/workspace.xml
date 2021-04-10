@@ -21,14 +21,23 @@
   <component name="ChangeListManager">
     <list default="true" id="792af8c6-7ea3-4f1a-852a-8fb644cf2f05" name="Default Changelist" comment="test file auto updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/customWidgets/new_order_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/customWidgets/new_order_button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/delivery_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/route_generator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/route_generator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/driver/driver_screens/driver_home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_pages/merchant_order_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_pages/merchant_order_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_place_new_order_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_place_new_order_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_registers_driver_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_registers_driver_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/screens/merchant/merchant_screens/merchant_sign_in_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_app/lib/url_link.dart" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_app/lib/url_link.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[0816082164814005]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -427,22 +436,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1617000448841" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1616953500453">
+    <state width="1860" height="279" key="GridCell.Tab.0.bottom" timestamp="1618046946535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1616953500453">
+    <state width="1860" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1618046946535" />
+    <state width="1860" height="279" key="GridCell.Tab.0.center" timestamp="1618046946535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1616953500453">
+    <state width="1860" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1618046946535" />
+    <state width="1860" height="279" key="GridCell.Tab.0.left" timestamp="1618046946535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1616953500453">
+    <state width="1860" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1618046946535" />
+    <state width="1860" height="279" key="GridCell.Tab.0.right" timestamp="1618046946535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616953500453" />
+    <state width="1860" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1618046946535" />
     <state x="1020" y="263" key="IDE.errors.dialog" timestamp="1615636357890">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

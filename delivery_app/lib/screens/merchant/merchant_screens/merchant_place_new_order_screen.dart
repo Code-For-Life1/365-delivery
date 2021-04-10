@@ -6,6 +6,8 @@ import 'package:delivery_app/models/order_details_model.dart';
 import 'package:delivery_app/url_link.dart';
 
 class MerchantPlaceNewOrder extends StatefulWidget {
+  final String token;
+  MerchantPlaceNewOrder({Key key, @required this.token}): super(key: key);
   @override
   State<MerchantPlaceNewOrder> createState() => _MerchantPlaceNewOrder();
 }
@@ -21,13 +23,17 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
   List<String> drivers = new List();
   Future<List<String>> getDrivers() async {
     drivers.clear();
+    print("getting drivers");
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/mydrivers/39',
+      path: '/users/merchant/drivers',
     );
-    var data = await http.get(uri);
+
+    print("widget.token= " + (widget.token == null ? "null" : "widget.token inside here is " + widget.token + "\n"));
+    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
     assert(data.statusCode == 200);
+
     var jsonData = json.decode(data.body);
     for (var driver in jsonData) {
       drivers.add(driver["first_name"] + " " + driver["last_name"]);
@@ -42,8 +48,7 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
       String bldg,
       String city,
       int flr,
-      int driver_id,
-      int merchant_id) async {
+      int driver_id) async {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
@@ -235,10 +240,10 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
                   margin: EdgeInsets.only(
                     top: screenSize * 0.1,
                   ),
-                  child: FlatButton(
+                  child: TextButton(
                       onPressed: () => {
                             createOrder(c1.text, c2.text, c3.text, c4.text,
-                                c5.text, int.parse(c6.text), 41, 39)
+                                c5.text, int.parse(c6.text), 41)
                           },
                       child: Text(
                         "Send order",

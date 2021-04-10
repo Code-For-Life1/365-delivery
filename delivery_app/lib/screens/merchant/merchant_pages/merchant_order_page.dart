@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MerchantOrder extends StatefulWidget {
+  final String token;
   @override
+  MerchantOrder({Key key, @required this.token}): super(key: key);
   _MerchantOrderState createState() => _MerchantOrderState();
 }
 
@@ -38,9 +40,7 @@ class _MerchantOrderState extends State<MerchantOrder> {
           )),
           Container(
             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-            child: FancyButton(
-              onPressed: () {},
-            ),
+            child: FancyButton(token: widget.token)
           ),
         ],
       ),
