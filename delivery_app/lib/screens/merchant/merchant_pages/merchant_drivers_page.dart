@@ -19,11 +19,15 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
       host: ngrokLink,
       path: '/users/merchant/drivers',
     );
-    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
+    var data = await http.get(uri, headers: {
+      "content-type": "application/json",
+      "Authorization": "Token " + widget.token
+    });
     var jsonData = json.decode(data.body);
     List<MerchantDrivers> drivers = [];
     for (var u in jsonData) {
-      MerchantDrivers driver = MerchantDrivers(u["first_name"], u["last_name"], u["phone_number"]);
+      MerchantDrivers driver =
+          MerchantDrivers(u["first_name"], u["last_name"], u["phone_number"]);
       drivers.add(driver);
     }
     print(drivers.length);

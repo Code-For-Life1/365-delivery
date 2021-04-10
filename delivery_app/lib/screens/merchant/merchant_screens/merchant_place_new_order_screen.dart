@@ -6,6 +6,8 @@ import 'package:delivery_app/models/order_details_model.dart';
 import 'package:delivery_app/url_link.dart';
 
 class MerchantPlaceNewOrder extends StatefulWidget {
+  final String token;
+  MerchantPlaceNewOrder({Key key, @required this.token}) : super(key: key);
   @override
   State<MerchantPlaceNewOrder> createState() => _MerchantPlaceNewOrder();
 }
@@ -24,9 +26,10 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/mydrivers/39',
+      path: '/users/merchant/drivers',
     );
-    var data = await http.get(uri);
+    var data = await http
+        .get(uri, headers: {"Authorization": "Token " + widget.token});
     assert(data.statusCode == 200);
     var jsonData = json.decode(data.body);
     for (var driver in jsonData) {
@@ -56,11 +59,12 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
       "building": bldg,
       "city": city,
       "floor": flr,
-      "driver": 41,
-      "merchant": 39
+      "driver": "03111222",
     };
-    final response = await http.post(uri,
-        body: json.encode(info), headers: {"content-type": "application/json"});
+    final response = await http.post(uri, body: json.encode(info), headers: {
+      "content-type": "application/json",
+      "Authorization": "Token " + widget.token
+    });
     if (response.statusCode >= 200) {
       // to do: receive order id
     } else {
