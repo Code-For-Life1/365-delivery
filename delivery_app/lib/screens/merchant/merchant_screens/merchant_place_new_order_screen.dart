@@ -21,6 +21,7 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
   final TextEditingController c6 = TextEditingController();
 
   List<String> drivers = new List();
+  Map<String, String> ID = new Map();
   Future<List<String>> getDrivers() async {
     drivers.clear();
     var uri = Uri(
@@ -33,7 +34,9 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
     assert(data.statusCode == 200);
     var jsonData = json.decode(data.body);
     for (var driver in jsonData) {
+      print(driver.toString() + '\n');
       drivers.add(driver["first_name"] + " " + driver["last_name"]);
+      ID.putIfAbsent(driver["first_name"] + " " + driver["last_name"], () => driver["phone_number"]);
     }
     return drivers;
   }
@@ -44,9 +47,9 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
       String st,
       String bldg,
       String city,
-      int flr,
-      int driver_id,
-      int merchant_id) async {
+      String flr,
+      String driver) async {
+
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
@@ -59,14 +62,14 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
       "building": bldg,
       "city": city,
       "floor": flr,
-      "driver": "03111222",
+      "driver": ID[driver],
     };
     final response = await http.post(uri, body: json.encode(info), headers: {
       "content-type": "application/json",
       "Authorization": "Token " + widget.token
     });
     if (response.statusCode >= 200) {
-      // to do: receive order id
+      // json.decode(response.body), get id, POJO
     } else {
       throw Exception('Failed to create order');
     }
@@ -239,10 +242,10 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
                   margin: EdgeInsets.only(
                     top: screenSize * 0.1,
                   ),
-                  child: FlatButton(
+                  child: TextButton(
                       onPressed: () => {
                             createOrder(c1.text, c2.text, c3.text, c4.text,
-                                c5.text, int.parse(c6.text), 41, 39)
+                                c5.text, c6.text, currentDriver)
                           },
                       child: Text(
                         "Send order",

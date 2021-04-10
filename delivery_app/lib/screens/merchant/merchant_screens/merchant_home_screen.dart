@@ -29,7 +29,6 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.token);
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -44,7 +43,7 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
       body: PageView(
         controller: _pageController,
         children: <Widget>[
-          MerchantOrder(),
+          MerchantOrder(token:widget.token),
           MerchantDriversPage(token: widget.token),
           MerchantOrdersHistory(token: widget.token)
         ],

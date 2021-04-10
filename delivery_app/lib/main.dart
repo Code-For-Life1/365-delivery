@@ -15,6 +15,10 @@ Future<void> main() async {
   runApp(MaterialApp(
     home: token == null ? MyApp() : role == 'driver' ? DriverHomeScreen(token: token) : MerchantHomeScreen(token: token),
     initialRoute: token == null ? '/' : role == 'driver' ? '/driverHomeScreen' : '/merchantHomeScreen',
+    routes: {
+      '/driverHomeScreen': (context) => DriverHomeScreen(token: token),
+      '/merchantHomeScreen': (context) => MerchantHomeScreen(token: token)
+    },
     onGenerateRoute: RouteGenerator.generateRoute,
     debugShowCheckedModeBanner: false,
   ));
