@@ -90,7 +90,7 @@ class _MerchantSignInState extends State<MerchantSignIn> {
                   var uri = Uri(
                     scheme: 'https',
                     host: ngrokLink,
-                    path: '/users/login',
+                    path: '/users/login/merchant',
                   );
                   Map<String, dynamic> info = {
                     "username": merchantUserNameController.text,
