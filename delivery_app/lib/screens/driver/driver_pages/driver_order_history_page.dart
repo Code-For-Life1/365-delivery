@@ -20,7 +20,7 @@ class _DriverOrderHistoryState extends State<DriverOrderHistory> {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/orders/driver/get',
+      path: '/orders/driver/get/completed',
     );
     var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
     var jsonData = json.decode(data.body);

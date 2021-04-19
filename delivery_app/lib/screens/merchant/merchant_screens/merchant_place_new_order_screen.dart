@@ -20,7 +20,7 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
   final TextEditingController c5 = TextEditingController();
   final TextEditingController c6 = TextEditingController();
 
-  List<String> drivers = new List();
+  List<String> drivers = [];
   Map<String, String> ID = new Map();
   Future<List<String>> getDrivers() async {
     drivers.clear();
@@ -35,7 +35,8 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
     var jsonData = json.decode(data.body);
     for (var driver in jsonData) {
       print(driver.toString() + '\n');
-      drivers.add(driver["first_name"] + " " + driver["last_name"]);
+      if (!drivers.contains(driver["first_name"] + " " + driver["last_name"]))
+        drivers.add(driver["first_name"] + " " + driver["last_name"]);
       ID.putIfAbsent(driver["first_name"] + " " + driver["last_name"], () => driver["phone_number"]);
     }
     return drivers;

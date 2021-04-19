@@ -15,7 +15,7 @@ class DriverReceivingOrder extends StatefulWidget {
 class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
   Future<List<OrderDetailsModel>> _getOrders() async {
     print(widget.token);
-    var data = await http.get(Uri.parse('https://$ngrokLink/orders/driver/get'),
+    var data = await http.get(Uri.parse('https://$ngrokLink/orders/driver/get/new'),
         headers: {
           "content-type": "application/json",
           "Authorization": "Token " + widget.token

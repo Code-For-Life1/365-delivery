@@ -32,7 +32,7 @@ class FancyButton extends StatelessWidget {
         ),
       ),
       onPressed: () => {
-        Navigator.of(context).pushReplacementNamed('/placeNewOrder', arguments: this.token)
+        Navigator.pushNamed(context, '/placeNewOrder', arguments: this.token)
       },
       shape: const StadiumBorder(),
     );

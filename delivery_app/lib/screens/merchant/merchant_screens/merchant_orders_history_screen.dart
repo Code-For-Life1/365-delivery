@@ -17,7 +17,7 @@ class _MerchantOrdersHistory extends State<MerchantOrdersHistory> {
     var uri = Uri(
       scheme: 'https',
       host: ngrokLink,
-      path: '/orders/merchant/get'
+      path: '/orders/merchant/get/completed'
     );
     var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
     var jsonData = json.decode(data.body);
