@@ -1,6 +1,7 @@
 import 'package:delivery_app/screens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:delivery_app/notifications.dart';
 
 class MerchantDrawer extends StatelessWidget {
   @override
@@ -17,6 +18,7 @@ class MerchantDrawer extends StatelessWidget {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 prefs.remove('token');
                 prefs.remove('role');
+                deleteNotificationToken(); //do not touch this
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext B) => MyApp()));
               },
               child: Text('Sign out', style: TextStyle(fontSize: 20))),
