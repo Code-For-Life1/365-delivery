@@ -24,7 +24,9 @@ class _MerchantOrderState extends State<MerchantOrder> {
         host: ngrokLink,
         path: '/orders/merchant/get/new'
     );
+    print("The token in Merchant first page is ${widget.token}");
     var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
+
     var jsonData = json.decode(data.body);
     print(jsonData.toString() + "\n");
     for (var order in jsonData){
