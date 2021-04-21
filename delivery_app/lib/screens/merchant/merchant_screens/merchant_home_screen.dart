@@ -12,6 +12,7 @@ class MerchantHomeScreen extends StatefulWidget {
 }
 
 class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
+
   int _currentIndex = 0;
   int _selectedIndex = 0;
   PageController _pageController = PageController();

@@ -14,7 +14,6 @@ class DriverReceivingOrder extends StatefulWidget {
 
 class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
   Future<List<OrderDetailsModel>> _getOrders() async {
-    print(widget.token);
     var data = await http.get(Uri.parse('https://$ngrokLink/orders/driver/get/new'),
         headers: {
           "content-type": "application/json",
@@ -33,7 +32,6 @@ class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
           u["receiver_phone_number"]);
       orders.add(driver);
     }
-    print(orders.length);
     return orders;
   }
 
@@ -84,6 +82,7 @@ class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
                             children: [
                               TextButton(
                                   onPressed: () async {
+                                    print("The token in driver first page is ${widget.token}");
                                     await http.put(
                                         Uri.parse(
                                             'http://$ngrokLink/orders/driver/is_done/${snapshot.data[index].id}'),
@@ -91,6 +90,7 @@ class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
                                           "content-type": "application/json",
                                           "Authorization": "Token " + widget.token
                                         });
+
                                     setState(() {
                                       return Scaffold();
                                     });

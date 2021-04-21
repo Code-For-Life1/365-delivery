@@ -22,6 +22,7 @@ class _DriverOrderHistoryState extends State<DriverOrderHistory> {
       host: ngrokLink,
       path: '/orders/driver/get/completed',
     );
+    print("The token in driver second page is ${widget.token}");
     var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
     var jsonData = json.decode(data.body);
     List<OrderDetailsModel> orders = [];
