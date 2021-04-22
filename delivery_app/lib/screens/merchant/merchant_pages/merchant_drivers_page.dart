@@ -26,6 +26,7 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
       "content-type": "application/json",
       "Authorization": "Token " + T
     });
+
     var jsonData = json.decode(data.body);
     List<MerchantDrivers> drivers = [];
     for (var u in jsonData) {

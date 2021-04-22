@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:delivery_app/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -101,8 +102,6 @@ class _DriverSignInState extends State<DriverSignIn> {
               if (response.statusCode == 200) {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 var jsonData = json.decode(response.body);
-
-                print("token for diver is " + jsonData["token"] + "\n");
                 prefs.setString('token', jsonData["token"]);
                 prefs.setString('role', 'driver');
                 prefs.reload();
