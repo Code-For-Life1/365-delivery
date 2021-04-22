@@ -18,7 +18,7 @@ Map<String, String> getNotificationBody(String uniqueToken) {
   };
 }
 
-Future<void> method1() async {
+Future<void> notificationHandler() async {
   // Get the token each time the application loads
   uniqueNotificationToken = await FirebaseMessaging.instance.getToken();
   print("uniqueNotificationToken is $uniqueNotificationToken");
@@ -39,26 +39,27 @@ Future<void> method1() async {
   // Stream listener
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {});
   FirebaseMessaging.onBackgroundMessage((message) => null);
-
 }
 
-void deleteNotificationToken(){
+void deleteNotificationToken() {
   FirebaseMessaging.instance.deleteToken();
   uniqueNotificationToken = null;
 }
-
 
 Future<void> saveTokenToDatabase(String token) async {
   Map<String, String> notificationBody =
       getNotificationBody(uniqueNotificationToken);
   var jsonData = json.encode(notificationBody);
   //need to check if there is login token, if yes update notification token to database
-  http.post(Uri.parse('http://$ngrokLink/users/fcm/add_device'),
-      body: jsonData,
-      headers: {
-        "content-type": "application/json",
-        "Authorization": "Token d9459e42eeb0d7951a0bc6c312a160537cc46035"
-      });
+  var authenticationToken = await getAuthToken();
+  authenticationToken == null
+      ? throw Exception("Authentication Token is null")
+      : http.post(Uri.parse('http://$ngrokLink/users/fcm/add_device'),
+          body: jsonData,
+          headers: {
+              "content-type": "application/json",
+              "Authorization": "Token $authenticationToken"
+            });
 }
 
 Future<void> initializeDefault() async {
@@ -66,7 +67,6 @@ Future<void> initializeDefault() async {
   assert(app != null);
   print('Initialized default app $app');
 }
-
 
 Future<String> getAuthToken() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
