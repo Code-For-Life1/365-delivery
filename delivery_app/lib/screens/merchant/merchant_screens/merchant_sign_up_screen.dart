@@ -34,6 +34,7 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
       http.Response response = await http.post(uri, body: b, headers: {"content-type": "application/json"});
       var data = json.decode(response.body);
       if(response.statusCode == 201){
+        print(data["token"] + "\n");
         Navigator.of(context).pushReplacementNamed('/merchantHomeScreen', arguments: data["token"]);
       }
       else{

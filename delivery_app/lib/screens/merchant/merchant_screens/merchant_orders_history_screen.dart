@@ -3,6 +3,7 @@ import 'package:delivery_app/customWidgets/merchant_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:delivery_app/url_link.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MerchantOrdersHistory extends StatefulWidget {
   final String token;
@@ -19,7 +20,9 @@ class _MerchantOrdersHistory extends State<MerchantOrdersHistory> {
       host: ngrokLink,
       path: '/orders/merchant/get/completed'
     );
-    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String T = prefs.getString('token');
+    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + T});
     var jsonData = json.decode(data.body);
     print(jsonData.toString() + "\n");
     for (var order in jsonData){

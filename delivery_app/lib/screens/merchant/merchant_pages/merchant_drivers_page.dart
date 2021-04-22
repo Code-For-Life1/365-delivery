@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:delivery_app/url_link.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MerchantDriversPage extends StatefulWidget {
   final String token;
@@ -19,10 +20,11 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
       host: ngrokLink,
       path: '/users/merchant/drivers',
     );
-    print("The token in Merchant second page is ${widget.token}");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String T = prefs.getString('token');
     var data = await http.get(uri, headers: {
       "content-type": "application/json",
-      "Authorization": "Token " + widget.token
+      "Authorization": "Token " + T
     });
 
     var jsonData = json.decode(data.body);

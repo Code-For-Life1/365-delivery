@@ -102,12 +102,11 @@ class _DriverSignInState extends State<DriverSignIn> {
               if (response.statusCode == 200) {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 var jsonData = json.decode(response.body);
-                print("Driver jsonData is $jsonData");
                 prefs.setString('token', jsonData["token"]);
                 prefs.setString('role', 'driver');
-                //post request notification token
-                method1();
-                Navigator.of(context).pushReplacementNamed('/driverHomeScreen', arguments: jsonData["token"]);
+                prefs.reload();
+                print("token in prefs is " + prefs.getString("token") + '\n');
+                Navigator.pushNamed(context, '/driverHomeScreen', arguments: jsonData["token"]);
               } else {
                 throw Exception('Failed to sign in');
               }

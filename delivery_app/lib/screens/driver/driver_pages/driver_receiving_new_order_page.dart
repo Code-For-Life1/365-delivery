@@ -4,6 +4,7 @@ import 'package:delivery_app/url_link.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:delivery_app/models/order_details_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DriverReceivingOrder extends StatefulWidget {
   final String token;
@@ -14,10 +15,12 @@ class DriverReceivingOrder extends StatefulWidget {
 
 class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
   Future<List<OrderDetailsModel>> _getOrders() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String T = prefs.getString('token');
     var data = await http.get(Uri.parse('https://$ngrokLink/orders/driver/get/new'),
         headers: {
           "content-type": "application/json",
-          "Authorization": "Token " + widget.token
+          "Authorization": "Token " + T
         });
     var jsonData = json.decode(data.body);
     List<OrderDetailsModel> orders = [];
@@ -64,6 +67,7 @@ class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
               );
             } else {
               return ListView.builder(
+                scrollDirection: Axis.vertical,
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
@@ -82,13 +86,15 @@ class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
                             children: [
                               TextButton(
                                   onPressed: () async {
+                                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                                    String T = prefs.getString('token');
                                     print("The token in driver first page is ${widget.token}");
                                     await http.put(
                                         Uri.parse(
                                             'http://$ngrokLink/orders/driver/is_done/${snapshot.data[index].id}'),
                                         headers: {
                                           "content-type": "application/json",
-                                          "Authorization": "Token " + widget.token
+                                          "Authorization": "Token " + T
                                         });
 
                                     setState(() {
