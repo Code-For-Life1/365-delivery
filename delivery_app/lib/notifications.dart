@@ -38,6 +38,7 @@ Future<void> method1() async {
   // Also handle any interaction when the app is in the background via a
   // Stream listener
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {});
+  FirebaseMessaging.onBackgroundMessage((message) => null);
 
 }
 
