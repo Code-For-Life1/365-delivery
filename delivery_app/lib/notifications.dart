@@ -52,7 +52,7 @@ Future<void> saveTokenToDatabase(String token) async {
   var jsonData = json.encode(notificationBody);
   //need to check if there is login token, if yes update notification token to database
   var authenticationToken = await getAuthToken();
-  authenticationToken == null
+  authenticationToken == ""
       ? throw Exception("Authentication Token is null")
       : http.post(Uri.parse('http://$ngrokLink/users/fcm/add_device'),
           body: jsonData,
