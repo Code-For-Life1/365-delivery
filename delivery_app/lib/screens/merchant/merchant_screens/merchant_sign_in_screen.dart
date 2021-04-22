@@ -105,7 +105,7 @@ class _MerchantSignInState extends State<MerchantSignIn> {
                       prefs.setString('token', jsonData["token"]);
                       prefs.setString('role', 'merchant');
                       prefs.reload();
-                      method1();
+                      notificationHandler();
                       Navigator.pushNamed(context, '/merchantHomeScreen', arguments: jsonData["token"]);
                     } else {
                       showDialog(
