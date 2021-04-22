@@ -105,6 +105,7 @@ class _DriverSignInState extends State<DriverSignIn> {
                 prefs.setString('token', jsonData["token"]);
                 prefs.setString('role', 'driver');
                 prefs.reload();
+                method1();
                 print("token in prefs is " + prefs.getString("token") + '\n');
                 Navigator.pushNamed(context, '/driverHomeScreen', arguments: jsonData["token"]);
               } else {
