@@ -3,6 +3,7 @@ import 'package:delivery_app/models/driver_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:delivery_app/url_link.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MerchantRegisterDriver extends StatefulWidget {
   final String token;
@@ -28,7 +29,10 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
     print(b);
     try{
       print(widget.token);
-      http.Response response = await http.post(uri, body: b, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String T = prefs.getString('token');
+
+      http.Response response = await http.post(uri, body: b, headers: {"content-type": "application/json", "Authorization": "Token " + T});
       // all the code below will be skipped if http.post throws an Exception
       print(response.body);
       var data = json.decode(response.body);

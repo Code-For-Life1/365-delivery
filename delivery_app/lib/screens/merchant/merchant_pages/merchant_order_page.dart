@@ -5,6 +5,7 @@ import 'package:delivery_app/customWidgets/merchant_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../url_link.dart';
 
 class MerchantOrder extends StatefulWidget {
@@ -24,7 +25,9 @@ class _MerchantOrderState extends State<MerchantOrder> {
         host: ngrokLink,
         path: '/orders/merchant/get/new'
     );
-    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String T = prefs.getString('token');
+    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + T});
     var jsonData = json.decode(data.body);
     print(jsonData.toString() + "\n");
     for (var order in jsonData){
@@ -66,10 +69,10 @@ class _MerchantOrderState extends State<MerchantOrder> {
           } else {
             return Column(
               children: [
-                SingleChildScrollView(physics: ScrollPhysics(), padding: EdgeInsets.only(top: 50, left: 5, right: 5),child:Column(
+                SingleChildScrollView(padding: EdgeInsets.only(top: 50, left: 5, right: 5),child:Column(
                   children: [
                     ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {

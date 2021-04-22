@@ -101,9 +101,11 @@ class _MerchantSignInState extends State<MerchantSignIn> {
                     if (response.statusCode == 200) {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
                       var jsonData = json.decode(response.body);
+                      print("token received: " + jsonData["token"] + '\n');
                       prefs.setString('token', jsonData["token"]);
                       prefs.setString('role', 'merchant');
-                      Navigator.of(context).pushReplacementNamed('/merchantHomeScreen', arguments: jsonData["token"]);
+                      prefs.reload();
+                      Navigator.pushNamed(context, '/merchantHomeScreen', arguments: jsonData["token"]);
                     } else {
                       showDialog(
                           context: context,

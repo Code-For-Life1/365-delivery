@@ -23,6 +23,7 @@ class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
   }
 
   void _onItemTapped(int selectedIndex) {
+    print(widget.token);
     _pageController.jumpToPage(selectedIndex);
     _currentIndex = selectedIndex;
   }

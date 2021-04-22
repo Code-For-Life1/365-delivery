@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:delivery_app/models/order_details_model.dart';
 import 'package:delivery_app/url_link.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MerchantPlaceNewOrder extends StatefulWidget {
   final String token;
@@ -29,8 +30,10 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
       host: ngrokLink,
       path: '/users/merchant/drivers',
     );
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String T = prefs.getString('token');
     var data = await http
-        .get(uri, headers: {"Authorization": "Token " + widget.token});
+        .get(uri, headers: {"Authorization": "Token " + T});
     assert(data.statusCode == 200);
     var jsonData = json.decode(data.body);
     for (var driver in jsonData) {
@@ -65,9 +68,11 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
       "floor": flr,
       "driver": ID[driver],
     };
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String T = prefs.getString('token');
     final response = await http.post(uri, body: json.encode(info), headers: {
       "content-type": "application/json",
-      "Authorization": "Token " + widget.token
+      "Authorization": "Token " + T
     });
     if (response.statusCode >= 200) {
       // json.decode(response.body), get id, POJO

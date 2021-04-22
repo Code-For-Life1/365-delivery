@@ -4,6 +4,7 @@ import 'package:delivery_app/url_link.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:delivery_app/models/order_details_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //CLASS NOT WORKING YET
 
@@ -22,7 +23,9 @@ class _DriverOrderHistoryState extends State<DriverOrderHistory> {
       host: ngrokLink,
       path: '/orders/driver/get/completed',
     );
-    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + widget.token});
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String T = prefs.getString('token');
+    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + T});
     var jsonData = json.decode(data.body);
     List<OrderDetailsModel> orders = [];
     for (var u in jsonData) {
