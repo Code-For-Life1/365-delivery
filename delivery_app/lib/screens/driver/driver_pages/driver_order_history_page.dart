@@ -25,7 +25,10 @@ class _DriverOrderHistoryState extends State<DriverOrderHistory> {
     );
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String T = prefs.getString('token');
-    var data = await http.get(uri, headers: {"content-type": "application/json", "Authorization": "Token " + T});
+    var data = await http.get(uri, headers: {
+      "content-type": "application/json",
+      "Authorization": "Token " + T
+    });
     var jsonData = json.decode(data.body);
     List<OrderDetailsModel> orders = [];
     for (var u in jsonData) {
@@ -78,11 +81,7 @@ class _DriverOrderHistoryState extends State<DriverOrderHistory> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              TextButton(
-                                  onPressed: () {},
-                                  child: Text("Mark as Completed")),
-                            ],
+                            children: [Text("Test")],
                           )
                         ],
                       ),
