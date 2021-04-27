@@ -1,2 +1,3 @@
-final String ngrokLink = "b7537faa8bb7.ngrok.io";
-
+final String httpLink = "365delivery.azurewebsites.net";
+//365delivery.azurewebsites.net
+//58aac41ed5ea.ngrok.io
