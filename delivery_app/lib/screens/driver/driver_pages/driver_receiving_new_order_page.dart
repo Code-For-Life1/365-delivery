@@ -1,9 +1,10 @@
 import 'package:delivery_app/customWidgets/driver_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:delivery_app/url_link.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:delivery_app/models/order_details_model.dart';
+import 'package:delivery_app/models/driver_order_details_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DriverReceivingOrder extends StatefulWidget {
@@ -14,18 +15,18 @@ class DriverReceivingOrder extends StatefulWidget {
 }
 
 class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
-  Future<List<OrderDetailsModel>> _getOrders() async {
+  Future<List<DriverOrderDetailsModel>> _getOrders() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String T = prefs.getString('token');
-    var data = await http.get(Uri.parse('https://$ngrokLink/orders/driver/get/new'),
-        headers: {
-          "content-type": "application/json",
-          "Authorization": "Token " + T
-        });
+    var data = await http
+        .get(Uri.parse('https://$httpLink/orders/driver/get/new'), headers: {
+      "content-type": "application/json",
+      "Authorization": "Token " + T
+    });
     var jsonData = json.decode(data.body);
-    List<OrderDetailsModel> orders = [];
+    List<DriverOrderDetailsModel> orders = [];
     for (var u in jsonData) {
-      OrderDetailsModel driver = OrderDetailsModel(
+      DriverOrderDetailsModel driver = DriverOrderDetailsModel(
           u["id"],
           u["city"],
           u["street"],
@@ -63,7 +64,7 @@ class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return Container(
-                child: Center(child: Text("Loading...")),
+                child: Center(child: SpinKitCircle(color: Colors.orangeAccent,)),
               );
             } else {
               return ListView.builder(
@@ -86,12 +87,14 @@ class _DriverReceivingOrderState extends State<DriverReceivingOrder> {
                             children: [
                               TextButton(
                                   onPressed: () async {
-                                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
                                     String T = prefs.getString('token');
-                                    print("The token in driver first page is ${widget.token}");
+                                    print(
+                                        "The token in driver first page is ${widget.token}");
                                     await http.put(
                                         Uri.parse(
-                                            'http://$ngrokLink/orders/driver/is_done/${snapshot.data[index].id}'),
+                                            'http://$httpLink/orders/driver/is_done/${snapshot.data[index].id}'),
                                         headers: {
                                           "content-type": "application/json",
                                           "Authorization": "Token " + T
