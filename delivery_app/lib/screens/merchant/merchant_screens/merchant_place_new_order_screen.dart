@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:delivery_app/models/order_details_model.dart';
+import 'package:delivery_app/models/driver_order_details_model.dart';
 import 'package:delivery_app/url_link.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,7 +27,7 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
     drivers.clear();
     var uri = Uri(
       scheme: 'https',
-      host: ngrokLink,
+      host: httpLink,
       path: '/users/merchant/drivers',
     );
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -45,7 +45,7 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
     return drivers;
   }
 
-  Future<OrderDetailsModel> createOrder(
+  Future<DriverOrderDetailsModel> createOrder(
       String r_name,
       String r_phone,
       String st,
@@ -56,7 +56,7 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
 
     var uri = Uri(
       scheme: 'https',
-      host: ngrokLink,
+      host: httpLink,
       path: '/orders/merchant/set_order',
     );
     Map<String, dynamic> info = {

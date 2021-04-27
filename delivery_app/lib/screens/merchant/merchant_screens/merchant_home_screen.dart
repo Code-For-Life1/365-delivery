@@ -1,8 +1,9 @@
 import 'package:delivery_app/screens/merchant/merchant_pages/merchant_drivers_page.dart';
 import 'package:delivery_app/screens/merchant/merchant_pages/merchant_order_page.dart';
 import 'package:flutter/material.dart';
-import 'merchant_orders_history_screen.dart';
+import 'package:delivery_app/screens/merchant/merchant_pages/merchant_orders_history_screen.dart';
 
+import '../../../notifications.dart';
 class MerchantHomeScreen extends StatefulWidget {
   final String token;
   MerchantHomeScreen({Key key, @required this.token}) : super(key: key);
@@ -12,6 +13,11 @@ class MerchantHomeScreen extends StatefulWidget {
 }
 
 class _MerchantHomeScreenState extends State<MerchantHomeScreen> {
+
+  @override
+  initState() {
+    super.initState();
+  }
 
   int _currentIndex = 0;
   int _selectedIndex = 0;

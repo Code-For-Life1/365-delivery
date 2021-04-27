@@ -1,16 +1,28 @@
 import 'package:delivery_app/customWidgets/loading_screen.dart';
 import 'package:delivery_app/screens/driver/driver_screens/driver_home_screen.dart';
 import 'package:delivery_app/screens/merchant/merchant_screens/merchant_home_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:delivery_app/route_generator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:delivery_app/screens/welcome.dart';
 import 'package:delivery_app/notifications.dart';
-
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDefault(); //do not touch this
+  // await flutterLocalNotificationsPlugin
+  //     .resolvePlatformSpecificImplementation<
+  //     AndroidFlutterLocalNotificationsPlugin>()
+  //     ?.createNotificationChannel(channel);
+
+
+  // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+  //   alert: true,
+  //   badge: true,
+  //   sound: true,
+  // );
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String token = prefs.getString('token');
   String role  = prefs.getString('role');

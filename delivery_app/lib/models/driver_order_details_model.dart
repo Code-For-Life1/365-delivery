@@ -1,4 +1,4 @@
-class OrderDetailsModel {
+class DriverOrderDetailsModel {
   int id;
   final String city;
   final String street;
@@ -7,6 +7,6 @@ class OrderDetailsModel {
   final String receiverFullName;
   final String receiverPhoneNumber;
 
-  OrderDetailsModel(this.id, this.city, this.street, this.building, this.floor,
+  DriverOrderDetailsModel(this.id, this.city, this.street, this.building, this.floor,
       this.receiverFullName, this.receiverPhoneNumber);
 }

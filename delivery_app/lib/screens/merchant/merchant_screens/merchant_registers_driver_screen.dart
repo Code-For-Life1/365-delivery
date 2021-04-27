@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MerchantRegisterDriver extends StatefulWidget {
   final String token;
-  MerchantRegisterDriver({Key key, @required this.token}): super(key: key);
+  MerchantRegisterDriver({Key key, @required this.token}) : super(key: key);
   @override
   _MerchantRegisterDriverState createState() => _MerchantRegisterDriverState();
 }
@@ -17,7 +17,7 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
       String firstName, String lastName, String phoneNumber) async {
     var uri = Uri(
       scheme: 'https',
-      host: ngrokLink,
+      host: httpLink,
       path: '/users/driver/register',
     );
     Map<String, String> a = {
@@ -27,49 +27,59 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
     };
     var b = json.encode(a);
     print(b);
-    try{
+    try {
       print(widget.token);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String T = prefs.getString('token');
 
-      http.Response response = await http.post(uri, body: b, headers: {"content-type": "application/json", "Authorization": "Token " + T});
+      http.Response response = await http.post(uri, body: b, headers: {
+        "content-type": "application/json",
+        "Authorization": "Token " + T
+      });
       // all the code below will be skipped if http.post throws an Exception
       print(response.body);
       var data = json.decode(response.body);
-      if (response.statusCode == 400){
-        showDialog(context: context, builder: (BuildContext context) {
-          return Container(
-              margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
-              child: AlertDialog(
+      if (response.statusCode == 400) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.3),
+                  child: AlertDialog(
+                      title: Text("Error"),
+                      content: Text("At least one field is missing.")));
+            });
+      } else if (response.statusCode == 201) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.3),
+                  child: AlertDialog(
+                    title: Text("Success!"),
+                    content: Text("Driver " +
+                        data["first_name"] +
+                        " " +
+                        data["last_name"] +
+                        " successfully added."),
+                  ));
+            });
+      }
+    } catch (exception) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Container(
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.3),
+                child: AlertDialog(
                   title: Text("Error"),
-                content: Text("At least one field is missing.")
-              )
-          );
-        });
-      }
-      else if (response.statusCode == 201){
-        showDialog(context: context, builder: (BuildContext context) {
-          return Container(
-              margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
-              child: AlertDialog(
-                title: Text("Success!"),
-                content: Text("Driver " + data["first_name"] + " " + data["last_name"] + " successfully added."),)
-          );
-        });
-      }
+                  content: Text("Unable to add driver at the moment."),
+                ));
+          });
     }
-    catch(exception){
-      showDialog(context: context, builder: (BuildContext context) {
-      return Container(
-        margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
-          child: AlertDialog(
-            title: Text("Error"),
-            content: Text("Unable to add driver at the moment."),
-          )
-      );
-    });
-    }
-    // return driverModelFromJson(responseString);
   }
 
   DriverModel _driver;
@@ -180,23 +190,6 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
                         ),
                       ),
                     ),
-                    // Container(
-                    //   width: screenSize * 0.85,
-                    //   child: TextField(
-                    //     style: TextStyle(fontSize: 22),
-                    //     decoration: new InputDecoration(
-                    //       fillColor: Color(0xFFF8F8F8),
-                    //       filled: true,
-                    //       contentPadding: EdgeInsets.only(left: 15.0),
-                    //       hintText: 'Home address',
-                    //       border: new OutlineInputBorder(
-                    //         borderRadius: const BorderRadius.all(
-                    //           const Radius.circular(10.0),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     Container(
                         width: screenSize * 0.85,
                         child: TextField(
