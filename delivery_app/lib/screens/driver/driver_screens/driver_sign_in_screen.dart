@@ -22,13 +22,18 @@ class _DriverSignInState extends State<DriverSignIn> {
   @override
   Widget build(BuildContext context) {
     double screenSize = MediaQuery.of(context).size.width;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+      FocusScope.of(context).unfocus();
+      return true;
+    },
+    child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[800],
           title: Text('Driver Sign in'),
           centerTitle: true,
         ),
-        body: Container(
+        body: SingleChildScrollView(child:Container(
             margin: EdgeInsets.only(top: 100),
             child: Column(children: [
               Container(
@@ -90,6 +95,7 @@ class _DriverSignInState extends State<DriverSignIn> {
               SizedBox(height: 15),
               TextButton(
                 onPressed: () async {
+                  FocusScope.of(context).unfocus();
                   final String driver_username = driverUserNameController.text;
                   final String driver_pass = driverPasswordController.text;
                   var uri = Uri(
@@ -97,6 +103,7 @@ class _DriverSignInState extends State<DriverSignIn> {
                     host: httpLink,
                     path: '/users/login/driver',
                   );
+                  // print(uri.toString());
                   Map<String, dynamic> info = {
                     "username": driver_username,
                     "password": driver_pass,
@@ -118,12 +125,13 @@ class _DriverSignInState extends State<DriverSignIn> {
                     Navigator.pushNamed(context, '/driverHomeScreen',
                         arguments: jsonData["token"]);
                   } else {
+                    print(response.statusCode);
                     throw Exception('Failed to sign in');
                   }
                 },
                 child: Text('Sign in'),
               ),
               SizedBox(height: 20),
-            ])));
+            ])))));
   }
 }

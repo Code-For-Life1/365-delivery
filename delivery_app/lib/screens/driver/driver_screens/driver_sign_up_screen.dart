@@ -90,6 +90,7 @@ class _DriverSignUpState extends State<DriverSignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.orange[800],
           title: Text('Driver Sign up'),
@@ -110,7 +111,7 @@ class _DriverSignUpState extends State<DriverSignUp> {
                 fillColor: Color(0xFFF8F8F8),
                 filled: true,
                 contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                hintText: 'e.g: yj18N3JiVJtu0lPob7BFs4MlHXBGREhh',
+                hintText: 'e.g: BGREhh',
                 border: new OutlineInputBorder(
                   borderRadius: const BorderRadius.all(
                     const Radius.circular(10.0),

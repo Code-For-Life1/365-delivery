@@ -158,7 +158,7 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
       ),
       body: Container(
           transform: Matrix4.translationValues(0.0, (screenSize * 0.15), 0.0),
-          child: Center(
+          child: SingleChildScrollView(child:Center(
               child: Column(children: [
             Image(
               height: screenSize * 0.15,
@@ -315,7 +315,7 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
                     style: TextStyle(fontSize: 20, color: Color(0xFF8D8D8D)),
                   )),
             )
-          ]))),
+          ])))),
       backgroundColor: Color(0xFFF6F8F5),
     );
   }

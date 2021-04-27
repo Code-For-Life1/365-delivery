@@ -90,6 +90,7 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
       future: listOfDrivers,
       builder: (context, snapshot) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             title: Text(
               "New Order",
@@ -240,7 +241,8 @@ class _MerchantPlaceNewOrder extends State<MerchantPlaceNewOrder> {
                     onChanged: (d) => {
                       this.setState(() {
                         currentDriver = d;
-                      })
+                      }),
+                      FocusScope.of(context).unfocus()
                     },
                   ),
                 ),

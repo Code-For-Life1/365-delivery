@@ -20,13 +20,20 @@ class _MerchantSignInState extends State<MerchantSignIn> {
   @override
   Widget build(BuildContext context) {
     double screenSize = MediaQuery.of(context).size.width;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+        FocusScope.of(context).unfocus();
+        return true;
+        },
+        child: Scaffold(
+
         appBar: AppBar(
           backgroundColor: Colors.orange[800],
           title: Text('Merchant Sign in'),
           centerTitle: true,
+
         ),
-        body: Container(
+        body: SingleChildScrollView(child: Container(
             margin: EdgeInsets.only(top: 100),
             child: Column(children: [
               Container(
@@ -88,6 +95,7 @@ class _MerchantSignInState extends State<MerchantSignIn> {
               SizedBox(height: 15),
               TextButton(
                 onPressed: () async {
+                  FocusScope.of(context).unfocus();
                   var uri = Uri(
                     scheme: 'https',
                     host: httpLink,
@@ -108,6 +116,7 @@ class _MerchantSignInState extends State<MerchantSignIn> {
                       notificationHandler();
                       Navigator.pushNamed(context, '/merchantHomeScreen', arguments: jsonData["token"]);
                     } else {
+                      print(response.statusCode);
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -127,6 +136,6 @@ class _MerchantSignInState extends State<MerchantSignIn> {
                 child: Text('Sign in'),
               ),
               SizedBox(height: 20),
-            ])));
+            ])))));
   }
 }

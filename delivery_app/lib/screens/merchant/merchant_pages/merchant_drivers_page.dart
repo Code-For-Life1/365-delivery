@@ -57,7 +57,7 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
           content: new Text("You will have to register the driver again"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
-            new FlatButton(
+            new TextButton(
               child: Row(
                 children: [
                   TextButton(

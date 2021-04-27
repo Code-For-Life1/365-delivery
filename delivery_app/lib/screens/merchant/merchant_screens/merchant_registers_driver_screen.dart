@@ -28,16 +28,16 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
     var b = json.encode(a);
     print(b);
     try {
-      print(widget.token);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String T = prefs.getString('token');
+      print("t = " + T);
 
       http.Response response = await http.post(uri, body: b, headers: {
         "content-type": "application/json",
         "Authorization": "Token " + T
       });
       // all the code below will be skipped if http.post throws an Exception
-      print(response.body);
+      print("hello" + response.body + (response.statusCode).toString());
       var data = json.decode(response.body);
       if (response.statusCode == 400) {
         showDialog(
@@ -68,6 +68,7 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
             });
       }
     } catch (exception) {
+
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -92,6 +93,7 @@ class _MerchantRegisterDriverState extends State<MerchantRegisterDriver> {
   Widget build(BuildContext context) {
     double screenSize = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leadingWidth: 56 * 2.0,
         leading: Center(

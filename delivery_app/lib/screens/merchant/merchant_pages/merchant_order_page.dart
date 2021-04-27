@@ -13,7 +13,7 @@ import 'package:delivery_app/models/merchant_order_details_model.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:delivery_app/notifications.dart';
 
-// int orderCounter = 0;
+int orderCounter = 0;
 Map<int, int> a = new Map();
 class MerchantOrder extends StatefulWidget {
   final String token;
@@ -25,6 +25,7 @@ class MerchantOrder extends StatefulWidget {
 
 class _MerchantOrderState extends State<MerchantOrder> {
   Future<List<MerchantOrderDetailsModel>> getPendingMerchantOrders() async {
+    a.clear();
     var uri =
         Uri(scheme: 'https', host: httpLink, path: '/orders/merchant/get/new');
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -36,6 +37,7 @@ class _MerchantOrderState extends State<MerchantOrder> {
     var jsonData = json.decode(data.body);
     List<MerchantOrderDetailsModel> orders = [];
     print(jsonData.toString() + "\n");
+    orderCounter = jsonData.length - 1;
     for (var order in jsonData) {
       MerchantOrderDetailsModel newOrder = MerchantOrderDetailsModel(
           order['id'],
@@ -49,10 +51,11 @@ class _MerchantOrderState extends State<MerchantOrder> {
           order['street'],
           order['building'],
           order['floor']);
-      // a.putIfAbsent(orderCounter, () => order["id"]);
-      // orderCounter +=1;
+      a[orderCounter] = order['id'];
+      orderCounter -=1;
       orders.add(newOrder);
     }
+    print(a.toString());
     return orders.reversed.toList();
   }
 
@@ -63,7 +66,6 @@ class _MerchantOrderState extends State<MerchantOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         actions: [
           IconButton(
@@ -138,19 +140,38 @@ class _MerchantOrderState extends State<MerchantOrder> {
                                           color: Colors.red,
                                         ),
                                         onPressed: () async {
-                                          print(a[index]);
-                                          // var authenticationToken =
-                                          //     await getAuthToken();
-                                          // http.delete(
-                                          //     Uri.parse(
-                                          //         'https://$httpLink//orders/merchant/delete_order/${snapshot.data[0]}'),
-                                          //     headers: {
-                                          //       "content-type":
-                                          //           "application/json",
-                                          //       "Authorization":
-                                          //           "Token $authenticationToken"
-                                          //     });
+                                          Map<int, int> M = new Map();
+                                          for(int k in a.keys){
+                                            if (k != index){
+                                              if(k > index){
+                                                M[k - 1] = a[k];
+                                              }
+                                              else {
+                                                M[k] = a[k];
+                                              }
+                                            }
+                                          }
+                                          var authenticationToken =
+                                              await getAuthToken();
+                                          var uri = Uri(
+                                            scheme: 'http',
+                                            host: httpLink,
+                                            path: '/orders/merchant/delete_order/' + a[index].toString(),
+                                          );
+                                          print(uri.toString());
+                                          var response = http.delete(uri,
+                                              headers: {
+                                                "content-type":
+                                                    "application/json",
+                                                "Authorization":
+                                                    "Token $authenticationToken"
+                                              });
+                                          a.clear();
+                                          a = Map.from(M);
+                                          response.toString();
+                                          print("new map = " + a.toString() + '\n');
                                           setState(() {});
+
                                         }
                                         ),
                                     IconButton(
@@ -205,6 +226,6 @@ class _MerchantOrderState extends State<MerchantOrder> {
           },
         ),
       ),
-    );
+      );
   }
 }
