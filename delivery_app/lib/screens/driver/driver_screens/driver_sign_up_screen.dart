@@ -13,7 +13,7 @@ class _DriverSignUpState extends State<DriverSignUp> {
   Future<DriverAuthentication> createToken(String token) async {
     var uri = Uri(
       scheme: 'https',
-      host: ngrokLink,
+      host: httpLink,
       path: '/users/driver/check_token',
     );
     Map<String, String> a = {"token": token};
@@ -41,11 +41,20 @@ class _DriverSignUpState extends State<DriverSignUp> {
             context: context,
             builder: (BuildContext context) {
               return Container(
-                  margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.3),
                   child: AlertDialog(
                     title: Text("Success"),
                     content: Text(data["response"]),
-                    actions: [TextButton(onPressed: () {Navigator.pushNamed(context, '/DriverRegisterationCredentials', arguments: data["token"]);}, child: Text("Continue"))],
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, '/DriverRegistrationCredentials',
+                                arguments: data["token"]);
+                          },
+                          child: Text("Continue"))
+                    ],
                   ));
             });
       }
@@ -57,7 +66,15 @@ class _DriverSignUpState extends State<DriverSignUp> {
                 margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * 0.3),
                 child: AlertDialog(
-                  actions: [TextButton(onPressed: (){Navigator.of(context).pushReplacementNamed('/DriverRegisterationCredentials', arguments: "a32r");}, child: Text("continue"))],
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed(
+                              '/DriverRegisterationCredentials',
+                              arguments: "a32r");
+                        },
+                        child: Text("continue"))
+                  ],
                   title: Text("Error"),
                   content: Text("Unable to validate right now."),
                 ));

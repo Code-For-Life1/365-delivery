@@ -90,7 +90,7 @@ class _MerchantSignInState extends State<MerchantSignIn> {
                 onPressed: () async {
                   var uri = Uri(
                     scheme: 'https',
-                    host: ngrokLink,
+                    host: httpLink,
                     path: '/users/login/merchant',
                   );
                   Map<String, dynamic> info = {

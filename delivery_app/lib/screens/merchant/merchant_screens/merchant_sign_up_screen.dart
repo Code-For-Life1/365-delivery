@@ -3,6 +3,8 @@ import 'package:delivery_app/models/merchant_model.dart';
 import 'package:delivery_app/url_link.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:delivery_app/notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Merchant: full name, phone number, company name, company address.
 class MerchantSignUp extends StatefulWidget {
@@ -11,12 +13,17 @@ class MerchantSignUp extends StatefulWidget {
 }
 
 class _MerchantSignUpState extends State<MerchantSignUp> {
-  Future<MerchantModel> addMerchant(String firstName, String lastName, String companyName,
-                                    String companyAddress, String phoneNumber, String password,
-                                    String confirmation_password) async {
+  Future<MerchantModel> addMerchant(
+      String firstName,
+      String lastName,
+      String companyName,
+      String companyAddress,
+      String phoneNumber,
+      String password,
+      String confirmation_password) async {
     var uri = Uri(
       scheme: 'https',
-      host: ngrokLink,
+      host: httpLink,
       path: '/users/merchant/register',
     );
     Map<String, String> a = {
@@ -30,50 +37,61 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
     };
     var b = json.encode(a);
     print(b);
-    try{
-      http.Response response = await http.post(uri, body: b, headers: {"content-type": "application/json"});
+    try {
+      http.Response response = await http
+          .post(uri, body: b, headers: {"content-type": "application/json"});
       var data = json.decode(response.body);
-      if(response.statusCode == 201){
+      print(response.statusCode);
+      if (response.statusCode == 201) {
         print(data["token"] + "\n");
-        Navigator.of(context).pushReplacementNamed('/merchantHomeScreen', arguments: data["token"]);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('token', data["token"]);
+        prefs.setString('role', 'merchant');
+        prefs.reload();
+        await notificationHandler();
+        Navigator.of(context).pushReplacementNamed('/merchantHomeScreen',
+            arguments: data["token"]);
+      } else {
+        if (password != confirmation_password) {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.3),
+                    child: AlertDialog(
+                      title: Text("Error"),
+                      content: Text("Passwords do not match."),
+                    ));
+              });
+        } else {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.3),
+                    child: AlertDialog(
+                      title: Text("Error"),
+                      content: Text(
+                          "Merchant with this phone number already exists.\nPlease log in."),
+                    ));
+              });
+        }
       }
-      else{
-        if (password != confirmation_password){
-          showDialog(context: context, builder: (BuildContext context) {
+    } catch (exception) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
             return Container(
-                margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.3),
                 child: AlertDialog(
                   title: Text("Error"),
-                  content: Text("Passwords do not match."),
-                )
-            );
+                  content: Text("Unable to add merchant at the moment."),
+                ));
           });
-        }
-        else {
-          showDialog(context: context, builder: (BuildContext context) {
-            return Container(
-                margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
-                child: AlertDialog(
-                  title: Text("Error"),
-                  content: Text("Merchant with this phone number already exists.\nPlease log in."),
-                )
-            );
-          });
-        }
-      }
     }
-    catch(exception){
-      showDialog(context: context, builder: (BuildContext context) {
-        return Container(
-            margin: EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.3),
-            child: AlertDialog(
-              title: Text("Error"),
-              content: Text("Unable to add merchant at the moment."),
-            )
-        );
-      });
-    }
-
   }
 
   MerchantModel _merchant;
@@ -81,10 +99,12 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController companyNameController = TextEditingController();
-  final TextEditingController companyAddressController = TextEditingController();
+  final TextEditingController companyAddressController =
+      TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmationController = TextEditingController();
+  final TextEditingController passwordConfirmationController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     double screenSize = MediaQuery.of(context).size.width;
@@ -114,7 +134,8 @@ class _MerchantSignUpState extends State<MerchantSignUp> {
                 final String phoneNumber = phoneNumberController.text;
                 final String password = passwordController.text;
                 final String password2 = passwordConfirmationController.text;
-                addMerchant(firstName, lastName, companyName, companyAddress, phoneNumber, password, password2);
+                addMerchant(firstName, lastName, companyName, companyAddress,
+                    phoneNumber, password, password2);
               },
               child: Text(
                 "Done",
