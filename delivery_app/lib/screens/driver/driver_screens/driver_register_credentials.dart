@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:delivery_app/notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../url_link.dart';
 
 class DriverRegistrationCredentials extends StatefulWidget {
@@ -67,7 +69,7 @@ class _DriverRegistrationCredentialsState
                     } else {
                       var uri = Uri(
                         scheme: 'https',
-                        host: ngrokLink,
+                        host: httpLink,
                         path: '/users/driver/auth_driver',
                       );
                       Map<String, String> a = {
@@ -84,6 +86,12 @@ class _DriverRegistrationCredentialsState
                         // all the code below will be skipped if http.post throws an Exception
                         var data = json.decode(response.body);
                         if (response.statusCode == 201) {
+                          SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                          prefs.setString('token', data["token"]);
+                          prefs.setString('role', 'driver');
+                          prefs.reload();
+                          await notificationHandler();
                           Navigator.of(context).pushReplacementNamed('/driverHomeScreen', arguments: data["token"]);
                         } else {
                           // error
