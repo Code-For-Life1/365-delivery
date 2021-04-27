@@ -1,12 +1,11 @@
 import 'package:delivery_app/customWidgets/driver_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:delivery_app/url_link.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:delivery_app/models/order_details_model.dart';
+import 'package:delivery_app/models/driver_order_details_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-//CLASS NOT WORKING YET
 
 class DriverOrderHistory extends StatefulWidget {
   final String token;
@@ -16,11 +15,10 @@ class DriverOrderHistory extends StatefulWidget {
 }
 
 class _DriverOrderHistoryState extends State<DriverOrderHistory> {
-  Future<List<OrderDetailsModel>> _getOrders() async {
-    var client = http.Client();
+  Future<List<DriverOrderDetailsModel>> _getOrders() async {
     var uri = Uri(
       scheme: 'https',
-      host: ngrokLink,
+      host: httpLink,
       path: '/orders/driver/get/completed',
     );
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -30,9 +28,9 @@ class _DriverOrderHistoryState extends State<DriverOrderHistory> {
       "Authorization": "Token " + T
     });
     var jsonData = json.decode(data.body);
-    List<OrderDetailsModel> orders = [];
+    List<DriverOrderDetailsModel> orders = [];
     for (var u in jsonData) {
-      OrderDetailsModel driver = OrderDetailsModel(
+      DriverOrderDetailsModel driver = DriverOrderDetailsModel(
           u["id"],
           u["city"],
           u["street"],
@@ -62,31 +60,41 @@ class _DriverOrderHistoryState extends State<DriverOrderHistory> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return Container(
-                child: Center(child: Text("Loading...")),
+                child: Center(
+                    child: SpinKitCircle(
+                  color: Colors.orangeAccent,
+                )),
               );
             } else {
               return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
-                    color: Colors.orange,
-                    shadowColor: Colors.blue,
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Text(snapshot.data[index].receiverFullName,
-                              style: TextStyle(color: Colors.red)),
-                          Text(
-                              '${snapshot.data[index].id},${snapshot.data[index].city},${snapshot.data[index].street},${snapshot.data[index].floor},${snapshot.data[index].receiverPhoneNumber} '),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [Text("Test")],
-                          )
-                        ],
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.black, width: 2),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ),
-                  );
+                      color: Colors.orange,
+                      shadowColor: Colors.blue,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '- ' +
+                              snapshot.data[index].receiverFullName +
+                              '\n\n- ' +
+                              snapshot.data[index].city +
+                              '\n\n- ' +
+                              snapshot.data[index].street +
+                              '\n\n- ' +
+                              snapshot.data[index].floor +
+                              '\n\n- ' +
+                              snapshot.data[index].receiverPhoneNumber,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontStyle: FontStyle.italic),
+                        ),
+                      ));
                 },
               );
             }
