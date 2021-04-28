@@ -80,7 +80,7 @@ class _MerchantDriversPageState extends State<MerchantDriversPage> {
                         style: TextStyle(color: Colors.red),
                       )),
                   SizedBox(
-                    width: 100,
+                    width: 10,
                   ),
                   TextButton(
                       onPressed: () {Navigator.pop(context);},
