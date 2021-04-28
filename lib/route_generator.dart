@@ -13,6 +13,7 @@ import 'package:delivery_app/screens/merchant/merchant_screens/merchant_update_o
 import 'screens/driver/driver_screens/driver_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:delivery_app/screens/welcome.dart';
+import 'package:delivery_app/screens/merchant/merchant_pages/merchant_order_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -49,7 +50,7 @@ class RouteGenerator {
       case '/placeNewOrder':
         return MaterialPageRoute(builder: (_)=>MerchantPlaceNewOrder(token: args));
       case '/updateOrder':
-        return MaterialPageRoute(builder: (_)=>MerchantUpdateOrder(token: args));
+        return MaterialPageRoute(builder: (_)=>MerchantUpdateOrder(selectedOrderDetails: args));
       case '/driverLoadingSignIn':
         return MaterialPageRoute(builder: (_)=>DriverSignInLoadingScreen());
       case '/driverLoadingSignUp':

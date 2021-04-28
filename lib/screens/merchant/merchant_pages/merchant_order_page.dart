@@ -14,7 +14,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:delivery_app/notifications.dart';
 
 int orderCounter = 0;
-Map<int, int> a = new Map();
+Map<int, MerchantOrderDetailsModel> currentPlacedOrders = new Map();
+
 class MerchantOrder extends StatefulWidget {
   final String token;
   MerchantOrder({Key key, @required this.token}) : super(key: key);
@@ -25,7 +26,7 @@ class MerchantOrder extends StatefulWidget {
 
 class _MerchantOrderState extends State<MerchantOrder> {
   Future<List<MerchantOrderDetailsModel>> getPendingMerchantOrders() async {
-    a.clear();
+    currentPlacedOrders.clear();
     var uri =
         Uri(scheme: 'https', host: httpLink, path: '/orders/merchant/get/new');
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -51,11 +52,11 @@ class _MerchantOrderState extends State<MerchantOrder> {
           order['street'],
           order['building'],
           order['floor']);
-      a[orderCounter] = order['id'];
-      orderCounter -=1;
+      currentPlacedOrders[orderCounter] = newOrder;
+      orderCounter -= 1;
       orders.add(newOrder);
     }
-    print(a.toString());
+    print(currentPlacedOrders.toString());
     return orders.reversed.toList();
   }
 
@@ -129,8 +130,7 @@ class _MerchantOrderState extends State<MerchantOrder> {
                           return Column(
                             children: [
                               ListTile(
-                                onTap: () {
-                                },
+                                onTap: () {},
                                 leading: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -140,14 +140,16 @@ class _MerchantOrderState extends State<MerchantOrder> {
                                           color: Colors.red,
                                         ),
                                         onPressed: () async {
-                                          Map<int, int> M = new Map();
-                                          for(int k in a.keys){
-                                            if (k != index){
-                                              if(k > index){
-                                                M[k - 1] = a[k];
-                                              }
-                                              else {
-                                                M[k] = a[k];
+                                          Map<int, MerchantOrderDetailsModel>
+                                              M = new Map();
+                                          for (int k
+                                              in currentPlacedOrders.keys) {
+                                            if (k != index) {
+                                              if (k > index) {
+                                                M[k - 1] =
+                                                    currentPlacedOrders[k];
+                                              } else {
+                                                M[k] = currentPlacedOrders[k];
                                               }
                                             }
                                           }
@@ -156,30 +158,57 @@ class _MerchantOrderState extends State<MerchantOrder> {
                                           var uri = Uri(
                                             scheme: 'http',
                                             host: httpLink,
-                                            path: '/orders/merchant/delete_order/' + a[index].toString(),
+                                            path:
+                                                '/orders/merchant/delete_order/' +
+                                                    currentPlacedOrders[index]
+                                                        .id
+                                                        .toString(),
                                           );
                                           print(uri.toString());
-                                          var response = http.delete(uri,
-                                              headers: {
-                                                "content-type":
-                                                    "application/json",
-                                                "Authorization":
-                                                    "Token $authenticationToken"
-                                              });
-                                          a.clear();
-                                          a = Map.from(M);
+                                          var response =
+                                              http.delete(uri, headers: {
+                                            "content-type": "application/json",
+                                            "Authorization":
+                                                "Token $authenticationToken"
+                                          });
+                                          currentPlacedOrders.clear();
+                                          currentPlacedOrders = Map.from(M);
                                           response.toString();
-                                          print("new map = " + a.toString() + '\n');
+                                          print("new map = " +
+                                              currentPlacedOrders.toString() +
+                                              '\n');
                                           setState(() {});
-
-                                        }
-                                        ),
+                                        }),
                                     IconButton(
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                         onPressed: () {
-                                            Navigator.pushNamed(context, '/updateOrder');
+                                          print(currentPlacedOrders[index]);
+                                          Navigator.pushNamed(
+                                              context, '/updateOrder',
+                                              arguments: {
+                                                'id': currentPlacedOrders[index]
+                                                    .id,
+                                                'receiver_full_name':
+                                                    currentPlacedOrders[index]
+                                                        .receiverFullName,
+                                                'receiver_phone_number':
+                                                    currentPlacedOrders[index]
+                                                        .receiverPhoneNumber,
+                                                'street':
+                                                    currentPlacedOrders[index]
+                                                        .street,
+                                                'building':
+                                                    currentPlacedOrders[index]
+                                                        .building,
+                                                'city':
+                                                    currentPlacedOrders[index]
+                                                        .city,
+                                                'floor':
+                                                    currentPlacedOrders[index]
+                                                        .floor
+                                              });
                                         }),
                                   ],
                                 ),
@@ -226,6 +255,6 @@ class _MerchantOrderState extends State<MerchantOrder> {
           },
         ),
       ),
-      );
+    );
   }
 }
