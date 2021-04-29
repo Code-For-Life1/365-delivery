@@ -127,6 +127,100 @@ class _MerchantOrderState extends State<MerchantOrder> {
                         scrollDirection: Axis.vertical,
                         itemCount: snapshot.data.length,
                         itemBuilder: (BuildContext context, int index) {
+                          void _showDialog() {
+                            // flutter defined function
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                // return object of type Dialog
+                                return AlertDialog(
+                                  title: new Text(
+                                      "Are you sure you want to delete the order?"),
+                                  content: new Text(
+                                      "If you want to edit the order, press the edit button next to it."),
+                                  actions: <Widget>[
+                                    // usually buttons at the bottom of the dialog
+                                    new TextButton(
+                                      child: Row(
+                                        children: [
+                                          TextButton(
+                                              onPressed: () async {
+                                                Map<int,
+                                                        MerchantOrderDetailsModel>
+                                                    M = new Map();
+                                                for (int k
+                                                    in currentPlacedOrders
+                                                        .keys) {
+                                                  if (k != index) {
+                                                    if (k > index) {
+                                                      M[k - 1] =
+                                                          currentPlacedOrders[
+                                                              k];
+                                                    } else {
+                                                      M[k] =
+                                                          currentPlacedOrders[
+                                                              k];
+                                                    }
+                                                  }
+                                                }
+                                                var authenticationToken =
+                                                    await getAuthToken();
+                                                var uri = Uri(
+                                                  scheme: 'http',
+                                                  host: httpLink,
+                                                  path:
+                                                      '/orders/merchant/delete_order/' +
+                                                          currentPlacedOrders[
+                                                                  index]
+                                                              .id
+                                                              .toString(),
+                                                );
+                                                print(uri.toString());
+                                                var response =
+                                                    http.delete(uri, headers: {
+                                                  "content-type":
+                                                      "application/json",
+                                                  "Authorization":
+                                                      "Token $authenticationToken"
+                                                });
+                                                currentPlacedOrders.clear();
+                                                currentPlacedOrders =
+                                                    Map.from(M);
+                                                response.toString();
+                                                print("new map = " +
+                                                    currentPlacedOrders
+                                                        .toString() +
+                                                    '\n');
+                                                setState(() {});
+                                              },
+                                              child: Text(
+                                                'DELETE ORDER',
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              )),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                'Cancel',
+                                                style: TextStyle(fontSize: 16),
+                                              ))
+                                        ],
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+
                           return Column(
                             children: [
                               ListTile(
@@ -140,44 +234,7 @@ class _MerchantOrderState extends State<MerchantOrder> {
                                           color: Colors.red,
                                         ),
                                         onPressed: () async {
-                                          Map<int, MerchantOrderDetailsModel>
-                                              M = new Map();
-                                          for (int k
-                                              in currentPlacedOrders.keys) {
-                                            if (k != index) {
-                                              if (k > index) {
-                                                M[k - 1] =
-                                                    currentPlacedOrders[k];
-                                              } else {
-                                                M[k] = currentPlacedOrders[k];
-                                              }
-                                            }
-                                          }
-                                          var authenticationToken =
-                                              await getAuthToken();
-                                          var uri = Uri(
-                                            scheme: 'http',
-                                            host: httpLink,
-                                            path:
-                                                '/orders/merchant/delete_order/' +
-                                                    currentPlacedOrders[index]
-                                                        .id
-                                                        .toString(),
-                                          );
-                                          print(uri.toString());
-                                          var response =
-                                              http.delete(uri, headers: {
-                                            "content-type": "application/json",
-                                            "Authorization":
-                                                "Token $authenticationToken"
-                                          });
-                                          currentPlacedOrders.clear();
-                                          currentPlacedOrders = Map.from(M);
-                                          response.toString();
-                                          print("new map = " +
-                                              currentPlacedOrders.toString() +
-                                              '\n');
-                                          setState(() {});
+                                          _showDialog();
                                         }),
                                     IconButton(
                                         icon: Icon(
@@ -207,7 +264,10 @@ class _MerchantOrderState extends State<MerchantOrder> {
                                                         .city,
                                                 'floor':
                                                     currentPlacedOrders[index]
-                                                        .floor
+                                                        .floor,
+                                                'driver_name':
+                                                    currentPlacedOrders[index]
+                                                        .driverName
                                               });
                                         }),
                                   ],
