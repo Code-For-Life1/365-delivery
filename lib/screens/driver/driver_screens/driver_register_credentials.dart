@@ -20,10 +20,11 @@ class DriverRegistrationCredentials extends StatefulWidget {
 
 class _DriverRegistrationCredentialsState
     extends State<DriverRegistrationCredentials> {
+  final TextEditingController PasswordController = TextEditingController();
+  final TextEditingController Password2Controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final TextEditingController PasswordController = TextEditingController();
-    final TextEditingController Password2Controller = TextEditingController();
+
     double screenSize = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
