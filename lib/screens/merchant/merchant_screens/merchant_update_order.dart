@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MerchantUpdateOrder extends StatefulWidget {
   final Map selectedOrderDetails;
+
   MerchantUpdateOrder({Key key, @required this.selectedOrderDetails}) : super(key: key);
   @override
   State<MerchantUpdateOrder> createState() => _MerchantPlaceNewOrder();
@@ -41,43 +42,8 @@ class _MerchantPlaceNewOrder extends State<MerchantUpdateOrder> {
     return drivers;
   }
 
-  Future<DriverOrderDetailsModel> createOrder(
-      String r_name,
-      String r_phone,
-      String st,
-      String bldg,
-      String city,
-      String flr,
-      String driver) async {
 
-    var uri = Uri(
-      scheme: 'https',
-      host: httpLink,
-      path: '/orders/merchant/set_order',
-    );
-    Map<String, dynamic> info = {
-      "receiver_full_name": r_name,
-      "receiver_phone_number": r_phone,
-      "street": st,
-      "building": bldg,
-      "city": city,
-      "floor": flr,
-      "driver": ID[driver],
-    };
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String T = prefs.getString('token');
-    final response = await http.post(uri, body: json.encode(info), headers: {
-      "content-type": "application/json",
-      "Authorization": "Token " + T
-    });
-    if (response.statusCode >= 200) {
-      // json.decode(response.body), get id, POJO
-    } else {
-      throw Exception('Failed to create order');
-    }
-  }
 
-  String currentDriver = "Select a driver";
   @override
   Widget build(BuildContext context) {
     int orderID = widget.selectedOrderDetails['id'];
@@ -87,6 +53,17 @@ class _MerchantPlaceNewOrder extends State<MerchantUpdateOrder> {
     String building = widget.selectedOrderDetails['building'];
     String city = widget.selectedOrderDetails['city'];
     String floor = widget.selectedOrderDetails['floor'];
+    String currentSelectedDriver = widget.selectedOrderDetails['driver_name'];
+    Map postRequest = {
+      "receiver_full_name": receiverFullName,
+      "receiver_phone_number": receiverPhoneNumber,
+      "street": street,
+      "building": building,
+      "city": city,
+      "floor": floor,
+      "driver": "03123456"
+    };
+    String currentDriver = currentSelectedDriver;
     final TextEditingController receiverFullNameController = TextEditingController(text: receiverFullName);
     final TextEditingController receiverPhoneNumberController = TextEditingController(text: receiverPhoneNumber);
     final TextEditingController streetController = TextEditingController(text: street);
@@ -259,9 +236,23 @@ class _MerchantPlaceNewOrder extends State<MerchantUpdateOrder> {
                           top: screenSize * 0.1,
                         ),
                         child: TextButton(
-                            onPressed: () => {
-                              createOrder(receiverFullNameController.text, receiverPhoneNumberController.text, streetController.text, buildingController.text,
-                                  cityController.text, floorController.text, currentDriver)
+                            onPressed: ()async  {
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              String T = prefs.getString('token');
+                              final updateOrderLink = Uri(
+                                scheme: 'https',
+                                host: httpLink,
+                                path: '/orders/merchant/update_order/$orderID',
+                              );
+                              final response = await http.put(updateOrderLink, body: json.encode('a'), headers: {
+                                "content-type": "application/json",
+                                "Authorization": "Token " + T
+                              });
+                              if (response.statusCode >= 200) {
+                                // json.decode(response.body), get id, POJO
+                              } else {
+                                throw Exception('Failed to create order');
+                              }
                             },
                             child: Text(
                               "Update",
